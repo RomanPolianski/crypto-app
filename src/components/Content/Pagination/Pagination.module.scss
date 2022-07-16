@@ -1,0 +1,27 @@
+$white: white;
+$grey: rgb(211, 210, 210);
+
+.paginationContainer {
+  display: flex;
+  margin-left: 2%;
+  li {
+    list-style-type: none;
+    padding: 7px;
+    border: 1px solid $grey;
+    border-radius: 2px;
+    height: 20px;
+  }
+  a {
+    text-decoration: none;
+    padding: 7px;
+  }
+
+  a:active {
+    color: $white;
+  }
+}
+
+.currentPage {
+  color: $white;
+  background-color: rgb(117, 0, 92);
+}
