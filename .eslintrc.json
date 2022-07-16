@@ -12,6 +12,10 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "globals": {
+    "React": true,
+    "JSX": true
+  },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
