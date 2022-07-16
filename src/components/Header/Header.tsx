@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import s from './Header.module.scss';
 
-const Header = () => {
+const Header: FC = (): JSX.Element => {
   return (
     <header className={s.header}>
       <div className={s.headerInnerContainer}>
@@ -9,7 +10,7 @@ const Header = () => {
           alt="logo"
           className={s.logo}
         />
-        <h1 className={s.appName}>Crypto</h1>
+        <h1 className={s.appName}>CRYPTO</h1>
       </div>
     </header>
   );
