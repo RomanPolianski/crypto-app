@@ -1,0 +1,16 @@
+.headerInnerContainer {
+  display: flex;
+  border-bottom: 1px solid purple;
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    margin: 5px 20px;
+  }
+
+  .appName {
+    padding-top: 30px;
+    margin: 0;
+    color: rgb(155, 81, 204);
+  }
+}
