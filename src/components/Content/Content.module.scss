@@ -9,10 +9,10 @@ table {
 
 table th {
   border: 1px solid rgb(192, 192, 192);
-  border-bottom: 1px solid transparent;
   padding: 10px;
   font-weight: 400;
 }
+
 thead tr th {
   font-weight: 600;
 }
@@ -21,7 +21,7 @@ thead tr th {
   margin: 1% auto;
   padding: 5px;
   display: flex;
-  background-color: rgb(214, 214, 214);
+  background-color: rgba(0, 0, 0, 0.1);
   border: 1px solid transparent;
   border-radius: 20px;
   width: 520px;

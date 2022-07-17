@@ -18,10 +18,10 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
   name,
 }): JSX.Element => {
   const [amount, setAmount] = useState<string>('0');
-
   const dispatch = useDispatch();
   const handleAddToCart = () => {
     dispatch(addToCart({ name, amount }));
+    close();
   };
 
   return ReactDOM.createPortal(
@@ -29,7 +29,7 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
       {open && (
         <div className={s.modalContainer}>
           <div className={s.modal}>
-            <h1>Buy {name} coin</h1>
+            <h1>Add {name} coin to cart</h1>
             <p>Enter the amount</p>
             <input
               className={s.inputAmount}
@@ -39,13 +39,14 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
               }
               value={amount}
               step={0.01}
+              min={0}
             />
             <button
               className={s.modalSubmit}
               type="button"
               onClick={handleAddToCart}
             >
-              Buy
+              Add
             </button>
             <button
               type="button"

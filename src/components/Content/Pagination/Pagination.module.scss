@@ -1,5 +1,5 @@
 $white: white;
-$grey: rgb(161, 161, 161);
+$grey: rgb(126, 125, 125);
 
 .paginationContainer {
   display: flex;
@@ -7,7 +7,7 @@ $grey: rgb(161, 161, 161);
   li {
     list-style-type: none;
     padding: 7px;
-    border: 1px solid $grey;
+    border: 1.5px solid $grey;
     border-radius: 20px;
     height: 20px;
     margin-left: 1%;
