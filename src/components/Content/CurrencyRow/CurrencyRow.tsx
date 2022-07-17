@@ -1,4 +1,8 @@
+import classNames from 'classnames';
 import { FC } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../store/cartSlice';
+import s from '../Content.module.scss';
 
 interface ICurrencyRowProps {
   key: string;
@@ -15,7 +19,6 @@ interface ICurrencyRowProps {
 }
 
 const CurrencyRow: FC<ICurrencyRowProps> = ({
-  key,
   cryptoId,
   symbol,
   name,
@@ -27,18 +30,41 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
   changePercent24Hr,
   vwap24Hr,
 }): JSX.Element => {
+  const dispatch = useDispatch();
+  const handleAddToCart = (product: string) => {
+    dispatch(addToCart(product));
+  };
+
   return (
     <tr>
       <th>{cryptoId}</th>
-      <th>{symbol}</th>
-      <th>{name}</th>
-      <th>{supply}</th>
-      <th>{maxSupply}</th>
-      <th>{marketCapUsd}</th>
-      <th>{volumeUsd24Hr}</th>
-      <th>{priceUsd}</th>
-      <th>{changePercent24Hr}</th>
-      <th>{vwap24Hr}</th>
+      <th>
+        {symbol}
+        <br />
+        {name}
+      </th>
+      <th>{priceUsd.slice(0, 7)} $</th>
+      <th>{marketCapUsd.slice(0, 15)} $</th>
+      <th
+        className={classNames(Number(changePercent24Hr) > 0 ? s.green : s.red)}
+      >
+        {changePercent24Hr.slice(0, 5)} %
+      </th>
+      <th>
+        <button type="button" onClick={() => handleAddToCart(name)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            className="bi bi-cart"
+            viewBox="0 0 16 16"
+          >
+            {' '}
+            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />{' '}
+          </svg>
+        </button>
+      </th>
     </tr>
   );
 };

@@ -1,16 +1,18 @@
 .headerInnerContainer {
   display: flex;
   border-bottom: 1px solid purple;
+  background-color: black;
 
   .logo {
-    width: 60px;
-    height: 60px;
-    margin: 5px 20px;
+    width: 30px;
+    height: 30px;
+    margin: 5px 5px;
   }
 
   .appName {
-    padding-top: 30px;
+    padding-top: 15px;
     margin: 0;
     color: rgb(155, 81, 204);
+    font-size: medium;
   }
 }

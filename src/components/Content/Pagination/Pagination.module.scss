@@ -1,5 +1,5 @@
 $white: white;
-$grey: rgb(211, 210, 210);
+$grey: rgb(161, 161, 161);
 
 .paginationContainer {
   display: flex;
@@ -8,12 +8,15 @@ $grey: rgb(211, 210, 210);
     list-style-type: none;
     padding: 7px;
     border: 1px solid $grey;
-    border-radius: 2px;
+    border-radius: 20px;
     height: 20px;
+    margin-left: 1%;
+    transition: all 0.5s linear;
   }
   a {
     text-decoration: none;
-    padding: 7px;
+    padding: 5px;
+    background-color: transparent;
   }
 
   a:active {
@@ -24,4 +27,5 @@ $grey: rgb(211, 210, 210);
 .currentPage {
   color: $white;
   background-color: rgb(117, 0, 92);
+  transform: translateY(-3px);
 }

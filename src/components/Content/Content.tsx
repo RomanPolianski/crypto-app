@@ -67,15 +67,10 @@ const Content: FC = (): JSX.Element => {
         <thead>
           <tr>
             <th>Rank</th>
-            <th>Symbol</th>
-            <th>Name</th>
-            <th>Supply</th>
-            <th>MaxSupply</th>
-            <th>MarketCap USD</th>
-            <th>24hr volume USD</th>
+            <th>Coin</th>
             <th>Price USD</th>
-            <th>Change % 24Hr</th>
-            <th>Vol.Weighted Average Price</th>
+            <th>MarketCap USD</th>
+            <th>Change 24Hr</th>
             <th> </th>
           </tr>
         </thead>
