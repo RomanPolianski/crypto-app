@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import './App.scss';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Content from './components/Content/Content';
 import Header from './components/Header/Header';
 import BuyCurrencyModal from './components/Modals/BuyCurrencyModal/BuyCurrencyModal';
@@ -17,6 +18,7 @@ const App: FC = (): JSX.Element => {
       }}
     >
       <Router>
+        <ToastContainer />
         <Header />
         <Routes>
           <Route path="/" element={<Content />} />
