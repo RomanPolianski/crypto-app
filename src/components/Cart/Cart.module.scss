@@ -1,9 +1,22 @@
 .header {
-  margin: 0% auto;
+  font-size: xx-large;
+  text-align: center;
 }
 
 .textCoin {
   color: black;
   font-size: large;
   margin-left: 20px;
+}
+
+.deleteButton {
+  background-color: red;
+  border: none;
+  color: white;
+  border-radius: 100px;
+}
+
+.deleteButton:active {
+  background-color: rgb(197, 0, 0);
+  border-radius: 100px;
 }
