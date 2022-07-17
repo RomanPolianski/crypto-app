@@ -9,6 +9,10 @@ const Header: FC = (): JSX.Element => {
     state.currency.currencies.slice(0, 3)
   );
 
+  const totalCartItemsAmount = useSelector(
+    (state: RootState) => state.cart.cartTotalQuantity
+  );
+
   const navigate = useNavigate();
 
   return (
@@ -49,6 +53,7 @@ const Header: FC = (): JSX.Element => {
             />{' '}
           </svg>
         </button>
+        <p className={s.coinNumberInCart}>{totalCartItemsAmount}</p>
       </div>
     </header>
   );
