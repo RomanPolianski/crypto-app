@@ -1,7 +1,10 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import './App.scss';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Content from './components/Content/Content';
 import Header from './components/Header/Header';
+import BuyCurrencyModal from './components/Modals/BuyCurrencyModal/BuyCurrencyModal';
+import Cart from './components/Cart/Cart';
 
 const App: FC = (): JSX.Element => {
   return (
@@ -13,8 +16,13 @@ const App: FC = (): JSX.Element => {
         height: '100vh',
       }}
     >
-      <Header />
-      <Content />
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Content />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </Router>
     </div>
   );
 };

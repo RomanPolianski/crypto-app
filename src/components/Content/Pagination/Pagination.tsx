@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from 'classnames';
 import { FC } from 'react';
 import s from './Pagination.module.scss';
@@ -21,7 +22,7 @@ const Pagination: FC<PaginationPropsTypes> = ({
           className={classNames(number === currentPage ? s.currentPage : '')}
         >
           <a
-            href="!#"
+            href="#"
             className={classNames(number === currentPage ? s.currentPage : '')}
             onClick={() => paginate(number)}
           >
