@@ -1,10 +1,9 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import './App.scss';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Content from './components/Content/Content';
 import Header from './components/Header/Header';
-import BuyCurrencyModal from './components/Modals/BuyCurrencyModal/BuyCurrencyModal';
 import Cart from './components/Cart/Cart';
 
 const App: FC = (): JSX.Element => {
@@ -14,6 +13,7 @@ const App: FC = (): JSX.Element => {
         backgroundImage:
           'url(https://auctionpala.com/wp-content/uploads/2019/08/larutadelsorigens_blur-wallpaper_81670.jpg',
         backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         height: '100vh',
       }}
     >

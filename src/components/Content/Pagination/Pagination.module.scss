@@ -1,4 +1,5 @@
 $white: white;
+$purple: rgb(117, 0, 92);
 $grey: rgb(126, 125, 125);
 
 .paginationContainer {
@@ -26,6 +27,6 @@ $grey: rgb(126, 125, 125);
 
 .currentPage {
   color: $white;
-  background-color: rgb(117, 0, 92);
+  background-color: $purple;
   transform: translateY(-3px);
 }

@@ -27,7 +27,7 @@ const Header: FC = (): JSX.Element => {
         <h1 className={s.appName}>CRYPTO</h1>
         {topCoins.map((c) => {
           return (
-            <div className={s.topCoinWrapper}>
+            <div key={c.name} className={s.topCoinWrapper}>
               <div className={s.topCopinsContainer}>
                 <p className={s.textCoin}>{c.name}</p>
                 <p className={s.textCoin}>{c.priceUsd.slice(0, 7)}</p>

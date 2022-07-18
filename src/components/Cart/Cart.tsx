@@ -51,7 +51,7 @@ const Cart: FC = (): JSX.Element => {
     <div>
       {cartItems.length !== 0 ? (
         <>
-          <h1 className={s.header}>Your Cart.</h1>
+          <h1 className={s.header}>Your Portfolio.</h1>
           <table className={s.contentTable}>
             <thead>
               <tr>
@@ -64,7 +64,7 @@ const Cart: FC = (): JSX.Element => {
           </table>
         </>
       ) : (
-        <h1 className={s.header}>Your Cart is Empty!</h1>
+        <h1 className={s.header}>Your Portfolio is Empty!</h1>
       )}
     </div>
   );
