@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { addToCart } from '../../../store/cartSlice';
 import s from './BuyCurrencyModal.module.scss';
 
@@ -19,9 +20,14 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
 }): JSX.Element => {
   const [amount, setAmount] = useState<string>('0');
   const dispatch = useDispatch();
+  const numberAmount = Number(amount);
   const handleAddToCart = () => {
-    dispatch(addToCart({ name, amount }));
-    close();
+    if (!numberAmount) {
+      toast.error('Enter the amount!', { position: 'bottom-right' });
+    } else {
+      dispatch(addToCart({ name, numberAmount }));
+      close();
+    }
   };
 
   return ReactDOM.createPortal(

@@ -1,5 +1,7 @@
+/* eslint-disable no-debugger */
+/* eslint-disable prefer-const */
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -10,7 +12,12 @@ interface CartStateType {
 
 interface CartItemsType {
   name: string;
-  amount: string;
+  numberAmount: number;
+}
+
+interface AddToCartActionType {
+  name: string;
+  numberAmount: number;
 }
 
 const initialState: CartStateType = {
@@ -22,9 +29,17 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart(state, { payload }) {
-      state.cartItems.push(payload);
-      state.cartTotalQuantity += 1;
+    addToCart(state, { payload }: PayloadAction<AddToCartActionType>) {
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.name === payload.name
+      );
+      if (itemIndex >= 0) {
+        state.cartItems[itemIndex].numberAmount += payload.numberAmount;
+      } else {
+        state.cartItems.push(payload);
+        state.cartTotalQuantity += 1;
+      }
+
       toast.success(`${payload.name} was added to cart`, {
         position: 'bottom-right',
       });

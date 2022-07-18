@@ -44,7 +44,7 @@ const Cart: FC = (): JSX.Element => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
   const c = cartItems.map((p: any) => (
-    <CartRow name={p.name} amount={p.amount} />
+    <CartRow name={p.name} amount={p.numberAmount} />
   ));
 
   return (
