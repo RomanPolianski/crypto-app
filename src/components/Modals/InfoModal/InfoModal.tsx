@@ -101,9 +101,7 @@ const InfoModal: FC<InfoModalProps> = ({
                   </p>
                   <p>
                     <b>Max Supply: </b>
-                    {!maxSupply === null
-                      ? maxSupply?.slice(0, 15)
-                      : 'Not available'}
+                    {maxSupply === null ? 'N/A' : maxSupply?.slice(0, 15)}
                   </p>
                   <p>
                     <b>Volume Usd 24hr:</b> {volumeUsd24Hr.slice(0, 15)}
