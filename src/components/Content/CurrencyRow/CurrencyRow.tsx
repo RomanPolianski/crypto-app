@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { FC, useState } from 'react';
 import BuyCurrencyModal from '../../Modals/BuyCurrencyModal/BuyCurrencyModal';
+import InfoModal from '../../Modals/InfoModal/InfoModal';
 import s from '../Content.module.scss';
 
 interface ICurrencyRowProps {
@@ -30,15 +31,26 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
   vwap24Hr,
 }): JSX.Element => {
   const [open, setOpen] = useState<boolean>(false);
-  const toggle = () => setOpen(!open);
+  const [infoModalOpen, setInfoModalOpen] = useState<boolean>(false);
 
-  const handleCartClick = () => {
+  const toggle = () => setOpen(!open);
+  const toggleInfoModal = () => setInfoModalOpen(!infoModalOpen);
+
+  const handleCartClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+    setInfoModalOpen(false);
     setOpen(true);
+  };
+
+  const handleInfoModalClick = () => {
+    setInfoModalOpen(true);
   };
 
   return (
     <>
-      <tr>
+      <tr onClick={() => handleInfoModalClick()}>
         <th>{cryptoId}</th>
         <th>
           <b>{symbol}</b>
@@ -58,7 +70,7 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
           <button
             type="button"
             className={s.addToCartButton}
-            onClick={() => handleCartClick()}
+            onClick={(e) => handleCartClick(e)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +86,20 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
           </button>
         </th>
       </tr>
-      <BuyCurrencyModal open={open} close={toggle} name={name} />
+      {(infoModalOpen || open) && (
+        <>
+          <BuyCurrencyModal open={open} close={toggle} name={name} />
+          <InfoModal
+            open={infoModalOpen}
+            close={toggleInfoModal}
+            name={name}
+            supply={supply}
+            maxSupply={maxSupply}
+            volumeUsd24Hr={volumeUsd24Hr}
+            vwap24Hr={vwap24Hr}
+          />
+        </>
+      )}
     </>
   );
 };

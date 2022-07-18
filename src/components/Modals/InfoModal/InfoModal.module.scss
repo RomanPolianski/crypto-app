@@ -1,0 +1,103 @@
+$purple: rgb(117, 0, 92);
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+}
+.modal {
+  text-align: center;
+  background-color: rgba(225, 225, 225, 0.9);
+  width: calc(50% + 15vw);
+  height: auto;
+  padding: 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+
+  h1 {
+    margin-bottom: 5%;
+    color: $purple;
+    border-bottom: 1px solid #111;
+  }
+
+  h2 {
+    font-weight: 300;
+  }
+
+  p {
+    border-bottom: 1px dashed rgb(122, 122, 122);
+  }
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.trend {
+  width: 600px;
+  margin-left: 1%;
+  canvas {
+    height: 900px;
+    background-color: rgb(236, 236, 236);
+    border-radius: 20px;
+  }
+}
+.cont {
+  display: flex;
+}
+
+.closeButton {
+  margin-left: 95%;
+  background: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 5px;
+  color: $purple;
+}
+
+.closeButton:active {
+  background-color: $purple;
+  color: #fff;
+}
+.modalSubmit {
+  background: $purple;
+  width: 43px;
+  height: 33px;
+  border: none;
+  font-weight: 700;
+  border-radius: 3px;
+  color: #e6e6e6;
+  margin: 7px 0 8px 8px;
+  padding: 10px 14px 10px 8px;
+  text-decoration: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.modalSubmit:active {
+  background: rgb(14, 3, 41);
+}
+.inputAmount {
+  overflow-wrap: break-word;
+  resize: none;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  font-family: inherit;
+  color: #172b4d;
+  width: calc(1% + 11vw);
+  font-size: 14px;
+  font-weight: 900;
+}
+.inputAmount:focus {
+  border: none;
+  outline: none;
+}
