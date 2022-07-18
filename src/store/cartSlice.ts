@@ -40,7 +40,7 @@ const cartSlice = createSlice({
         state.cartTotalQuantity += 1;
       }
 
-      toast.success(`${payload.name} was added to cart`, {
+      toast.success(`${payload.name} was added to portfolio`, {
         position: 'bottom-right',
       });
     },
