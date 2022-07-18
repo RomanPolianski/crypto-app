@@ -23,6 +23,11 @@
   margin: 0%;
 }
 
+.topCoinWrapper {
+  display: inline-flex;
+  margin-left: 2%;
+}
+
 .topCopinsContainer {
   margin-left: 3%;
   margin-top: 5px;
@@ -36,4 +41,26 @@
   margin-top: 10px;
   color: white;
   font-size: small;
+}
+
+.arrow {
+  border: solid rgb(255, 255, 255);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  margin-top: 20px;
+  margin-left: 5px;
+  padding: 2px;
+  width: 3px;
+  height: 1px;
+}
+.down {
+  transform: rotate(45deg);
+  border-color: red;
+  -webkit-transform: rotate(45deg);
+}
+.up {
+  transform: rotate(-135deg);
+  margin-top: 23px;
+  border-color: rgb(0, 226, 0);
+  -webkit-transform: rotate(-135deg);
 }

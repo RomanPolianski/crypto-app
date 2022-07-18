@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -26,9 +27,17 @@ const Header: FC = (): JSX.Element => {
         <h1 className={s.appName}>CRYPTO</h1>
         {topCoins.map((c) => {
           return (
-            <div className={s.topCopinsContainer}>
-              <p className={s.textCoin}>{c.name}</p>
-              <p className={s.textCoin}>{c.priceUsd.slice(0, 7)} $</p>
+            <div className={s.topCoinWrapper}>
+              <div className={s.topCopinsContainer}>
+                <p className={s.textCoin}>{c.name}</p>
+                <p className={s.textCoin}>{c.priceUsd.slice(0, 7)}</p>
+              </div>
+              <i
+                className={classNames(
+                  s.arrow,
+                  Number(c.changePercent24Hr) < 0 ? s.down : s.up
+                )}
+              />
             </div>
           );
         })}
