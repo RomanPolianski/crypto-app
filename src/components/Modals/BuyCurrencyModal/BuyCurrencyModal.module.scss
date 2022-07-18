@@ -1,6 +1,4 @@
-h1 {
-  font-size: 22px;
-}
+$purple: rgb(117, 0, 92);
 
 .modalContainer {
   position: fixed;
@@ -15,13 +13,21 @@ h1 {
   z-index: 100;
 }
 .modal {
-  background-color: rgba(225, 225, 225, 0.45);
+  text-align: center;
+  background-color: rgba(225, 225, 225, 0.75);
   width: calc(25% + 15vw);
   height: auto;
   padding: 2rem;
   border-radius: 20px;
   backdrop-filter: blur(2px);
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+
+  h1 {
+    font-size: large;
+    margin-bottom: 10%;
+    color: $purple;
+    border-bottom: 1px solid black;
+  }
 }
 .modalHeader {
   position: relative;
@@ -31,7 +37,7 @@ h1 {
   text-align: center;
 }
 .modalSubmit {
-  background: rgba(69, 0, 230, 0.6);
+  background: $purple;
   width: 200px;
   border: none;
   font-weight: 700;
@@ -40,6 +46,11 @@ h1 {
   margin: 7px 0 8px 8px;
   padding: 10px 14px 10px 8px;
   text-decoration: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.modalSubmit:active {
+  background: rgb(14, 3, 41);
 }
 .inputAmount {
   overflow-wrap: break-word;
@@ -57,9 +68,20 @@ h1 {
   border: none;
   outline: none;
 }
+.buttonContainer {
+  display: flex;
+  margin: 5% 25% 0% 25%;
+}
 .closeModalIcon {
-  width: 10px;
-  height: 10px;
-  background: transparent;
-  border: 1px solid transparent;
+  margin-top: 8px;
+  margin-left: 10px;
+  width: 60px;
+  height: 34px;
+  background-color: rgb(177, 1, 1);
+  border: 1px solid rgb(146, 0, 0);
+  border-radius: 10px;
+  color: white;
+}
+.closeModalIcon:active {
+  background-color: rgb(65, 0, 0);
 }
