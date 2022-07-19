@@ -16,6 +16,10 @@ const Header: FC = (): JSX.Element => {
     (state: RootState) => state.cart.cartTotalQuantity
   );
 
+  const currencies = useSelector(
+    (state: RootState) => state.currency.currencies
+  );
+
   const navigate = useNavigate();
 
   return (

@@ -79,7 +79,12 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
       </tr>
       {(infoModalOpen || open) && (
         <>
-          <BuyCurrencyModal open={open} close={toggle} name={name} />
+          <BuyCurrencyModal
+            open={open}
+            close={toggle}
+            name={name}
+            priceUsd={priceUsd}
+          />
           <InfoModal
             open={infoModalOpen}
             close={toggleInfoModal}
@@ -88,6 +93,7 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
             maxSupply={maxSupply}
             volumeUsd24Hr={volumeUsd24Hr}
             vwap24Hr={vwap24Hr}
+            priceUsd={priceUsd}
           />
         </>
       )}

@@ -20,3 +20,36 @@
   background-color: rgb(197, 0, 0);
   border-radius: 100px;
 }
+
+.arrow {
+  border: solid rgb(255, 255, 255);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  margin-left: 5px;
+  padding: 2px;
+  width: 1px;
+  height: 1px;
+}
+.down {
+  transform: rotate(45deg);
+  border-color: red;
+  -webkit-transform: rotate(45deg);
+  margin-bottom: 2px;
+}
+.up {
+  transform: rotate(-135deg);
+  border-color: rgb(0, 226, 0);
+  -webkit-transform: rotate(-135deg);
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.black {
+  color: black !important;
+}

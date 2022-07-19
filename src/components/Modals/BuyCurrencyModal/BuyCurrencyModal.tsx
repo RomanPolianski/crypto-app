@@ -10,6 +10,7 @@ interface BuyCurrencyModalProps {
   open: boolean;
   close: Function;
   name: string;
+  priceUsd: string;
 }
 
 const modalRootElement = document.querySelector('#modal') as HTMLDivElement;
@@ -18,6 +19,7 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
   open,
   close,
   name,
+  priceUsd,
 }): JSX.Element => {
   const [amount, setAmount] = useState<string>('');
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
     if (!numberAmount || numberAmount <= 0) {
       toast.error('Please Enter the amount!', { position: 'bottom-right' });
     } else {
-      dispatch(addToCart({ name, numberAmount }));
+      dispatch(addToCart({ name, numberAmount, priceUsd }));
       close();
       setAmount('');
     }

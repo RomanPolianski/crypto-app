@@ -19,6 +19,7 @@ interface InfoModalProps {
   maxSupply: string | null;
   volumeUsd24Hr: string;
   vwap24Hr: string;
+  priceUsd: string;
 }
 
 Chart.register(...registerables);
@@ -33,6 +34,7 @@ const InfoModal: FC<InfoModalProps> = ({
   maxSupply,
   volumeUsd24Hr,
   vwap24Hr,
+  priceUsd,
 }): JSX.Element => {
   const [loading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState([]);
@@ -46,7 +48,7 @@ const InfoModal: FC<InfoModalProps> = ({
         position: 'bottom-right',
       });
     } else {
-      dispatch(addToCart({ name, numberAmount }));
+      dispatch(addToCart({ name, numberAmount, priceUsd }));
       close();
       setAmount('');
     }
