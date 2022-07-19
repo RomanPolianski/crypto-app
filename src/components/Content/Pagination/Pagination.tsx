@@ -13,7 +13,7 @@ const Pagination: FC<PaginationPropsTypes> = ({
   paginate,
   pageNumbers,
   currentPage,
-}) => {
+}): JSX.Element => {
   return (
     <div className={s.paginationContainer}>
       {pageNumbers.map((number) => (

@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import PreloaderIcon from '../../assets/preloader.svg';
 
-const Preloader = () => {
+const Preloader: FC = (): JSX.Element => {
   return (
     <img
       src={PreloaderIcon}
