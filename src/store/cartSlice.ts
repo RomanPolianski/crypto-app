@@ -20,6 +20,10 @@ interface AddToCartActionType {
   numberAmount: number;
 }
 
+// interface DeleteFromCartActionType {
+//   name: string;
+// }
+
 const initialState: CartStateType = {
   cartItems: [],
   cartTotalQuantity: 0,
@@ -44,7 +48,7 @@ const cartSlice = createSlice({
         position: 'bottom-right',
       });
     },
-    deleteFromCart(state, { payload }) {
+    deleteFromCart(state, { payload }: PayloadAction<string>) {
       state.cartItems = state.cartItems.filter((i) => i.name !== payload);
       state.cartTotalQuantity -= 1;
     },

@@ -18,7 +18,7 @@ export interface CurType {
   marketCapUsd: string;
   volumeUsd24Hr: string;
   priceUsd: string;
-  changePercent24Hr: any;
+  changePercent24Hr: string;
   vwap24Hr: string;
 }
 

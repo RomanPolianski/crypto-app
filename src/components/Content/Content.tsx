@@ -50,7 +50,7 @@ const Content: FC = (): JSX.Element => {
     if (currentPage !== 1) setCurrentPage((prev) => prev - 1);
   };
 
-  const c = currentCurrency.map((p: any) => (
+  const c = currentCurrency.map((p) => (
     <CurrencyRow
       key={p.id}
       cryptoId={p.rank}

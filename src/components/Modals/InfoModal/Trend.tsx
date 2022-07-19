@@ -1,5 +1,3 @@
-/* eslint-disable prefer-const */
-/* eslint-disable no-debugger */
 import { FC } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
@@ -7,27 +5,28 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 interface TrendPropsTypes {
-  trendData: any;
+  trendData: Array<TrendDataArray>;
+}
+
+interface TrendDataArray {
+  priceUsd: string;
+  time: number;
+  date: string;
 }
 
 const Trend: FC<TrendPropsTypes> = ({ trendData }): JSX.Element => {
-  let days = 365;
+  const days = 365;
 
   return (
     <Line
       data={{
-        labels: trendData.map((c: { time: string | number | Date }) => {
-          let date = new Date(c.time);
-          let time =
-            date.getHours() > 12
-              ? `${date.getHours() - 12}:${date.getMinutes()} PM}`
-              : `${date.getHours()}:${date.getMinutes()} AM}`;
-
-          return days === 1 ? time : date.toLocaleDateString();
+        labels: trendData.map((c) => {
+          const date = new Date(c.time);
+          return date.toLocaleDateString();
         }),
         datasets: [
           {
-            data: trendData.map((c: { priceUsd: any }) => {
+            data: trendData.map((c) => {
               return c.priceUsd;
             }),
             label: `Price (past ${days} Days)`,
