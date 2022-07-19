@@ -20,10 +20,6 @@ interface AddToCartActionType {
   numberAmount: number;
 }
 
-// interface DeleteFromCartActionType {
-//   name: string;
-// }
-
 const initialState: CartStateType = {
   cartItems: [],
   cartTotalQuantity: 0,
