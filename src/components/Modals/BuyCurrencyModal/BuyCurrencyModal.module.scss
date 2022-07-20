@@ -85,3 +85,18 @@ $purple: rgb(117, 0, 92);
 .closeModalIcon:active {
   background-color: rgb(65, 0, 0);
 }
+
+@media (max-width: 800px) {
+  .inputAmount {
+    overflow-wrap: break-word;
+    resize: none;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    font-family: inherit;
+    color: #172b4d;
+    width: calc(90% + 15vw);
+    font-size: 14px;
+    font-weight: 900;
+  }
+}

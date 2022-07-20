@@ -52,22 +52,23 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
   return (
     <>
       <tr onClick={() => handleInfoModalClick()}>
-        <th>{cryptoId}</th>
-        <th>
+        <td data-label="Rank">{cryptoId}</td>
+        <td data-label="Coin">
           <b>{symbol}</b>
           <br />
           {name}
-        </th>
-        <th>{priceUsd.slice(0, 7)} $</th>
-        <th>{marketCapUsd.slice(0, 15)} $</th>
-        <th
+        </td>
+        <td data-label="Price USD">{priceUsd.slice(0, 7)} $</td>
+        <td data-label="MarketCap USD">{marketCapUsd.slice(0, 15)} $</td>
+        <td
+          data-label="Change % 24hr"
           className={classNames(
             Number(changePercent24Hr) > 0 ? s.green : s.red
           )}
         >
           {changePercent24Hr.slice(0, 5)} %
-        </th>
-        <th>
+        </td>
+        <td data-label="">
           <button
             type="button"
             className={s.addToCartButton}
@@ -75,7 +76,7 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
           >
             <CartSvg />
           </button>
-        </th>
+        </td>
       </tr>
       {(infoModalOpen || open) && (
         <>

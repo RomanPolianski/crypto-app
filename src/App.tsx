@@ -8,15 +8,7 @@ import Cart from './components/Cart/Cart';
 
 const App: FC = (): JSX.Element => {
   return (
-    <div
-      style={{
-        backgroundImage:
-          'url(https://auctionpala.com/wp-content/uploads/2019/08/larutadelsorigens_blur-wallpaper_81670.jpg',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        height: '100vh',
-      }}
-    >
+    <div>
       <Router>
         <ToastContainer />
         <Header />

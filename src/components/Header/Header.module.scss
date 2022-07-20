@@ -6,7 +6,7 @@
   .logo {
     width: 30px;
     height: 30px;
-    margin: 5px 5px;
+    margin: 5px 10px;
   }
 
   .appName {
@@ -28,7 +28,7 @@
   margin-left: 2%;
 }
 
-.topCopinsContainer {
+.topCoinContainer {
   margin-left: 3%;
   margin-top: 5px;
 }
@@ -36,6 +36,7 @@
 .cartButton {
   margin-left: 65%;
   background: transparent;
+  border: none;
 }
 .coinNumberInCart {
   margin-top: 10px;
@@ -63,4 +64,58 @@
   margin-top: 23px;
   border-color: rgb(0, 226, 0);
   -webkit-transform: rotate(-135deg);
+}
+
+@media (max-width: 1200px) {
+  .cartButton {
+    margin-left: calc(40% + 11vw);
+  }
+}
+
+@media (max-width: 800px) {
+  .cartButton {
+    margin-left: calc(30% + 11vw);
+  }
+  .topCoinWrapper {
+    display: inline-flex;
+    margin-left: 1%;
+  }
+  .headerInnerContainer {
+    width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .cartButton {
+    margin-left: calc(20% + 11vw);
+  }
+}
+@media (max-width: 500px) {
+  .cartButton {
+    margin-left: calc(8% + 11vw);
+  }
+}
+
+@media (max-width: 390px) {
+  .headerInnerContainer {
+    width: auto;
+  }
+  .textCoin {
+    color: azure;
+    font-size: 10px;
+    margin: 0%;
+  }
+
+  .topCoinWrapper {
+    margin-left: 2%;
+    visibility: hidden;
+  }
+
+  .topCopinsContainer {
+    margin-left: 1%;
+    margin-top: 5px;
+  }
+  .cartButton {
+    margin-left: -9%;
+  }
 }

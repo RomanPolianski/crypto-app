@@ -30,3 +30,21 @@ $grey: rgb(126, 125, 125);
   background-color: $purple;
   transform: translateY(-3px);
 }
+@media (max-width: 800px) {
+  .paginationContainer {
+    margin-left: 3%;
+    li {
+      padding: 1px;
+      border-radius: 20px;
+      height: 20px;
+      margin-left: 1px;
+      transition: all 0.5s linear;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .paginationContainer {
+    visibility: hidden;
+  }
+}

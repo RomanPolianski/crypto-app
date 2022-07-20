@@ -10,6 +10,8 @@ interface CartStateType {
   cartTotalQuantity: number;
   cartTotal: number;
   cartTotalNow: number;
+  differenceCartTotal: number;
+  differenceCartTotalPercent: number;
 }
 
 interface CartItemsType {
@@ -24,11 +26,18 @@ interface AddToCartActionType {
   priceUsd: string;
 }
 
+interface setCartDifferenceInfoType {
+  differenceCartTotal: number;
+  differenceCartTotalPercent: number;
+}
+
 const initialState: CartStateType = {
   cartItems: [],
   cartTotalQuantity: 0,
   cartTotal: 0,
   cartTotalNow: 0,
+  differenceCartTotal: 0,
+  differenceCartTotalPercent: 0,
 };
 
 const cartSlice = createSlice({
@@ -66,9 +75,30 @@ const cartSlice = createSlice({
     setCartTotalNow(state, { payload }: PayloadAction<number>) {
       state.cartTotalNow += payload;
     },
+    deleteCartTotalNow(state) {
+      state.cartTotalNow = 0;
+    },
+    setCartDifferenceInfo(
+      state,
+      { payload }: PayloadAction<setCartDifferenceInfoType>
+    ) {
+      state.differenceCartTotal = payload.differenceCartTotal;
+      state.differenceCartTotalPercent = payload.differenceCartTotalPercent;
+    },
+    deleteCartDifferenceInfo(state) {
+      state.differenceCartTotal = 0;
+      state.differenceCartTotalPercent = 0;
+    },
   },
 });
 
-export const { addToCart, deleteFromCart, setCartTotalNow } = cartSlice.actions;
+export const {
+  addToCart,
+  deleteFromCart,
+  setCartTotalNow,
+  deleteCartTotalNow,
+  setCartDifferenceInfo,
+  deleteCartDifferenceInfo,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

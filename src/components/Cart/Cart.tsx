@@ -4,7 +4,13 @@ import classNames from 'classnames';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { deleteFromCart, setCartTotalNow } from '../../store/cartSlice';
+import {
+  deleteCartDifferenceInfo,
+  deleteCartTotalNow,
+  deleteFromCart,
+  setCartDifferenceInfo,
+  setCartTotalNow,
+} from '../../store/cartSlice';
 import CloseSvg from '../common/svg/CloseSvg';
 import s from './Cart.module.scss';
 
@@ -31,36 +37,40 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
   };
 
   useEffect(() => {
-    debugger;
     dispatch(setCartTotalNow(totalCoinPriceNow));
-  }, []);
+    return () => {
+      dispatch(deleteCartTotalNow());
+    };
+  }, [name]);
 
   return (
     <tr>
-      <th>{name}</th>
-      <th>{amount}</th>
-      <th>{priceUsd.slice(0, 8)} $</th>
-      <th>
+      <td data-label="Coin">{name}</td>
+      <td data-label="Amount">{amount}</td>
+      <td data-label="Price when added">{priceUsd.slice(0, 8)} $</td>
+      <td data-label="Price now">
         <span className={classNames(isRising ? s.green : s.red)}>
-          {priceNow.slice(0, 8)} $
+          {Number(priceNow).toFixed(2)} $
         </span>
         <span>
           <i className={classNames(s.arrow, isRising ? s.up : s.down)} />
         </span>
-      </th>
-      <th>{amount * Number(priceUsd)} $</th>
-      <th>
+      </td>
+      <td data-label="Total when added">
+        {(amount * Number(priceUsd)).toFixed(2)} $
+      </td>
+      <td data-label="Total now">
         <span className={classNames(isRising ? s.green : s.red)}>
-          {totalCoinPriceNow} $
+          {totalCoinPriceNow.toFixed(2)} $
         </span>
         <span>
           <i className={classNames(isRising ? s.green : s.red)} />
         </span>
-      </th>
+      </td>
 
-      <th>{difference.toString().slice(0, 6)} %</th>
+      <td data-label="Difference">{difference.toString().slice(0, 6)} %</td>
 
-      <th>
+      <td data-label="">
         <button
           type="button"
           onClick={handleDeleteCoin}
@@ -68,7 +78,7 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
         >
           <CloseSvg />
         </button>
-      </th>
+      </td>
     </tr>
   );
 };
@@ -79,17 +89,30 @@ const Cart: FC = (): JSX.Element => {
   const cartTotalNow = useSelector(
     (state: RootState) => state.cart.cartTotalNow
   );
+  const dispatch = useDispatch();
+
+  const differenceCartTotalPercent = (cartTotalNow * 100) / cartTotal - 100;
+  const differenceCartTotal = cartTotalNow - cartTotal;
 
   const c = cartItems.map((p) => (
     <CartRow name={p.name} amount={p.numberAmount} priceUsd={p.priceUsd} />
   ));
+
+  useEffect(() => {
+    dispatch(
+      setCartDifferenceInfo({ differenceCartTotal, differenceCartTotalPercent })
+    );
+    return () => {
+      dispatch(deleteCartDifferenceInfo());
+    };
+  });
 
   return (
     <div>
       {cartItems.length !== 0 ? (
         <>
           <h1 className={s.header}>Portfolio.</h1>
-          <table className={s.contentTable}>
+          <table className={s.table}>
             <thead>
               <tr>
                 <th>Coin</th>
@@ -104,10 +127,30 @@ const Cart: FC = (): JSX.Element => {
             </thead>
             <tbody>{c}</tbody>
             <p>
-              Initial Total:<b> {cartTotal}</b> $
+              Initial Total:<b> {cartTotal.toFixed(2)}</b> $
             </p>
             <p>
-              Total now:<b> {cartTotalNow}</b> $
+              Total now:<b> {cartTotalNow.toFixed(2)}</b> $
+            </p>
+            <p>
+              Difference:{' '}
+              <p
+                className={classNames(
+                  differenceCartTotalPercent > 0 ? s.green : s.red
+                )}
+              >
+                <b>{differenceCartTotal.toFixed(2)} $</b>
+              </p>
+            </p>
+            <p>
+              Difference in %:{' '}
+              <p
+                className={classNames(
+                  differenceCartTotalPercent > 0 ? s.green : s.red
+                )}
+              >
+                <b>{differenceCartTotalPercent.toFixed(2)} %</b>
+              </p>
             </p>
           </table>
         </>

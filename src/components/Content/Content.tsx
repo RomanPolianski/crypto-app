@@ -72,7 +72,7 @@ const Content: FC = (): JSX.Element => {
         <Preloader />
       ) : (
         <>
-          <table className={s.contentTable}>
+          <table className={s.table}>
             <thead>
               <tr>
                 <th>Rank</th>

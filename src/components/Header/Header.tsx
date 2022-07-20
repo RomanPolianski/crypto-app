@@ -1,3 +1,6 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-debugger */
+/* eslint-disable no-console */
 import classNames from 'classnames';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
@@ -16,8 +19,14 @@ const Header: FC = (): JSX.Element => {
     (state: RootState) => state.cart.cartTotalQuantity
   );
 
-  const currencies = useSelector(
-    (state: RootState) => state.currency.currencies
+  const totalCartNow = useSelector(
+    (state: RootState) => state.cart.cartTotalNow
+  );
+  const totalCartDifferencePercent = useSelector(
+    (state: RootState) => state.cart.differenceCartTotalPercent
+  );
+  const totalCartDifference = useSelector(
+    (state: RootState) => state.cart.differenceCartTotal
   );
 
   const navigate = useNavigate();
@@ -30,7 +39,7 @@ const Header: FC = (): JSX.Element => {
         {topCoins.map((c) => {
           return (
             <div key={c.name} className={s.topCoinWrapper}>
-              <div className={s.topCopinsContainer}>
+              <div className={s.topCoinContainer}>
                 <p className={s.textCoin}>{c.name}</p>
                 <p className={s.textCoin}>{c.priceUsd.slice(0, 7)}</p>
               </div>
