@@ -1,5 +1,3 @@
-/* eslint-disable no-debugger */
-/* eslint-disable prefer-const */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 /* eslint-disable no-param-reassign */
 import { toast } from 'react-toastify';

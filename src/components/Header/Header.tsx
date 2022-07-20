@@ -1,6 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-debugger */
-/* eslint-disable no-console */
 import classNames from 'classnames';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';

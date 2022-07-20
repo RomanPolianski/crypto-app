@@ -1,5 +1,3 @@
-/* eslint-disable no-debugger */
-/* eslint-disable no-nested-ternary */
 import classNames from 'classnames';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
