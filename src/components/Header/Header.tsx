@@ -6,6 +6,7 @@ import { RootState } from '../../store';
 import PortfolioSvg from '../common/svg/PortfolioSvg';
 import s from './Header.module.scss';
 import Logo from '../../assets/logo.png';
+import { toUSD } from '../../utils/toUSDformatter';
 
 const Header: FC = (): JSX.Element => {
   const topCoins = useSelector((state: RootState) =>
@@ -38,7 +39,7 @@ const Header: FC = (): JSX.Element => {
             <div key={c.name} className={s.topCoinWrapper}>
               <div className={s.topCoinContainer}>
                 <p className={s.textCoin}>{c.name}</p>
-                <p className={s.textCoin}>{c.priceUsd.slice(0, 7)}</p>
+                <p className={s.textCoin}>{toUSD.format(Number(c.priceUsd))}</p>
               </div>
               <i
                 className={classNames(

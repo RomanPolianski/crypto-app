@@ -1,5 +1,7 @@
 import classNames from 'classnames';
 import { FC, useState } from 'react';
+import { toPercent } from '../../../utils/toPercentFormatter';
+import { toUSD } from '../../../utils/toUSDformatter';
 import CartSvg from '../../common/svg/CartSvg';
 import BuyCurrencyModal from '../../Modals/BuyCurrencyModal/BuyCurrencyModal';
 import InfoModal from '../../Modals/InfoModal/InfoModal';
@@ -58,15 +60,15 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
           <br />
           {name}
         </td>
-        <td data-label="Price USD">{priceUsd.slice(0, 7)} $</td>
-        <td data-label="MarketCap USD">{marketCapUsd.slice(0, 15)} $</td>
+        <td data-label="Price USD">{toUSD.format(Number(priceUsd))}</td>
+        <td data-label="MarketCap USD">{toUSD.format(Number(marketCapUsd))}</td>
         <td
           data-label="Change % 24hr"
           className={classNames(
             Number(changePercent24Hr) > 0 ? s.green : s.red
           )}
         >
-          {changePercent24Hr.slice(0, 5)} %
+          {toPercent.format(Number(changePercent24Hr))}
         </td>
         <td data-label="">
           <button

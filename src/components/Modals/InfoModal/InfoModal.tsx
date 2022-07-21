@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import instance from '../../../axios/api';
 import { addToCart } from '../../../store/cartSlice';
+import { toUSD } from '../../../utils/toUSDformatter';
 import Preloader from '../../common/Preloader';
 import CloseSvg from '../../common/svg/CloseSvg';
 import s from './InfoModal.module.scss';
@@ -73,6 +74,7 @@ const InfoModal: FC<InfoModalProps> = ({
   useEffect(() => {
     fetchData();
   }, [open]);
+
   return ReactDOM.createPortal(
     <div>
       {open && (
@@ -90,18 +92,19 @@ const InfoModal: FC<InfoModalProps> = ({
               <div className={s.infoContainer}>
                 <div className={s.sidebarInfo}>
                   <p>
-                    <b>Supply:</b> {supply.slice(0, 15)}
+                    <b>Supply:</b> {Number(supply).toFixed(2)}
                   </p>
                   <p>
                     <b>Max Supply: </b>
-                    {maxSupply === null ? 'N/A' : maxSupply?.slice(0, 15)}
+                    {maxSupply === null ? 'N/A' : Number(maxSupply)?.toFixed(2)}
                   </p>
                   <p>
-                    <b>Volume Usd 24hr:</b> {volumeUsd24Hr.slice(0, 15)}
+                    <b>Volume Usd 24hr:</b>{' '}
+                    {toUSD.format(Number(volumeUsd24Hr))}
                   </p>
                   <p>
                     <b>Vol. Weighted Avg Price last 24hr:</b>{' '}
-                    {vwap24Hr.slice(0, 15)}
+                    {Number(vwap24Hr).toFixed(2)}
                   </p>
                   <h2>Add to portfolio</h2>
                   <input

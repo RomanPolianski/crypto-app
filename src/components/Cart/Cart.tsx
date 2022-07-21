@@ -6,6 +6,8 @@ import {
   deleteCartDifferenceInfo,
   setCartDifferenceInfo,
 } from '../../store/cartSlice';
+import { toPercent } from '../../utils/toPercentFormatter';
+import { toUSD } from '../../utils/toUSDformatter';
 import s from './Cart.module.scss';
 import CartRow from './CartRow';
 
@@ -58,10 +60,10 @@ const Cart: FC = (): JSX.Element => {
             </thead>
             <tbody>{c}</tbody>
             <p>
-              Initial Total:<b> {cartTotal.toFixed(2)}</b> $
+              Initial Total:<b> {toUSD.format(cartTotal)}</b>
             </p>
             <p>
-              Total now:<b> {cartTotalNow.toFixed(2)}</b> $
+              Total now:<b> {toUSD.format(cartTotalNow)}</b>
             </p>
             <p>
               Difference:{' '}
@@ -70,7 +72,7 @@ const Cart: FC = (): JSX.Element => {
                   differenceCartTotalPercent > 0 ? s.green : s.red
                 )}
               >
-                <b>{differenceCartTotal.toFixed(2)} $</b>
+                <b>{toUSD.format(differenceCartTotal)}</b>
               </span>
             </p>
             <p>
@@ -80,7 +82,7 @@ const Cart: FC = (): JSX.Element => {
                   differenceCartTotalPercent > 0 ? s.green : s.red
                 )}
               >
-                <b>{differenceCartTotalPercent.toFixed(2)} %</b>
+                <b>{toPercent.format(differenceCartTotalPercent)}</b>
               </span>
             </p>
           </table>

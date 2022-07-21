@@ -7,6 +7,8 @@ import {
   deleteFromCart,
   setCartTotalNow,
 } from '../../store/cartSlice';
+import { toPercent } from '../../utils/toPercentFormatter';
+import { toUSD } from '../../utils/toUSDformatter';
 import CloseSvg from '../common/svg/CloseSvg';
 import s from './Cart.module.scss';
 
@@ -43,28 +45,28 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
     <tr>
       <td data-label="Coin">{name}</td>
       <td data-label="Amount">{amount}</td>
-      <td data-label="Price when added">{priceUsd.slice(0, 8)} $</td>
+      <td data-label="Price when added">{toUSD.format(Number(priceUsd))}</td>
       <td data-label="Price now">
         <span className={classNames(isRising ? s.green : s.red)}>
-          {Number(priceNow).toFixed(2)} $
+          {toUSD.format(Number(priceNow))}
         </span>
         <span>
           <i className={classNames(s.arrow, isRising ? s.up : s.down)} />
         </span>
       </td>
       <td data-label="Total when added">
-        {(amount * Number(priceUsd)).toFixed(2)} $
+        {toUSD.format(amount * Number(priceUsd))} $
       </td>
       <td data-label="Total now">
         <span className={classNames(isRising ? s.green : s.red)}>
-          {totalCoinPriceNow.toFixed(2)} $
+          {toUSD.format(totalCoinPriceNow)}
         </span>
         <span>
           <i className={classNames(isRising ? s.green : s.red)} />
         </span>
       </td>
 
-      <td data-label="Difference">{difference.toFixed(2)} %</td>
+      <td data-label="Difference">{toPercent.format(difference)}</td>
 
       <td data-label="">
         <button
