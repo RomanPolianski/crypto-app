@@ -4,82 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import {
   deleteCartDifferenceInfo,
-  deleteCartTotalNow,
-  deleteFromCart,
   setCartDifferenceInfo,
-  setCartTotalNow,
 } from '../../store/cartSlice';
-import CloseSvg from '../common/svg/CloseSvg';
 import s from './Cart.module.scss';
-
-interface CartRowProps {
-  name: string;
-  amount: number;
-  priceUsd: string;
-}
-const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
-  const dispatch = useDispatch();
-  const currencies = useSelector(
-    (state: RootState) => state.currency.currencies
-  );
-
-  const itemIndex = currencies.findIndex((item) => item.name === name);
-
-  const priceNow = currencies[itemIndex].priceUsd;
-  const totalCoinPriceNow = Number(priceNow) * amount;
-  const isRising = Number(priceUsd) < Number(priceNow);
-  const difference = (Number(priceNow) * 100) / Number(priceUsd) - 100;
-
-  const handleDeleteCoin = () => {
-    dispatch(deleteFromCart(name));
-  };
-
-  useEffect(() => {
-    dispatch(setCartTotalNow(totalCoinPriceNow));
-    return () => {
-      dispatch(deleteCartTotalNow());
-    };
-  }, [name]);
-
-  return (
-    <tr>
-      <td data-label="Coin">{name}</td>
-      <td data-label="Amount">{amount}</td>
-      <td data-label="Price when added">{priceUsd.slice(0, 8)} $</td>
-      <td data-label="Price now">
-        <span className={classNames(isRising ? s.green : s.red)}>
-          {Number(priceNow).toFixed(2)} $
-        </span>
-        <span>
-          <i className={classNames(s.arrow, isRising ? s.up : s.down)} />
-        </span>
-      </td>
-      <td data-label="Total when added">
-        {(amount * Number(priceUsd)).toFixed(2)} $
-      </td>
-      <td data-label="Total now">
-        <span className={classNames(isRising ? s.green : s.red)}>
-          {totalCoinPriceNow.toFixed(2)} $
-        </span>
-        <span>
-          <i className={classNames(isRising ? s.green : s.red)} />
-        </span>
-      </td>
-
-      <td data-label="Difference">{difference.toString().slice(0, 6)} %</td>
-
-      <td data-label="">
-        <button
-          type="button"
-          onClick={handleDeleteCoin}
-          className={s.deleteButton}
-        >
-          <CloseSvg />
-        </button>
-      </td>
-    </tr>
-  );
-};
+import CartRow from './CartRow';
 
 const Cart: FC = (): JSX.Element => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
@@ -93,7 +21,12 @@ const Cart: FC = (): JSX.Element => {
   const differenceCartTotal = cartTotalNow - cartTotal;
 
   const c = cartItems.map((p) => (
-    <CartRow name={p.name} amount={p.numberAmount} priceUsd={p.priceUsd} />
+    <CartRow
+      name={p.name}
+      amount={p.numberAmount}
+      priceUsd={p.priceUsd}
+      key={p.name}
+    />
   ));
 
   useEffect(() => {
@@ -132,23 +65,23 @@ const Cart: FC = (): JSX.Element => {
             </p>
             <p>
               Difference:{' '}
-              <p
+              <span
                 className={classNames(
                   differenceCartTotalPercent > 0 ? s.green : s.red
                 )}
               >
                 <b>{differenceCartTotal.toFixed(2)} $</b>
-              </p>
+              </span>
             </p>
             <p>
               Difference in %:{' '}
-              <p
+              <span
                 className={classNames(
                   differenceCartTotalPercent > 0 ? s.green : s.red
                 )}
               >
                 <b>{differenceCartTotalPercent.toFixed(2)} %</b>
-              </p>
+              </span>
             </p>
           </table>
         </>
