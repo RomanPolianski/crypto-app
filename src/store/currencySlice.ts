@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import instance from '../axios/api';
 

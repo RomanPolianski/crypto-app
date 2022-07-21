@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';

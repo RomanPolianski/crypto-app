@@ -13,7 +13,7 @@ const App: FC = (): JSX.Element => {
         <ToastContainer />
         <Header />
         <Routes>
-          <Route path="/" element={<Content />} />
+          <Route path="/crypto-app" element={<Content />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>

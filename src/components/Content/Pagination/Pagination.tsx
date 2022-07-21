@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from 'classnames';
 import { FC } from 'react';
 import s from './Pagination.module.scss';
