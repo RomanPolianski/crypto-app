@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import instance from '../../../axios/api';
 import { addToCart } from '../../../store/cartSlice';
-import { toUSD } from '../../../utils/toUSDformatter';
+import { toUSD } from '../../../utils/formatters/toUSDformatter';
 import Preloader from '../../common/Preloader';
 import CloseSvg from '../../common/svg/CloseSvg';
 import s from './InfoModal.module.scss';

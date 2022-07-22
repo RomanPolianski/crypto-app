@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FC, useState } from 'react';
-import { toPercent } from '../../../utils/toPercentFormatter';
-import { toUSD } from '../../../utils/toUSDformatter';
+import { toPercent } from '../../../utils/formatters/toPercentFormatter';
+import { toUSD } from '../../../utils/formatters/toUSDformatter';
 import CartSvg from '../../common/svg/CartSvg';
 import BuyCurrencyModal from '../../Modals/BuyCurrencyModal/BuyCurrencyModal';
 import InfoModal from '../../Modals/InfoModal/InfoModal';

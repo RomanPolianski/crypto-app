@@ -7,8 +7,9 @@ import {
   deleteFromCart,
   setCartTotalNow,
 } from '../../store/cartSlice';
-import { toPercent } from '../../utils/toPercentFormatter';
-import { toUSD } from '../../utils/toUSDformatter';
+import useCalcPriceNow from '../../utils/calculation/useCalcPriceNow';
+import { toPercent } from '../../utils/formatters/toPercentFormatter';
+import { toUSD } from '../../utils/formatters/toUSDformatter';
 import CloseSvg from '../common/svg/CloseSvg';
 import s from './Cart.module.scss';
 
@@ -19,23 +20,14 @@ interface CartRowProps {
 }
 const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
   const dispatch = useDispatch();
-  const currencies = useSelector(
-    (state: RootState) => state.currency.currencies
-  );
-
-  const itemIndex = currencies.findIndex((item) => item.name === name);
-
-  const priceNow = currencies[itemIndex].priceUsd;
-  const totalCoinPriceNow = Number(priceNow) * amount;
-  const isRising = Number(priceUsd) < Number(priceNow);
-  const difference = (Number(priceNow) * 100) / Number(priceUsd) - 100;
+  const diffInfo = useCalcPriceNow(amount, priceUsd, name);
 
   const handleDeleteCoin = () => {
     dispatch(deleteFromCart(name));
   };
 
   useEffect(() => {
-    dispatch(setCartTotalNow(totalCoinPriceNow));
+    dispatch(setCartTotalNow(diffInfo.totalCoinPriceNow));
     return () => {
       dispatch(deleteCartTotalNow());
     };
@@ -47,26 +39,28 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
       <td data-label="Amount">{amount}</td>
       <td data-label="Price when added">{toUSD.format(Number(priceUsd))}</td>
       <td data-label="Price now">
-        <span className={classNames(isRising ? s.green : s.red)}>
-          {toUSD.format(Number(priceNow))}
+        <span className={classNames(diffInfo.isRising ? s.green : s.red)}>
+          {toUSD.format(Number(diffInfo.priceNow))}
         </span>
         <span>
-          <i className={classNames(s.arrow, isRising ? s.up : s.down)} />
+          <i
+            className={classNames(s.arrow, diffInfo.isRising ? s.up : s.down)}
+          />
         </span>
       </td>
       <td data-label="Total when added">
         {toUSD.format(amount * Number(priceUsd))} $
       </td>
       <td data-label="Total now">
-        <span className={classNames(isRising ? s.green : s.red)}>
-          {toUSD.format(totalCoinPriceNow)}
+        <span className={classNames(diffInfo.isRising ? s.green : s.red)}>
+          {toUSD.format(diffInfo.totalCoinPriceNow)}
         </span>
         <span>
-          <i className={classNames(isRising ? s.green : s.red)} />
+          <i className={classNames(diffInfo.isRising ? s.green : s.red)} />
         </span>
       </td>
 
-      <td data-label="Difference">{toPercent.format(difference)}</td>
+      <td data-label="Difference">{toPercent.format(diffInfo.difference)}</td>
 
       <td data-label="">
         <button

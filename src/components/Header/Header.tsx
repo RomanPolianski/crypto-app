@@ -6,7 +6,7 @@ import { RootState } from '../../store';
 import PortfolioSvg from '../common/svg/PortfolioSvg';
 import s from './Header.module.scss';
 import Logo from '../../assets/logo.png';
-import { toUSD } from '../../utils/toUSDformatter';
+import { toUSD } from '../../utils/formatters/toUSDformatter';
 
 const Header: FC = (): JSX.Element => {
   const topCoins = useSelector((state: RootState) =>

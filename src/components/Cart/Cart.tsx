@@ -6,8 +6,8 @@ import {
   deleteCartDifferenceInfo,
   setCartDifferenceInfo,
 } from '../../store/cartSlice';
-import { toPercent } from '../../utils/toPercentFormatter';
-import { toUSD } from '../../utils/toUSDformatter';
+import { toPercent } from '../../utils/formatters/toPercentFormatter';
+import { toUSD } from '../../utils/formatters/toUSDformatter';
 import s from './Cart.module.scss';
 import CartRow from './CartRow';
 
