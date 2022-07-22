@@ -69,7 +69,8 @@ const Cart: FC = (): JSX.Element => {
               Difference:{' '}
               <span
                 className={classNames(
-                  differenceCartTotalPercent > 0 ? s.green : s.red
+                  differenceCartTotalPercent > 0 ? s.green : s.red,
+                  differenceCartTotalPercent === 0 ? s.black : ''
                 )}
               >
                 <b>{toUSD.format(differenceCartTotal)}</b>
@@ -79,7 +80,8 @@ const Cart: FC = (): JSX.Element => {
               Difference in %:{' '}
               <span
                 className={classNames(
-                  differenceCartTotalPercent > 0 ? s.green : s.red
+                  differenceCartTotalPercent > 0 ? s.green : s.red,
+                  differenceCartTotalPercent === 0 ? s.black : ''
                 )}
               >
                 <b>{toPercent.format(differenceCartTotalPercent)}</b>

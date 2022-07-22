@@ -12,6 +12,7 @@ import { toPercent } from '../../utils/formatters/toPercentFormatter';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import CloseSvg from '../common/svg/CloseSvg';
 import s from './Cart.module.scss';
+import CartColorField from './CartColorField';
 
 interface CartRowProps {
   name: string;
@@ -38,27 +39,21 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
       <td data-label="Coin">{name}</td>
       <td data-label="Amount">{amount}</td>
       <td data-label="Price when added">{toUSD.format(Number(priceUsd))}</td>
-      <td data-label="Price now">
-        <span className={classNames(diffInfo.isRising ? s.green : s.red)}>
-          {toUSD.format(Number(diffInfo.priceNow))}
-        </span>
-        <span>
-          <i
-            className={classNames(s.arrow, diffInfo.isRising ? s.up : s.down)}
-          />
-        </span>
-      </td>
+      <CartColorField
+        data={diffInfo.priceNow}
+        isRising={diffInfo.isRising}
+        difference={diffInfo.difference}
+        label="Price Now"
+      />
       <td data-label="Total when added">
         {toUSD.format(amount * Number(priceUsd))} $
       </td>
-      <td data-label="Total now">
-        <span className={classNames(diffInfo.isRising ? s.green : s.red)}>
-          {toUSD.format(diffInfo.totalCoinPriceNow)}
-        </span>
-        <span>
-          <i className={classNames(diffInfo.isRising ? s.green : s.red)} />
-        </span>
-      </td>
+      <CartColorField
+        data={diffInfo.totalCoinPriceNow}
+        isRising={diffInfo.isRising}
+        difference={diffInfo.difference}
+        label="Total now"
+      />
 
       <td data-label="Difference">{toPercent.format(diffInfo.difference)}</td>
 

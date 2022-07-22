@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-/* eslint-disable no-param-reassign */
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -50,7 +49,7 @@ const cartSlice = createSlice({
         state.cartItems[itemIndex].numberAmount += payload.numberAmount;
       } else {
         state.cartItems.push(payload);
-        state.cartTotalQuantity += 1;
+        state.cartTotalQuantity++;
       }
       state.cartTotal += Number(payload.priceUsd) * payload.numberAmount;
       toast.success(`${payload.name} was added to portfolio`, {
@@ -65,7 +64,7 @@ const cartSlice = createSlice({
         state.cartItems[itemIndex].numberAmount *
         Number(state.cartItems[itemIndex].priceUsd);
       state.cartItems = state.cartItems.filter((i) => i.name !== payload);
-      state.cartTotalQuantity -= 1;
+      state.cartTotalQuantity--;
       if (state.cartTotalQuantity === 0) {
         state.cartTotal = 0;
       }
