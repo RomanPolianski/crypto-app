@@ -26,7 +26,7 @@ const CartColorField: FC<CartColorFieldProps> = ({
       >
         {toUSD.format(Number(data))}
       </span>
-      {Number(difference.toFixed(2)) !== 0 ? (
+      {difference !== 0 ? (
         <span>
           <i
             className={classNames(

@@ -8,7 +8,6 @@ import {
   setCartTotalNow,
 } from '../../store/cartSlice';
 import useCalcPriceNow from '../../utils/calculation/useCalcPriceNow';
-import { toPercent } from '../../utils/formatters/toPercentFormatter';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import CloseSvg from '../common/svg/CloseSvg';
 import s from './Cart.module.scss';
@@ -46,7 +45,7 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
         label="Price Now"
       />
       <td data-label="Total when added">
-        {toUSD.format(amount * Number(priceUsd))} $
+        {toUSD.format(amount * Number(priceUsd))}
       </td>
       <CartColorField
         data={diffInfo.totalCoinPriceNow}
@@ -55,7 +54,7 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
         label="Total now"
       />
 
-      <td data-label="Difference">{toPercent.format(diffInfo.difference)}</td>
+      <td data-label="Difference">{diffInfo.difference.toFixed(2)} %</td>
 
       <td data-label="">
         <button

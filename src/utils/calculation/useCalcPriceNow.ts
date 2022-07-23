@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
@@ -11,8 +10,9 @@ const useCalcPriceNow = (amount: number, priceUsd: string, name: string) => {
   const priceNow = currencies[itemIndex].priceUsd;
   const totalCoinPriceNow = Number(priceNow) * amount;
   const isRising = Number(priceUsd) < Number(priceNow);
-  const difference = (Number(priceNow) * 100) / Number(priceUsd) - 100;
-  debugger;
+  const difference = Number(
+    ((Number(priceNow) * 100) / Number(priceUsd) - 100).toFixed(2)
+  );
 
   return {
     priceNow,
