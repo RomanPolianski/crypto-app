@@ -25,6 +25,24 @@ $grey: rgb(126, 125, 125);
   }
 }
 
+.nextprevButton {
+  position: relative;
+  cursor: pointer;
+  padding-left: 5px;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  transform: translateY(0);
+  transition: all 0.2s;
+  background: none;
+}
+
+.nextprevButton:active {
+  outline: none;
+  box-shadow: none;
+  transition: all 0.5s ease 0;
+  color: white;
+}
+
 .currentPage {
   color: $white;
   background-color: $purple;
@@ -41,10 +59,24 @@ $grey: rgb(126, 125, 125);
       transition: all 0.5s linear;
     }
   }
+  .nextprevButton {
+    position: relative;
+    cursor: pointer;
+    padding-left: 5px;
+    width: 25px;
+    height: 25px;
+  }
 }
 
 @media (max-width: 350px) {
   .paginationContainer {
     visibility: hidden;
+  }
+  .nextprevButton {
+    position: relative;
+    cursor: pointer;
+    padding-left: 5px;
+    width: 35px;
+    height: 35px;
   }
 }

@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { FC, useState } from 'react';
-import { toPercent } from '../../../utils/formatters/toPercentFormatter';
 import { toUSD } from '../../../utils/formatters/toUSDformatter';
 import CartSvg from '../../common/svg/CartSvg';
 import BuyCurrencyModal from '../../Modals/BuyCurrencyModal/BuyCurrencyModal';
@@ -68,7 +67,7 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
             Number(changePercent24Hr) > 0 ? s.green : s.red
           )}
         >
-          {toPercent.format(Number(changePercent24Hr))}
+          {Number(changePercent24Hr).toFixed(2)}
         </td>
         <td data-label="">
           <button

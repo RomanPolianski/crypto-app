@@ -42,13 +42,6 @@ const Content: FC = (): JSX.Element => {
     setCurrentPage(pageNumber);
   };
 
-  const nextPage = () => {
-    if (currentPage !== pageNumbers.length) setCurrentPage((prev) => prev + 1);
-  };
-  const prevPage = () => {
-    if (currentPage !== 1) setCurrentPage((prev) => prev - 1);
-  };
-
   const c = currentCurrency.map((p) => (
     <CurrencyRow
       key={p.id}
@@ -85,24 +78,11 @@ const Content: FC = (): JSX.Element => {
             <tbody>{c}</tbody>
           </table>
           <div className={s.buttonContainer}>
-            <button
-              type="button"
-              className={s.nextprevButton}
-              onClick={prevPage}
-            >
-              <ButtonPrevSvg />
-            </button>
-            <button
-              type="button"
-              className={s.nextprevButton}
-              onClick={nextPage}
-            >
-              <ButtonNextSvg />
-            </button>
             <Pagination
               paginate={paginate}
               pageNumbers={pageNumbers}
               currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
             />
           </div>
         </>

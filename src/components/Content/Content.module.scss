@@ -44,13 +44,6 @@ $green: rgb(3, 189, 74);
     font-weight: bold;
     text-align: left;
   }
-  .nextprevButton {
-    position: relative;
-    cursor: pointer;
-    padding-left: 5px;
-    width: 25px;
-    height: 25px;
-  }
   .buttonContainer {
     margin: 1% auto;
   }
@@ -66,14 +59,6 @@ $green: rgb(3, 189, 74);
     height: 35px;
     margin-left: 10px;
   }
-
-  .nextprevButton {
-    position: relative;
-    cursor: pointer;
-    padding-left: 5px;
-    width: 35px;
-    height: 35px;
-  }
 }
 
 .buttonContainer {
@@ -84,24 +69,6 @@ $green: rgb(3, 189, 74);
   border: 1px solid transparent;
   border-radius: 20px;
   width: auto;
-}
-
-.nextprevButton {
-  position: relative;
-  cursor: pointer;
-  padding-left: 5px;
-  border: 2px solid transparent;
-  font-size: 1rem;
-  transform: translateY(0);
-  transition: all 0.2s;
-  background: none;
-}
-
-.nextprevButton:active {
-  outline: none;
-  box-shadow: none;
-  transition: all 0.5s ease 0;
-  color: white;
 }
 
 .red {
