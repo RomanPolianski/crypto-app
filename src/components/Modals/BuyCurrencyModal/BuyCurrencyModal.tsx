@@ -1,8 +1,11 @@
-import React, { FC, useState } from 'react';
+/* eslint-disable no-debugger */
+import React, { FC, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { addToCart } from '../../../store/cartSlice';
+import { toUSD } from '../../../utils/formatters/toUSDformatter';
+import { useInput } from '../../../utils/validators/useInputHook';
 import CloseSvg from '../../common/svg/CloseSvg';
 import s from './BuyCurrencyModal.module.scss';
 
@@ -21,18 +24,24 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
   name,
   priceUsd,
 }): JSX.Element => {
-  const [amount, setAmount] = useState<string>('');
+  const amount = useInput('', { minLength: 1, maxLength: 9, isEmpty: true });
   const dispatch = useDispatch();
-  const numberAmount = Number(amount);
+  const numberAmount = Number(amount.value);
   const handleAddToCart = () => {
-    if (!numberAmount || numberAmount <= 0) {
-      toast.error('Please Enter the amount!', { position: 'bottom-right' });
-    } else {
+    if (amount.inputValid) {
       dispatch(addToCart({ name, numberAmount, priceUsd }));
       close();
-      setAmount('');
     }
   };
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [open]);
 
   return ReactDOM.createPortal(
     <div>
@@ -40,22 +49,33 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
         <div className={s.modalContainer}>
           <div className={s.modal}>
             <h1>Add {name.toUpperCase()} coin to your portfolio</h1>
+            <p>
+              <b>Price of 1 is {toUSD.format(Number(priceUsd))}</b>
+            </p>
             <p>Enter the amount</p>
             <input
               className={s.inputAmount}
               type="number"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setAmount(e.target.value)
+                amount.onChange(e)
               }
-              value={amount}
+              onBlur={(e) => amount.onBlur(e)}
+              value={amount.value}
               step={0.01}
               min={0}
             />
+            {amount.isDirty && amount.isEmpty && (
+              <div className={s.errMsg}>Field cannot be empty!</div>
+            )}
+            {amount.maxLengthError && (
+              <div className={s.errMsg}>Max amount is 9 digits!</div>
+            )}
             <div className={s.buttonContainer}>
               <button
                 className={s.modalSubmit}
                 type="button"
                 onClick={handleAddToCart}
+                disabled={!amount.inputValid}
               >
                 Add
               </button>
