@@ -1,9 +1,7 @@
-/* eslint-disable no-console */
 import { Chart, registerables } from 'chart.js';
 import { FC, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import instance from '../../../axios/api';
 import { addToCart } from '../../../store/cartSlice';
 import { toUSD } from '../../../utils/formatters/toUSDformatter';
@@ -40,7 +38,12 @@ const InfoModal: FC<InfoModalProps> = ({
 }): JSX.Element => {
   const [loading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState([]);
-  const amount = useInput('', { minLength: 1, maxLength: 9, isEmpty: true });
+  const amount = useInput('', {
+    minLength: 1,
+    maxLength: 9,
+    isEmpty: true,
+    isAbove0: true,
+  });
   const numberAmount = Number(amount.value);
   const dispatch = useDispatch();
 
@@ -134,6 +137,9 @@ const InfoModal: FC<InfoModalProps> = ({
                   )}
                   {amount.maxLengthError && (
                     <div className={s.errMsg}>Max amount is 9 digits!</div>
+                  )}
+                  {amount.isDirty && amount.zeroError && (
+                    <div className={s.errMsg}>Amount must be above 0!</div>
                   )}
                 </div>
               </div>

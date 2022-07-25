@@ -4,6 +4,7 @@ export const useValidation = (value: string, validations: []) => {
   const [isEmpty, setEmpty] = useState<boolean>(true);
   const [minLengthError, setMinLengthError] = useState<boolean>(false);
   const [maxLengthError, setMaxLengthError] = useState<boolean>(false);
+  const [zeroError, setZeroError] = useState<boolean>(false);
 
   const [inputValid, setInputValid] = useState<boolean>(false);
 
@@ -23,7 +24,9 @@ export const useValidation = (value: string, validations: []) => {
         case 'isEmpty':
           value ? setEmpty(false) : setEmpty(true);
           break;
-
+        case 'isAbove0':
+          Number(value) <= 0 ? setZeroError(true) : setZeroError(false);
+          break;
         default:
           break;
       }
@@ -31,17 +34,18 @@ export const useValidation = (value: string, validations: []) => {
   }, [value]);
 
   useEffect(() => {
-    if (isEmpty || minLengthError || maxLengthError) {
+    if (isEmpty || minLengthError || maxLengthError || zeroError) {
       setInputValid(false);
     } else {
       setInputValid(true);
     }
-  }, [isEmpty, minLengthError, maxLengthError]);
+  }, [isEmpty, minLengthError, maxLengthError, zeroError]);
 
   return {
     isEmpty,
     minLengthError,
     maxLengthError,
+    zeroError,
     inputValid,
   };
 };
