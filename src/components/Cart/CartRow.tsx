@@ -1,7 +1,5 @@
-import classNames from 'classnames';
-import { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   deleteCartTotalNow,
   deleteFromCart,
@@ -10,6 +8,7 @@ import {
 import useCalcPriceNow from '../../utils/calculation/useCalcPriceNow';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import CloseSvg from '../common/svg/CloseSvg';
+import DeleteConfirmModal from '../Modals/DeleteConfirmModal/DeleteConfirmModal';
 import s from './Cart.module.scss';
 import CartColorField from './CartColorField';
 
@@ -21,9 +20,12 @@ interface CartRowProps {
 const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
   const dispatch = useDispatch();
   const diffInfo = useCalcPriceNow(amount, priceUsd, name);
+  const [open, setOpen] = useState<boolean>(false);
+  const toggle = () => setOpen(!open);
 
   const handleDeleteCoin = () => {
-    dispatch(deleteFromCart(name));
+    toggle();
+    // dispatch(deleteFromCart(name));
   };
 
   useEffect(() => {
@@ -34,38 +36,43 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
   }, [name]);
 
   return (
-    <tr>
-      <td data-label="Coin">{name}</td>
-      <td data-label="Amount">{amount}</td>
-      <td data-label="Price when added">{toUSD.format(Number(priceUsd))}</td>
-      <CartColorField
-        data={diffInfo.priceNow}
-        isRising={diffInfo.isRising}
-        difference={diffInfo.difference}
-        label="Price Now"
-      />
-      <td data-label="Total when added">
-        {toUSD.format(amount * Number(priceUsd))}
-      </td>
-      <CartColorField
-        data={diffInfo.totalCoinPriceNow}
-        isRising={diffInfo.isRising}
-        difference={diffInfo.difference}
-        label="Total now"
-      />
+    <>
+      <tr>
+        <td data-label="Coin">
+          <b>{name}</b>
+        </td>
+        <td data-label="Amount">{amount}</td>
+        <td data-label="Price when added">{toUSD.format(Number(priceUsd))}</td>
+        <CartColorField
+          data={diffInfo.priceNow}
+          isRising={diffInfo.isRising}
+          difference={diffInfo.difference}
+          label="Price Now"
+        />
+        <td data-label="Total when added">
+          {toUSD.format(amount * Number(priceUsd))}
+        </td>
+        <CartColorField
+          data={diffInfo.totalCoinPriceNow}
+          isRising={diffInfo.isRising}
+          difference={diffInfo.difference}
+          label="Total now"
+        />
 
-      <td data-label="Difference">{diffInfo.difference.toFixed(2)} %</td>
+        <td data-label="Difference">{diffInfo.difference.toFixed(2)} %</td>
 
-      <td data-label="">
-        <button
-          type="button"
-          onClick={handleDeleteCoin}
-          className={s.deleteButton}
-        >
-          <CloseSvg />
-        </button>
-      </td>
-    </tr>
+        <td data-label="">
+          <button
+            type="button"
+            onClick={handleDeleteCoin}
+            className={s.deleteButton}
+          >
+            <CloseSvg />
+          </button>
+        </td>
+      </tr>
+      <DeleteConfirmModal open={open} close={toggle} name={name} />
+    </>
   );
 };
 
