@@ -58,6 +58,8 @@ const Cart: FC = (): JSX.Element => {
               </tr>
             </thead>
             <tbody>{c}</tbody>
+          </table>
+          <div className={s.infoContainer}>
             <p>
               Initial Total:<b> {toUSD.format(cartTotal)}</b>
             </p>
@@ -75,7 +77,7 @@ const Cart: FC = (): JSX.Element => {
                 <b>{toUSD.format(differenceCartTotal)}</b>
               </span>
             </p>
-            <p>
+            <p className={s.lastInfoItem}>
               Difference in %:{' '}
               <span
                 className={classNames(
@@ -86,10 +88,10 @@ const Cart: FC = (): JSX.Element => {
                 <b>{differenceCartTotalPercent.toFixed(2)} %</b>
               </span>
             </p>
-          </table>
+          </div>
         </>
       ) : (
-        <h1 className={s.header}>Your Portfolio is Empty!</h1>
+        <h1 className={s.emptyCartText}>Your Portfolio is Empty!</h1>
       )}
     </div>
   );
