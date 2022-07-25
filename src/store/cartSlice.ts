@@ -6,9 +6,12 @@ interface CartStateType {
   cartItems: Array<CartItemsType>;
   cartTotalQuantity: number;
   cartTotal: number;
+  histCartTotal: Array<number>;
   cartTotalNow: number;
   differenceCartTotal: number;
   differenceCartTotalPercent: number;
+  prevDifferenceCartTotal: number;
+  prevDifferenceCartTotalPercent: number;
 }
 
 interface CartItemsType {
@@ -32,9 +35,12 @@ const initialState: CartStateType = {
   cartItems: [],
   cartTotalQuantity: 0,
   cartTotal: 0,
+  histCartTotal: [0],
   cartTotalNow: 0,
   differenceCartTotal: 0,
   differenceCartTotalPercent: 0,
+  prevDifferenceCartTotal: 0,
+  prevDifferenceCartTotalPercent: 0,
 };
 
 const cartSlice = createSlice({
@@ -52,9 +58,12 @@ const cartSlice = createSlice({
         state.cartTotalQuantity++;
       }
       state.cartTotal += Number(payload.priceUsd) * payload.numberAmount;
-      toast.success(`${payload.name} was added to portfolio`, {
-        position: 'bottom-right',
-      });
+      toast.success(
+        `${payload.name} in amount of ${payload.numberAmount} was added to portfolio`,
+        {
+          position: 'bottom-right',
+        }
+      );
     },
     deleteFromCart(state, { payload }: PayloadAction<string>) {
       const itemIndex = state.cartItems.findIndex(
@@ -67,9 +76,11 @@ const cartSlice = createSlice({
       state.cartTotalQuantity--;
       if (state.cartTotalQuantity === 0) {
         state.cartTotal = 0;
+        state.histCartTotal = [0];
       }
     },
     setCartTotalNow(state, { payload }: PayloadAction<number>) {
+      state.histCartTotal.unshift(state.cartTotalNow + payload);
       state.cartTotalNow += payload;
     },
     deleteCartTotalNow(state) {
@@ -81,6 +92,8 @@ const cartSlice = createSlice({
     ) {
       state.differenceCartTotal = payload.differenceCartTotal;
       state.differenceCartTotalPercent = payload.differenceCartTotalPercent;
+      state.prevDifferenceCartTotal = payload.differenceCartTotal;
+      state.prevDifferenceCartTotalPercent = payload.differenceCartTotalPercent;
     },
     deleteCartDifferenceInfo(state) {
       state.differenceCartTotal = 0;

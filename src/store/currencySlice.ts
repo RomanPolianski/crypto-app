@@ -20,7 +20,7 @@ export interface CurType {
 }
 
 export const fetchCurrencies = createAsyncThunk(
-  'contacts/fetchContacts',
+  'currency/fetchCurrencies',
   async (_, { dispatch }) => {
     try {
       const response = await instance.get('/assets');
