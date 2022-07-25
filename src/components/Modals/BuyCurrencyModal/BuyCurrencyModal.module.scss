@@ -21,13 +21,12 @@ $purple: rgb(117, 0, 92);
   border-radius: 20px;
   backdrop-filter: blur(2px);
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-
-  h1 {
-    font-size: large;
-    margin-bottom: 10%;
-    color: $purple;
-    border-bottom: 1px solid black;
-  }
+}
+.header {
+  font-size: large;
+  margin-bottom: 10%;
+  color: $purple;
+  border-bottom: 1px solid black;
 }
 .modalHeader {
   position: relative;

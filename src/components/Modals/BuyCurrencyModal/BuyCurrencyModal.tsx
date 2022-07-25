@@ -1,8 +1,6 @@
-/* eslint-disable no-debugger */
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import { addToCart } from '../../../store/cartSlice';
 import { toUSD } from '../../../utils/formatters/toUSDformatter';
 import { useInput } from '../../../utils/validators/useInputHook';
@@ -48,9 +46,11 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
       {open && (
         <div className={s.modalContainer}>
           <div className={s.modal}>
-            <h1>Add {name.toUpperCase()} coin to your portfolio</h1>
+            <h1 className={s.header}>
+              Add {name.toUpperCase()} coin to your portfolio
+            </h1>
             <p>
-              <b>Price of 1 is {toUSD.format(Number(priceUsd))}</b>
+              <b>Price of 1 coin is {toUSD.format(Number(priceUsd))}</b>
             </p>
             <p>Enter the amount</p>
             <input
