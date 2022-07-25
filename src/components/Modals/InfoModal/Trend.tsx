@@ -40,6 +40,12 @@ const Trend: FC<TrendPropsTypes> = ({ trendData }): JSX.Element => {
             radius: 1,
           },
         },
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
       }}
     />
   );

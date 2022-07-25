@@ -41,7 +41,7 @@ const InfoModal: FC<InfoModalProps> = ({
   const [loading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState([]);
   const amount = useInput('', { minLength: 1, maxLength: 9, isEmpty: true });
-  const numberAmount = Number(amount);
+  const numberAmount = Number(amount.value);
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
@@ -120,12 +120,7 @@ const InfoModal: FC<InfoModalProps> = ({
                     step={0.01}
                     min={0}
                   />
-                  {amount.isDirty && amount.isEmpty && (
-                    <div className={s.errMsg}>Field cannot be empty!</div>
-                  )}
-                  {amount.maxLengthError && (
-                    <div className={s.errMsg}>Max amount is 9 digits!</div>
-                  )}
+
                   <button
                     className={s.modalSubmit}
                     type="button"
@@ -134,6 +129,12 @@ const InfoModal: FC<InfoModalProps> = ({
                   >
                     Add
                   </button>
+                  {amount.isDirty && amount.isEmpty && (
+                    <div className={s.errMsg}>Field cannot be empty!</div>
+                  )}
+                  {amount.maxLengthError && (
+                    <div className={s.errMsg}>Max amount is 9 digits!</div>
+                  )}
                 </div>
               </div>
 
