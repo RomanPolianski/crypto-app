@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { FC, useState } from 'react';
 import { toUSD } from '../../../utils/formatters/toUSDformatter';
 import CartSvg from '../../common/svg/CartSvg';
-import BuyCurrencyModal from '../../Modals/BuyCurrencyModal/BuyCurrencyModal';
+import BuyCurrencyModal from '../../Modals/BuyCurrencyModal/DeleteConfirmatio/BuyCurrencyModal';
 import InfoModal from '../../Modals/InfoModal/InfoModal';
 import s from '../Content.module.scss';
 

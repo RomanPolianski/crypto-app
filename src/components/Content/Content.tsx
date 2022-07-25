@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { CurType, fetchCurrencies } from '../../store/currencySlice';
 import Preloader from '../common/Preloader';
-import ButtonNextSvg from '../common/svg/ButtonNextSvg';
-import ButtonPrevSvg from '../common/svg/ButtonPrevSvg';
 import s from './Content.module.scss';
 import CurrencyRow from './CurrencyRow/CurrencyRow';
 import Pagination from './Pagination/Pagination';
@@ -22,6 +20,14 @@ const Content: FC = (): JSX.Element => {
     dispatch(fetchCurrencies());
     setIsLoading(false);
   }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, [currentPage]);
 
   const currenciesData: CurType[] = useSelector(
     (state: RootState) => state.currency.currencies
@@ -59,7 +65,7 @@ const Content: FC = (): JSX.Element => {
   ));
 
   return (
-    <div>
+    <div className={s.wrapper}>
       {isLoading ? (
         <Preloader />
       ) : (
