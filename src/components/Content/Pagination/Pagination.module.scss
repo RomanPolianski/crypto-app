@@ -5,24 +5,25 @@ $grey: rgb(126, 125, 125);
 .paginationContainer {
   display: flex;
   margin-left: 2%;
-  li {
-    list-style-type: none;
-    padding: 7px;
-    border: 1.5px solid $grey;
-    border-radius: 20px;
-    height: 20px;
-    margin-left: 1%;
-    transition: all 0.5s linear;
-  }
-  a {
-    text-decoration: none;
-    padding: 5px;
-    background-color: transparent;
-  }
+}
 
-  a:active {
-    color: $white;
-  }
+.paginationContainer li {
+  list-style-type: none;
+  padding: 7px;
+  border: 1.5px solid $grey;
+  border-radius: 20px;
+  height: 20px;
+  margin-left: 1%;
+  transition: all 0.5s linear;
+}
+.paginationContainer a {
+  text-decoration: none;
+  padding: 5px;
+  background-color: transparent;
+}
+
+.paginationContainer a:active {
+  color: $white;
 }
 
 .nextprevButton {
@@ -42,6 +43,11 @@ $grey: rgb(126, 125, 125);
   transition: all 0.5s ease 0;
   color: white;
 }
+.nextprevButton:disabled {
+  outline: none;
+  box-shadow: none;
+  color: rgb(92, 92, 92);
+}
 
 .currentPage {
   color: $white;
@@ -50,33 +56,36 @@ $grey: rgb(126, 125, 125);
 }
 @media (max-width: 800px) {
   .paginationContainer {
-    margin-left: 3%;
-    li {
-      padding: 1px;
-      border-radius: 20px;
-      height: 20px;
-      margin-left: 1px;
-      transition: all 0.5s linear;
-    }
+    margin-left: 4%;
+    margin-top: 1%;
+  }
+  .paginationContainer li {
+    padding: 1px;
+    border-radius: 20px;
+    height: 20px;
+    margin-left: 1px;
   }
   .nextprevButton {
     position: relative;
-    cursor: pointer;
-    padding-left: 5px;
-    width: 25px;
-    height: 25px;
+    padding-left: 10px;
+    width: 35px;
+    height: 35px;
   }
 }
 
 @media (max-width: 350px) {
-  .paginationContainer {
-    visibility: hidden;
-  }
   .nextprevButton {
     position: relative;
     cursor: pointer;
-    padding-left: 5px;
+    padding-left: 1px;
     width: 35px;
     height: 35px;
+  }
+  .paginationContainer {
+    margin-top: 1%;
+    margin-left: 1%;
+  }
+  .paginationContainer a {
+    padding: 4px;
   }
 }
