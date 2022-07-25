@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { RootState } from '../../store';
 import PortfolioSvg from '../common/svg/PortfolioSvg';
 import s from './Header.module.scss';
@@ -26,6 +26,8 @@ const Header: FC = (): JSX.Element => {
   );
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const isCartPage = location.pathname.includes('cart');
 
   return (
     <header className={s.header}>
@@ -69,6 +71,7 @@ const Header: FC = (): JSX.Element => {
             <button
               type="button"
               className={s.cartButton}
+              disabled={isCartPage}
               onClick={() => navigate('/cart')}
             >
               <PortfolioSvg />
