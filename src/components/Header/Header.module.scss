@@ -1,22 +1,29 @@
 .headerInnerContainer {
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
   border-bottom: 1px solid purple;
   background-color: black;
-
-  .logo {
-    width: 30px;
-    height: 30px;
-    margin: 5px 10px;
-  }
-
-  .appName {
-    padding-top: 15px;
-    margin: 0;
-    color: rgb(155, 81, 204);
-    font-size: medium;
-  }
+  margin: 0px auto;
+}
+.logo {
+  display: block;
+  height: 30px;
+  max-width: 30px;
+  padding-right: 5px;
 }
 
+.appName {
+  padding-top: 10px;
+  margin: 0;
+  color: rgb(155, 81, 204);
+  font-size: medium;
+}
+.headerLeft {
+  display: flex;
+  flex-grow: 1;
+  margin-left: 30px;
+}
 .textCoin {
   color: azure;
   font-size: 12px;
@@ -32,14 +39,18 @@
   margin-left: 3%;
   margin-top: 5px;
 }
-
+.cart {
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin-right: 30px;
+}
 .cartButton {
-  margin-left: 65%;
   background: transparent;
   border: none;
 }
 .coinNumberInCart {
-  margin-top: 10px;
+  margin-top: -25px;
+  margin-left: 162px;
   color: white;
   font-size: small;
 }
@@ -65,57 +76,64 @@
   border-color: rgb(0, 226, 0);
   -webkit-transform: rotate(-135deg);
 }
+.cartStatusWrapper {
+  margin: 10px 0px 0px 10px;
+  font-size: 11px;
+  color: white;
+  display: inline-block;
+}
 
-@media (max-width: 1200px) {
-  .cartButton {
-    margin-left: calc(40% + 11vw);
+.cartStatusText {
+  display: block;
+  width: 120px;
+}
+
+@media (min-width: 1370px) {
+  .headerInnerContainer {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .topCoinWrapper {
+    display: none;
+  }
+  .cartStatusWrapper {
+    visibility: hidden;
   }
 }
 
 @media (max-width: 800px) {
-  .cartButton {
-    margin-left: calc(30% + 11vw);
+  .headerInnerContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    overflow: hidden;
+    z-index: 1000;
   }
   .topCoinWrapper {
-    display: inline-flex;
-    margin-left: 1%;
-  }
-  .headerInnerContainer {
-    width: auto;
+    display: none;
   }
 }
 
 @media (max-width: 600px) {
-  .cartButton {
-    margin-left: calc(20% + 11vw);
+  .headerLeft {
+    margin-left: 5px;
   }
-}
-@media (max-width: 500px) {
-  .cartButton {
-    margin-left: calc(8% + 11vw);
+  .cart {
+    margin-right: 5px;
   }
 }
 
-@media (max-width: 390px) {
-  .headerInnerContainer {
-    width: auto;
-  }
-  .textCoin {
-    color: azure;
-    font-size: 10px;
-    margin: 0%;
-  }
-
-  .topCoinWrapper {
-    margin-left: 2%;
+@media (max-width: 400px) {
+  .cartStatusWrapper {
     visibility: hidden;
   }
-
-  .topCopinsContainer {
-    margin-left: 1%;
-    margin-top: 5px;
-  }
-  .cartButton {
-    margin-left: -9%;
+  .coinNumberInCart {
+    margin-top: -25px;
+    margin-left: 170px;
+    color: white;
+    font-size: small;
   }
 }
