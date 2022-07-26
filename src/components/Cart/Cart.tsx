@@ -7,6 +7,7 @@ import {
   setCartDifferenceInfo,
 } from '../../store/cartSlice';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
+import ButtonPrevSvg from '../common/svg/ButtonPrevSvg';
 import s from './Cart.module.scss';
 import CartRow from './CartRow';
 

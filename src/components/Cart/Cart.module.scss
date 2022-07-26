@@ -1,3 +1,5 @@
+$purple: rgb(117, 0, 92);
+
 .header {
   font-size: xx-large;
   text-align: center;
@@ -142,5 +144,8 @@
   }
   .lastInfoItem {
     padding-bottom: 40px;
+  }
+  .emptyCartText {
+    margin-top: 17%;
   }
 }
