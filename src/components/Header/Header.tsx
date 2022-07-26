@@ -22,7 +22,7 @@ const Header: FC = (): JSX.Element => {
     (state: RootState) => state.cart.prevDifferenceCartTotalPercent
   );
   const cartTotalNow = useSelector(
-    (state: RootState) => state.cart.histCartTotal[0]
+    (state: RootState) => state.cart.histCartTotal
   );
   const cartTotal = useSelector((state: RootState) => state.cart.cartTotal);
 
@@ -59,8 +59,8 @@ const Header: FC = (): JSX.Element => {
         <div className={s.cart}>
           <p className={s.cartStatusWrapper}>
             <span>
-              {cartTotalNow !== 0
-                ? toUSD.format(cartTotalNow)
+              {cartTotalNow.length
+                ? toUSD.format(cartTotalNow[0])
                 : toUSD.format(cartTotal)}
             </span>
             <span className={s.cartStatusText}>
