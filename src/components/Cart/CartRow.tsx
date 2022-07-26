@@ -1,10 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  deleteCartTotalNow,
-  deleteFromCart,
-  setCartTotalNow,
-} from '../../store/cartSlice';
+import { deleteCartTotalNow, setCartTotalNow } from '../../store/cartSlice';
 import useCalcPriceNow from '../../utils/calculation/useCalcPriceNow';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import CloseSvg from '../common/svg/CloseSvg';
@@ -25,7 +21,6 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
 
   const handleDeleteCoin = () => {
     toggle();
-    // dispatch(deleteFromCart(name));
   };
 
   useEffect(() => {

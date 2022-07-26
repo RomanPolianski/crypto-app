@@ -82,6 +82,18 @@
   padding-left: 1%;
 }
 
+@media (min-width: 1400px) {
+  .table {
+    min-width: 80%;
+    margin: 1% auto;
+  }
+  .table td,
+  .table th {
+    min-width: 200px;
+    font-size: larger;
+  }
+}
+
 @media (max-width: 800px) {
   .table thead {
     display: none;

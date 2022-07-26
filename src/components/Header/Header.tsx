@@ -24,6 +24,7 @@ const Header: FC = (): JSX.Element => {
   const cartTotalNow = useSelector(
     (state: RootState) => state.cart.histCartTotal[0]
   );
+  const cartTotal = useSelector((state: RootState) => state.cart.cartTotal);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -57,7 +58,11 @@ const Header: FC = (): JSX.Element => {
 
         <div className={s.cart}>
           <p className={s.cartStatusWrapper}>
-            <span>{toUSD.format(cartTotalNow)}</span>
+            <span>
+              {cartTotalNow !== 0
+                ? toUSD.format(cartTotalNow)
+                : toUSD.format(cartTotal)}
+            </span>
             <span className={s.cartStatusText}>
               USD {totalCartDifference.toFixed(2)}{' '}
               <span>
