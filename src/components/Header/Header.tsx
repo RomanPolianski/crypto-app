@@ -1,16 +1,20 @@
 import classNames from 'classnames';
-import { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { RootState } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import PortfolioSvg from '../common/svg/PortfolioSvg';
 import s from './Header.module.scss';
 import Logo from '../../assets/logo.png';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
+import { fetchTop3Currencies } from '../../store/currencySlice';
 
 const Header: FC = (): JSX.Element => {
-  const topCoins = useSelector((state: RootState) =>
-    state.currency.currencies.slice(0, 3)
+  const topCoins = useSelector(
+    (state: RootState) => state.currency.top3Currencies
+  );
+  const currencies = useSelector(
+    (state: RootState) => state.currency.currencies
   );
   const totalCartItemsAmount = useSelector(
     (state: RootState) => state.cart.cartTotalQuantity
@@ -26,9 +30,14 @@ const Header: FC = (): JSX.Element => {
   );
   const cartTotal = useSelector((state: RootState) => state.cart.cartTotal);
 
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
   const isCartPage = location.pathname.includes('cart');
+
+  useEffect(() => {
+    dispatch(fetchTop3Currencies());
+  }, [totalCartItemsAmount, isCartPage]);
 
   return (
     <header className={s.header}>

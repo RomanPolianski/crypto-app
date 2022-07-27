@@ -12,14 +12,13 @@ const Content: FC = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [currencyPerPage] = useState<number>(10);
-  const lastCurrencyIndex = currentPage * currencyPerPage;
-  const firstCurrencyIndex = lastCurrencyIndex - currencyPerPage;
+  const offset = currentPage * 10 - 10;
 
   useEffect(() => {
     setIsLoading(true);
-    dispatch(fetchCurrencies());
+    dispatch(fetchCurrencies(offset));
     setIsLoading(false);
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     window.scrollTo({
@@ -33,11 +32,7 @@ const Content: FC = (): JSX.Element => {
     (state: RootState) => state.currency.currencies
   );
 
-  const currentCurrency = currenciesData.slice(
-    firstCurrencyIndex,
-    lastCurrencyIndex
-  );
-  const totalCurrencies = currenciesData.length;
+  const totalCurrencies = 100;
 
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalCurrencies / currencyPerPage); i++) {
@@ -48,7 +43,7 @@ const Content: FC = (): JSX.Element => {
     setCurrentPage(pageNumber);
   };
 
-  const c = currentCurrency.map((p) => (
+  const c = currenciesData.map((p) => (
     <CurrencyRow
       key={p.id}
       cryptoId={p.rank}
