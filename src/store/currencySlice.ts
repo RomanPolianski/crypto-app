@@ -35,7 +35,7 @@ export const fetchCurrencies = createAsyncThunk(
 );
 
 export const fetchTop3Currencies = createAsyncThunk(
-  'currency/fetchCurrencies',
+  'currency/fetchTop3Currencies',
   async (_, { dispatch }) => {
     try {
       const response = await instance.get('/assets?limit=3');

@@ -1,21 +1,43 @@
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import {
   deleteCartDifferenceInfo,
+  fetchCurrencyPriceNow,
   setCartDifferenceInfo,
 } from '../../store/cartSlice';
+import Preloader from '../common/Preloader';
 import s from './Cart.module.scss';
 import CartBottomInfo from './CartBottomInfo';
 import CartRow from './CartRow';
 
 const Cart: FC = (): JSX.Element => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const cartTotal = useSelector((state: RootState) => state.cart.cartTotal);
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const cartTotalQuantity = useSelector(
+    (state: RootState) => state.cart.cartTotalQuantity
+  );
+
+  const cartItemNames: Array<string> = [];
+  cartItems.forEach((i: any) => cartItemNames.push(i.name));
+  const coinsToFetch = cartItemNames
+    .toString()
+    .toLowerCase()
+    .replaceAll(/ /g, '-');
+
+  useEffect(() => {
+    if (cartItems.length !== 0) {
+      dispatch(fetchCurrencyPriceNow(coinsToFetch));
+    }
+  }, []);
+
   const cartTotalNow = useSelector(
     (state: RootState) => state.cart.cartTotalNow
   );
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const cartDataNow = useSelector(
+    (state: RootState) => state.cart.currentCartCoinsData
+  );
   const differenceCartTotalPercent = (cartTotalNow * 100) / cartTotal - 100;
   const differenceCartTotal = cartTotalNow - cartTotal;
 
@@ -55,13 +77,19 @@ const Cart: FC = (): JSX.Element => {
                 <th> </th>
               </tr>
             </thead>
-            <tbody>{c}</tbody>
-            <CartBottomInfo
-              cartTotal={cartTotal}
-              cartTotalNow={cartTotalNow}
-              differenceCartTotalPercent={differenceCartTotalPercent}
-              differenceCartTotal={differenceCartTotal}
-            />
+            {cartDataNow.length === cartTotalQuantity ? (
+              <>
+                <tbody>{c}</tbody>
+                <CartBottomInfo
+                  cartTotal={cartTotal}
+                  cartTotalNow={cartTotalNow}
+                  differenceCartTotalPercent={differenceCartTotalPercent}
+                  differenceCartTotal={differenceCartTotal}
+                />
+              </>
+            ) : (
+              <Preloader />
+            )}
           </table>
         </>
       ) : (

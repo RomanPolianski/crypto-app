@@ -3,8 +3,9 @@ import { RootState } from '../../store';
 
 const useCalcPriceNow = (amount: number, priceUsd: string, name: string) => {
   const currencies = useSelector(
-    (state: RootState) => state.currency.currencies
+    (state: RootState) => state.cart.currentCartCoinsData
   );
+
   const itemIndex = currencies.findIndex((item) => item.name === name);
 
   const priceNow = currencies[itemIndex].priceUsd;

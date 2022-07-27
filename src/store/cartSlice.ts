@@ -1,6 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import instance from '../axios/api';
+import { CurType } from './currencySlice';
 
 interface CartStateType {
   cartItems: Array<CartItemsType>;
@@ -12,6 +14,7 @@ interface CartStateType {
   differenceCartTotalPercent: number;
   prevDifferenceCartTotal: number;
   prevDifferenceCartTotalPercent: number;
+  currentCartCoinsData: Array<CurType>;
 }
 
 interface CartItemsType {
@@ -31,6 +34,20 @@ interface setCartDifferenceInfoType {
   differenceCartTotalPercent: number;
 }
 
+export const fetchCurrencyPriceNow = createAsyncThunk(
+  'cart/fetchCurrencyPriceNow',
+  async (coinsToFetch: string, { dispatch }) => {
+    try {
+      const response = await instance.get(`/assets?ids=${coinsToFetch}`);
+      if (response.status === 200) {
+        dispatch(setCurrentCartCoinsData(response.data));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const initialState: CartStateType = {
   cartItems: [],
   cartTotalQuantity: 0,
@@ -41,6 +58,7 @@ const initialState: CartStateType = {
   differenceCartTotalPercent: 0,
   prevDifferenceCartTotal: 0,
   prevDifferenceCartTotalPercent: 0,
+  currentCartCoinsData: [],
 };
 
 const cartSlice = createSlice({
@@ -73,6 +91,10 @@ const cartSlice = createSlice({
         state.cartItems[itemIndex].numberAmount *
         Number(state.cartItems[itemIndex].priceUsd);
       state.cartItems = state.cartItems.filter((i) => i.name !== payload);
+      state.currentCartCoinsData = state.currentCartCoinsData.filter(
+        (i) => i.name !== payload
+      );
+
       state.cartTotalQuantity--;
       if (state.cartTotalQuantity === 0) {
         state.cartTotal = 0;
@@ -99,6 +121,9 @@ const cartSlice = createSlice({
       state.differenceCartTotal = 0;
       state.differenceCartTotalPercent = 0;
     },
+    setCurrentCartCoinsData(state, { payload }) {
+      state.currentCartCoinsData = payload.data;
+    },
   },
 });
 
@@ -109,6 +134,7 @@ export const {
   deleteCartTotalNow,
   setCartDifferenceInfo,
   deleteCartDifferenceInfo,
+  setCurrentCartCoinsData,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

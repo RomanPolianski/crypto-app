@@ -15,6 +15,7 @@ interface CartRowProps {
 }
 const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
   const dispatch = useDispatch();
+
   const diffInfo = useCalcPriceNow(amount, priceUsd, name);
   const [open, setOpen] = useState<boolean>(false);
   const toggle = () => setOpen(!open);
