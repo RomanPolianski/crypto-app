@@ -37,6 +37,25 @@ $green: rgb(3, 189, 74);
 .green {
   color: $green;
 }
+.arrow {
+  border: solid rgb(255, 255, 255);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  margin-left: 5px;
+  padding: 2px;
+  width: 1px;
+  height: 1px;
+}
+.down {
+  transform: rotate(45deg);
+  border-color: red;
+  -webkit-transform: rotate(45deg);
+}
+.up {
+  transform: rotate(-135deg);
+  border-color: rgb(0, 226, 0);
+  -webkit-transform: rotate(-135deg);
+}
 
 .table tbody > tr:nth-last-of-type(even) {
   background-color: rgba($color: #181818, $alpha: 0.1);

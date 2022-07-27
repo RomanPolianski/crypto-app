@@ -68,6 +68,12 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
           )}
         >
           {Number(changePercent24Hr).toFixed(2)}
+          <i
+            className={classNames(
+              s.arrow,
+              Number(changePercent24Hr) < 0 ? s.down : s.up
+            )}
+          />
         </td>
         <td data-label="">
           <button
