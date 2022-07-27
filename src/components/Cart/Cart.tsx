@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
@@ -6,19 +5,17 @@ import {
   deleteCartDifferenceInfo,
   setCartDifferenceInfo,
 } from '../../store/cartSlice';
-import { toUSD } from '../../utils/formatters/toUSDformatter';
-import ButtonPrevSvg from '../common/svg/ButtonPrevSvg';
 import s from './Cart.module.scss';
+import CartBottomInfo from './CartBottomInfo';
 import CartRow from './CartRow';
 
 const Cart: FC = (): JSX.Element => {
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const dispatch = useDispatch();
   const cartTotal = useSelector((state: RootState) => state.cart.cartTotal);
   const cartTotalNow = useSelector(
     (state: RootState) => state.cart.cartTotalNow
   );
-  const dispatch = useDispatch();
-
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const differenceCartTotalPercent = (cartTotalNow * 100) / cartTotal - 100;
   const differenceCartTotal = cartTotalNow - cartTotal;
 
@@ -59,37 +56,13 @@ const Cart: FC = (): JSX.Element => {
               </tr>
             </thead>
             <tbody>{c}</tbody>
+            <CartBottomInfo
+              cartTotal={cartTotal}
+              cartTotalNow={cartTotalNow}
+              differenceCartTotalPercent={differenceCartTotalPercent}
+              differenceCartTotal={differenceCartTotal}
+            />
           </table>
-          <div className={s.infoContainer}>
-            <p>
-              Initial Total:<b> {toUSD.format(cartTotal)}</b>
-            </p>
-            <p>
-              Total now:<b> {toUSD.format(cartTotalNow)}</b>
-            </p>
-            <p>
-              Difference:{' '}
-              <span
-                className={classNames(
-                  differenceCartTotalPercent > 0 ? s.green : s.red,
-                  differenceCartTotalPercent === 0 ? s.black : ''
-                )}
-              >
-                <b>{toUSD.format(differenceCartTotal)}</b>
-              </span>
-            </p>
-            <p className={s.lastInfoItem}>
-              Difference in %:{' '}
-              <span
-                className={classNames(
-                  differenceCartTotalPercent > 0 ? s.green : s.red,
-                  differenceCartTotalPercent === 0 ? s.black : ''
-                )}
-              >
-                <b>{differenceCartTotalPercent.toFixed(2)} %</b>
-              </span>
-            </p>
-          </div>
         </>
       ) : (
         <h1 className={s.emptyCartText}>Your Portfolio is Empty!</h1>

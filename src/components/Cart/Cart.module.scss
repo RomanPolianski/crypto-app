@@ -12,7 +12,6 @@ $purple: rgb(117, 0, 92);
   margin-left: 20px;
 }
 .table {
-  width: 98%;
   margin: 1% auto;
   border-collapse: collapse;
 }
@@ -91,7 +90,6 @@ $purple: rgb(117, 0, 92);
   }
   .table td,
   .table th {
-    min-width: 200px;
     font-size: larger;
   }
 }
