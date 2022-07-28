@@ -58,11 +58,7 @@ const InfoModal: FC<InfoModalProps> = ({
 
   const fetchData = async () => {
     try {
-      const response = await instance.get(
-        `/assets/${name
-          .toLowerCase()
-          .replaceAll(/ /g, '-')}/history?interval=d1`
-      );
+      const response = await instance.get(`/assets/${id}/history?interval=d1`);
       if (response.status === 200) {
         setData(response.data.data);
       }
