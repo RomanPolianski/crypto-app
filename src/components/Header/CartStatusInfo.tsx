@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import s from './Header.module.scss';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import { RootState } from '../../store';
@@ -19,14 +19,17 @@ const CartStatusInfo: FC = (): JSX.Element => {
   return (
     <p className={s.cartStatusWrapper}>
       <span>
-        {cartTotalNow.length
-          ? toUSD.format(cartTotalNow[0])
-          : toUSD.format(cartTotal)}
+        {cartTotal === cartTotalNow[0]
+          ? toUSD.format(cartTotal)
+          : toUSD.format(cartTotalNow[0])}
       </span>
       <span className={s.cartStatusText}>
         USD {totalCartDifference.toFixed(2)}{' '}
         <span>
-          {cartTotalNow ? `(${totalCartDifferencePercent.toFixed(2)}%)` : ''}
+          {!Number.isNaN(totalCartDifferencePercent) &&
+          totalCartDifferencePercent
+            ? `(${totalCartDifferencePercent.toFixed(2)}%)`
+            : ''}
         </span>
       </span>
     </p>

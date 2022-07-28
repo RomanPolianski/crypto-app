@@ -112,9 +112,9 @@ $purple: rgb(117, 0, 92);
   margin-bottom: 1%;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1900px) {
   .modal {
-    height: 87vh;
+    height: 90vh;
     width: 80vw;
   }
   .cont {
@@ -125,7 +125,6 @@ $purple: rgb(117, 0, 92);
   }
   .trend {
     width: 900px;
-    height: 40%;
     margin-left: 1%;
     overflow-y: overlay;
     canvas {
