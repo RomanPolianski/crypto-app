@@ -82,13 +82,16 @@ $green: rgb(3, 189, 74);
   .table td,
   .table th {
     min-width: 200px;
-    font-size: larger;
   }
 }
 
 @media (min-width: 1700px) {
   .table {
     height: 80vh;
+  }
+  .table td,
+  .table th {
+    font-size: larger;
   }
 }
 

@@ -18,12 +18,14 @@ interface CartStateType {
 }
 
 interface CartItemsType {
+  id: string;
   name: string;
   numberAmount: number;
   priceUsd: string;
 }
 
 interface AddToCartActionType {
+  id: string;
   name: string;
   numberAmount: number;
   priceUsd: string;

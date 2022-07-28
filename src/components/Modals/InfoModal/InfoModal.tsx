@@ -12,6 +12,7 @@ import s from './InfoModal.module.scss';
 import Trend from './Trend';
 
 interface InfoModalProps {
+  id: string;
   open: boolean;
   close: Function;
   name: string;
@@ -27,6 +28,7 @@ Chart.register(...registerables);
 const modalRootElement = document.querySelector('#infoModal') as HTMLDivElement;
 
 const InfoModal: FC<InfoModalProps> = ({
+  id,
   open,
   close,
   name,
@@ -49,7 +51,7 @@ const InfoModal: FC<InfoModalProps> = ({
 
   const handleAddToCart = () => {
     if (amount.inputValid) {
-      dispatch(addToCart({ name, numberAmount, priceUsd }));
+      dispatch(addToCart({ id, name, numberAmount, priceUsd }));
       close();
     }
   };

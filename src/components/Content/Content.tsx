@@ -45,8 +45,9 @@ const Content: FC = (): JSX.Element => {
 
   const c = currenciesData.map((p) => (
     <CurrencyRow
+      id={p.id}
       key={p.id}
-      cryptoId={p.rank}
+      rank={p.rank}
       symbol={p.symbol}
       name={p.name}
       supply={p.supply}

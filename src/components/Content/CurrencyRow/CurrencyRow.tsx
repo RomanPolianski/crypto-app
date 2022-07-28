@@ -7,8 +7,9 @@ import InfoModal from '../../Modals/InfoModal/InfoModal';
 import s from '../Content.module.scss';
 
 interface ICurrencyRowProps {
+  id: string;
   key: string;
-  cryptoId: string;
+  rank: string;
   symbol: string;
   name: string;
   supply: string;
@@ -21,7 +22,8 @@ interface ICurrencyRowProps {
 }
 
 const CurrencyRow: FC<ICurrencyRowProps> = ({
-  cryptoId,
+  id,
+  rank,
   symbol,
   name,
   supply,
@@ -53,7 +55,7 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
   return (
     <>
       <tr onClick={() => handleInfoModalClick()}>
-        <td data-label="Rank">{cryptoId}</td>
+        <td data-label="Rank">{rank}</td>
         <td data-label="Coin">
           <b>{symbol}</b>
           <br />
@@ -88,12 +90,14 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
       {(infoModalOpen || open) && (
         <>
           <BuyCurrencyModal
+            id={id}
             open={open}
             close={toggle}
             name={name}
             priceUsd={priceUsd}
           />
           <InfoModal
+            id={id}
             open={infoModalOpen}
             close={toggleInfoModal}
             name={name}

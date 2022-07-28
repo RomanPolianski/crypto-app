@@ -8,6 +8,7 @@ import CloseSvg from '../../../common/svg/CloseSvg';
 import s from './BuyCurrencyModal.module.scss';
 
 interface BuyCurrencyModalProps {
+  id: string;
   open: boolean;
   close: Function;
   name: string;
@@ -17,6 +18,7 @@ interface BuyCurrencyModalProps {
 const modalRootElement = document.querySelector('#modal') as HTMLDivElement;
 
 const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
+  id,
   open,
   close,
   name,
@@ -32,7 +34,7 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
   const numberAmount = Number(amount.value);
   const handleAddToCart = () => {
     if (amount.inputValid) {
-      dispatch(addToCart({ name, numberAmount, priceUsd }));
+      dispatch(addToCart({ id, name, numberAmount, priceUsd }));
       close();
     }
   };
