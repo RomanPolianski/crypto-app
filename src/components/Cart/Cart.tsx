@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store';
 import {
   deleteCartDifferenceInfo,
@@ -7,6 +8,7 @@ import {
   setCartDifferenceInfo,
 } from '../../store/cartSlice';
 import Preloader from '../common/Preloader';
+import ButtonPrevSvg from '../common/svg/ButtonPrevSvg';
 import s from './Cart.module.scss';
 import CartBottomInfo from './CartBottomInfo';
 import CartRow from './CartRow';
@@ -20,7 +22,7 @@ const Cart: FC = (): JSX.Element => {
   );
 
   const cartItemNames: Array<string> = [];
-  cartItems.forEach((i: any) => cartItemNames.push(i.name));
+  cartItems.forEach((i) => cartItemNames.push(i.name));
   const coinsToFetch = cartItemNames
     .toString()
     .toLowerCase()
