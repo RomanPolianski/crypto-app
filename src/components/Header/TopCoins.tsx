@@ -17,17 +17,19 @@ const TopCoins: FC = (): JSX.Element => {
         <>
           {topCoins.map((c) => {
             return (
-              <div key={c.name} className={s.topCoinWrapper}>
-                <div className={s.topCoinContainer}>
-                  <p className={s.textCoin}>{c.name}</p>
-                  <p className={s.textCoin}>
+              <div key={c.name} className={s.header__topCoins}>
+                <div className={s.topCoins__body}>
+                  <p className={s.topCoins__text}>{c.name}</p>
+                  <p className={s.topCoins__text}>
                     {toUSD.format(Number(c.priceUsd))}
                   </p>
                 </div>
                 <i
                   className={classNames(
-                    s.arrow,
-                    Number(c.changePercent24Hr) < 0 ? s.down : s.up
+                    s.topCoins__arrow,
+                    Number(c.changePercent24Hr) < 0
+                      ? s.topCoins__arrow_down
+                      : s.topCoins__arrow_up
                   )}
                 />
               </div>

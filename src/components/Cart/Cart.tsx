@@ -65,21 +65,21 @@ const Cart: FC = (): JSX.Element => {
         <>
           <h1 className={s.header}>Portfolio.</h1>
           <table className={s.table}>
-            <thead>
-              <tr>
-                <th>Coin</th>
-                <th>Amount</th>
-                <th>Price when added</th>
-                <th>Price Now</th>
-                <th>Total when added</th>
-                <th>Total Now</th>
-                <th>Difference</th>
-                <th> </th>
+            <thead className={s.table__header}>
+              <tr className={s.table__row}>
+                <th className={s.table__header__item}>Coin</th>
+                <th className={s.table__header__item}>Amount</th>
+                <th className={s.table__header__item}>Price when added</th>
+                <th className={s.table__header__item}>Price Now</th>
+                <th className={s.table__header__item}>Total when added</th>
+                <th className={s.table__header__item}>Total Now</th>
+                <th className={s.table__header__item}>Difference</th>
+                <th className={s.table__header__item}> </th>
               </tr>
             </thead>
             {cartDataNow.length === cartTotalQuantity ? (
               <>
-                <tbody>{c}</tbody>
+                <tbody className={s.table__body}>{c}</tbody>
                 <CartBottomInfo
                   cartTotal={cartTotal}
                   cartTotalNow={cartTotalNow}
@@ -93,7 +93,7 @@ const Cart: FC = (): JSX.Element => {
           </table>
         </>
       ) : (
-        <h1 className={s.emptyCartText}>Your Portfolio is Empty!</h1>
+        <h1 className={s.emptyText}>Your Portfolio is Empty!</h1>
       )}
     </div>
   );

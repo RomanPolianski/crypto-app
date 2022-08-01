@@ -1,6 +1,6 @@
 $purple: rgb(117, 0, 92);
 
-.modalContainer {
+.modal {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -11,113 +11,111 @@ $purple: rgb(117, 0, 92);
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
-}
-.modal {
-  text-align: center;
-  background-color: rgba(225, 225, 225, 0.9);
-  width: calc(50% + 15vw);
-  height: auto;
-  padding: 2rem;
-  border-radius: 20px;
-  backdrop-filter: blur(2px);
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 
-  h1 {
+  &__body {
+    text-align: center;
+    background-color: rgba(225, 225, 225, 0.9);
+    width: calc(50% + 15vw);
+    height: auto;
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  }
+
+  &__name {
     margin-bottom: 5%;
     color: $purple;
     border-bottom: 1px solid #111;
   }
 
-  h2 {
-    font-weight: 300;
+  &__closeButton {
+    margin-left: 95%;
+    background: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 5px;
+    color: $purple;
   }
 
-  p {
-    border-bottom: 1px dashed rgb(122, 122, 122);
+  &__closeButton:active {
+    background-color: $purple;
+    color: #fff;
   }
-}
-
-.infoContainer {
-  display: flex;
-  flex-direction: row;
 }
 
 .trend {
   width: 600px;
   margin-left: 1%;
   overflow-y: overlay;
-  canvas {
+
+  &__canvas {
     background-color: rgb(236, 236, 236);
     border-radius: 20px;
   }
 }
-.cont {
+
+.infoContainer {
   display: flex;
-}
 
-.closeButton {
-  margin-left: 95%;
-  background: #fff;
-  border: none;
-  border-radius: 50px;
-  padding: 5px;
-  color: $purple;
-}
+  &__body {
+    display: flex;
+    flex-direction: row;
+  }
+  &__text {
+    border-bottom: 1px dashed rgb(122, 122, 122);
+  }
+  &__modalSubmitBtn {
+    background: $purple;
+    width: 43px;
+    height: 33px;
+    border: none;
+    font-weight: 700;
+    border-radius: 3px;
+    color: #e6e6e6;
+    margin: 7px 0 8px 8px;
+    padding: 10px 14px 10px 8px;
+    text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  &__modalSubmitBtn:active {
+    background: rgb(14, 3, 41);
+  }
+  &__modalSubmitBtn:disabled {
+    background: rgba(1, 0, 3, 0.13);
+  }
+  &__inputAmount {
+    overflow-wrap: break-word;
+    resize: none;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    font-family: inherit;
+    color: #172b4d;
+    width: calc(1% + 11vw);
+    font-size: 14px;
+    font-weight: 900;
+  }
+  &__inputAmount:focus {
+    border: none;
+    outline: none;
+  }
 
-.closeButton:active {
-  background-color: $purple;
-  color: #fff;
-}
-.modalSubmit {
-  background: $purple;
-  width: 43px;
-  height: 33px;
-  border: none;
-  font-weight: 700;
-  border-radius: 3px;
-  color: #e6e6e6;
-  margin: 7px 0 8px 8px;
-  padding: 10px 14px 10px 8px;
-  text-decoration: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.modalSubmit:active {
-  background: rgb(14, 3, 41);
-}
-.modalSubmit:disabled {
-  background: rgba(1, 0, 3, 0.13);
-}
-.inputAmount {
-  overflow-wrap: break-word;
-  resize: none;
-  height: 30px;
-  border: none;
-  border-radius: 3px;
-  font-family: inherit;
-  color: #172b4d;
-  width: calc(1% + 11vw);
-  font-size: 14px;
-  font-weight: 900;
-}
-.inputAmount:focus {
-  border: none;
-  outline: none;
-}
-
-.errMsg {
-  margin-top: 1%;
-  color: red;
-  font-size: smaller;
-  margin-bottom: 1%;
+  &__error {
+    margin-top: 1%;
+    color: red;
+    font-size: smaller;
+    margin-bottom: 1%;
+  }
 }
 
 @media (min-width: 1900px) {
-  .modal {
+  .modal__body {
     height: 90vh;
     width: 80vw;
   }
-  .cont {
+  .infoContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,21 +125,21 @@ $purple: rgb(117, 0, 92);
     width: 900px;
     margin-left: 1%;
     overflow-y: overlay;
-    canvas {
-      background-color: rgb(236, 236, 236);
-      border-radius: 20px;
-    }
+  }
+  .canvas {
+    background-color: rgb(236, 236, 236);
+    border-radius: 20px;
   }
 }
 
 @media (max-width: 1100px) {
-  .modal {
+  .modal__body {
     height: 80vh;
   }
-  .cont {
+  .infoContainer {
     display: block;
   }
-  .sidebarInfo {
+  .infoContainer__sidebar {
     margin: 0 auto;
   }
   .trend {
@@ -151,99 +149,89 @@ $purple: rgb(117, 0, 92);
 }
 
 @media (max-width: 800px) {
-  .closeButton {
-    margin-top: 1%;
-    margin-left: 85%;
-  }
-
   .modal {
-    height: 80vh;
-    width: 90%;
-    padding: 3px;
-
-    h1 {
+    &__body {
+      height: 80vh;
+      width: 90%;
+      padding: 3px;
+    }
+    &__name {
       font-size: small;
     }
-    h2 {
-      font-size: small;
+    &__closeButton {
+      margin-top: 1%;
+      margin-left: 85%;
     }
   }
-  .inputAmount {
+
+  .infoContainer__inputAmount {
     width: 20%;
   }
   .trend {
     margin-top: 1%;
     width: 100%;
-    canvas {
-      background-color: rgb(236, 236, 236);
-      border-radius: 10px;
-    }
+  }
+  .canvas {
+    background-color: rgb(236, 236, 236);
+    border-radius: 10px;
+  }
+  .infoContainer__subHeader {
+    font-size: smaller;
   }
 }
 @media (max-width: 350px) {
-  .modal {
+  .modal__body {
     height: 95%;
   }
-  .sidebarInfo p {
+  .infoContainer__text {
     font-size: small;
   }
-  .closeButton {
+  .modal__closeButton {
     margin-left: 80%;
     margin-top: 25px;
   }
   .trend {
     margin-top: 0;
   }
-  .closeButton svg {
-    margin: 0;
-  }
 }
 
 @media (max-height: 800px) and (orientation: landscape) {
-  .modal {
+  .modal__body {
     padding: 10px;
   }
-  .cont {
-    display: flex;
-  }
-  .cont p {
-    font-size: smaller;
-  }
-  .cont h2,
-  h1 {
-    font-size: smaller;
-    padding: 0px;
-    margin: 0px;
-  }
-  .errMsg {
-    font-size: x-small;
-  }
-  .inputAmount {
-    height: 10%;
-    width: 80px;
-    font-size: smaller;
-  }
-  .closeButton {
+  .modal__closeButton {
     margin-left: 80%;
+  }
+  .infoContainer {
+    display: flex;
+
+    &__text {
+      font-size: smaller;
+    }
+
+    &__error {
+      font-size: x-small;
+    }
+
+    &__inputAmount {
+      height: 10%;
+      width: 80px;
+      font-size: smaller;
+    }
   }
 }
 
 @media (max-height: 400px) and (orientation: landscape) {
-  .modal {
+  .modal__body {
     height: 90vh;
   }
-  .cont p {
-    font-size: x-small;
-  }
-  .cont h2,
-  h1 {
-    font-size: x-small;
-    margin: 0px;
-  }
-  .closeButton {
+  .modal__closeButton {
     margin-top: 20px;
   }
-  .inputAmount {
+  .infoContainer__text {
+    font-size: x-small;
+  }
+  .infoContainer__inputAmount {
     width: 40px;
   }
 }

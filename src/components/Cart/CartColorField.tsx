@@ -17,10 +17,10 @@ const CartColorField: FC<CartColorFieldProps> = ({
   label,
 }): JSX.Element => {
   return (
-    <td data-label={label}>
+    <td data-label={label} className={s.table__data}>
       <span
         className={classNames(
-          isRising ? s.green : s.red,
+          isRising ? s.arrow__green : s.arrow__red,
           difference === 0 ? s.black : ''
         )}
       >
@@ -31,9 +31,9 @@ const CartColorField: FC<CartColorFieldProps> = ({
           <i
             className={classNames(
               s.arrow,
-              isRising ? s.green : s.red,
-              difference === 0 ? s.black : '',
-              isRising ? s.up : s.down
+              isRising ? s.arrow__green : s.arrow__red,
+              difference === 0 ? s.arrow__black : '',
+              isRising ? s.arrow__up : s.arrow__down
             )}
           />
         </span>

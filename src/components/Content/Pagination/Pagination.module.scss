@@ -2,27 +2,31 @@ $white: white;
 $purple: rgb(117, 0, 92);
 $grey: rgb(126, 125, 125);
 
-.paginationContainer {
+.pagination {
   display: flex;
   margin-left: 2%;
+  &__button {
+    list-style-type: none;
+    padding: 7px;
+    border: 1.5px solid $grey;
+    border-radius: 20px;
+    height: 20px;
+    margin-left: 1%;
+    transition: all 0.5s linear;
+  }
+  &__link {
+    text-decoration: none;
+    padding: 5px;
+    background-color: transparent;
+    border-radius: 100px;
+  }
+  &__link:active {
+    color: $white;
+  }
 }
-
-.paginationContainer li {
-  list-style-type: none;
-  padding: 7px;
-  border: 1.5px solid $grey;
-  border-radius: 20px;
-  height: 20px;
-  margin-left: 1%;
-  transition: all 0.5s linear;
-}
-.paginationContainer a {
-  text-decoration: none;
-  padding: 5px;
-  background-color: transparent;
-}
-
-.paginationContainer a:active {
+.currentPage {
+  background-color: $purple;
+  transform: translateY(-3px);
   color: $white;
 }
 
@@ -35,35 +39,29 @@ $grey: rgb(126, 125, 125);
   transform: translateY(0);
   transition: all 0.2s;
   background: none;
+  &:active {
+    outline: none;
+    box-shadow: none;
+    transition: all 0.5s ease 0;
+    color: white;
+  }
+  &:disabled {
+    outline: none;
+    box-shadow: none;
+    color: rgb(92, 92, 92);
+  }
 }
 
-.nextprevButton:active {
-  outline: none;
-  box-shadow: none;
-  transition: all 0.5s ease 0;
-  color: white;
-}
-.nextprevButton:disabled {
-  outline: none;
-  box-shadow: none;
-  color: rgb(92, 92, 92);
-}
-
-.currentPage {
-  color: $white;
-  background-color: $purple;
-  transform: translateY(-3px);
-}
 @media (max-width: 800px) {
-  .paginationContainer {
+  .pagination {
     margin-left: 4%;
     margin-top: 1%;
-  }
-  .paginationContainer li {
-    padding: 1px;
-    border-radius: 20px;
-    height: 20px;
-    margin-left: 1px;
+    &__button {
+      padding: 1px;
+      border-radius: 20px;
+      height: 20px;
+      margin-left: 1px;
+    }
   }
   .nextprevButton {
     position: relative;
@@ -81,11 +79,11 @@ $grey: rgb(126, 125, 125);
     width: 35px;
     height: 35px;
   }
-  .paginationContainer {
+  .pagination__button {
     margin-top: 1%;
     margin-left: 1%;
   }
-  .paginationContainer a {
+  .pagination__link {
     padding: 4px;
   }
 }

@@ -17,7 +17,7 @@ const CartBottomInfo: FC<CartBottomInfoProps> = ({
   differenceCartTotal,
 }): JSX.Element => {
   return (
-    <div className={s.infoContainer}>
+    <div className={s.table__infoContainer}>
       <p>
         Initial Total:<b> {toUSD.format(cartTotal)}</b>
       </p>

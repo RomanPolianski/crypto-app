@@ -24,12 +24,12 @@ const Header: FC = (): JSX.Element => {
 
   return (
     <header className={s.header}>
-      <div className={s.headerInnerContainer}>
-        <div className={s.headerLeft}>
+      <div className={s.header__body}>
+        <div className={s.header__left}>
           <Logo />
           <TopCoins />
         </div>
-        <div className={s.cart}>
+        <div className={s.header__cart}>
           <CartStatusInfo />
           <CartIcon
             totalCartItemsAmount={totalCartItemsAmount}

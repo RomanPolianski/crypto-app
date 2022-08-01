@@ -61,25 +61,25 @@ const Content: FC = (): JSX.Element => {
   ));
 
   return (
-    <div className={s.wrapper}>
+    <div className={s.table__wrapper}>
       {isLoading ? (
         <Preloader />
       ) : (
         <>
           <table className={s.table}>
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Coin</th>
-                <th>Price USD</th>
-                <th>MarketCap USD</th>
-                <th>Change 24Hr</th>
-                <th> </th>
+            <thead className={s.table__header}>
+              <tr className={s.table__row}>
+                <th className={s.table__header__item}>Rank</th>
+                <th className={s.table__header__item}>Coin</th>
+                <th className={s.table__header__item}>Price USD</th>
+                <th className={s.table__header__item}>MarketCap USD</th>
+                <th className={s.table__header__item}>Change 24Hr</th>
+                <th className={s.table__header__item}> </th>
               </tr>
             </thead>
-            <tbody>{c}</tbody>
+            <tbody className={s.table__body}>{c}</tbody>
           </table>
-          <div className={s.buttonContainer}>
+          <div className={s.table__buttonContainer}>
             <Pagination
               paginate={paginate}
               pageNumbers={pageNumbers}

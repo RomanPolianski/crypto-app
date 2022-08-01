@@ -33,19 +33,23 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
 
   return (
     <>
-      <tr>
-        <td data-label="Coin">
+      <tr className={s.table__row}>
+        <td data-label="Coin" className={s.table__data}>
           <b>{name}</b>
         </td>
-        <td data-label="Amount">{amount}</td>
-        <td data-label="Price when added">{toUSD.format(Number(priceUsd))}</td>
+        <td data-label="Amount" className={s.table__data}>
+          {amount}
+        </td>
+        <td data-label="Price when added" className={s.table__data}>
+          {toUSD.format(Number(priceUsd))}
+        </td>
         <CartColorField
           data={diffInfo.priceNow}
           isRising={diffInfo.isRising}
           difference={diffInfo.difference}
           label="Price Now"
         />
-        <td data-label="Total when added">
+        <td data-label="Total when added" className={s.table__data}>
           {toUSD.format(amount * Number(priceUsd))}
         </td>
         <CartColorField
@@ -55,13 +59,15 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
           label="Total now"
         />
 
-        <td data-label="Difference">{diffInfo.difference.toFixed(2)} %</td>
+        <td data-label="Difference" className={s.table__data}>
+          {diffInfo.difference.toFixed(2)} %
+        </td>
 
-        <td data-label="">
+        <td data-label="" className={s.table__data}>
           <button
             type="button"
             onClick={handleDeleteCoin}
-            className={s.deleteButton}
+            className={s.table__deleteButton}
           >
             <CloseSvg />
           </button>

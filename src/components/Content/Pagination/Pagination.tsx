@@ -44,15 +44,19 @@ const Pagination: FC<PaginationPropsTypes> = ({
       >
         <ButtonNextSvg />
       </button>
-      <div className={s.paginationContainer}>
+      <div className={s.pagination}>
         {pageNumbers.map((number) => (
           <li
             key={number}
-            className={classNames(number === currentPage ? s.currentPage : '')}
+            className={classNames(
+              s.pagination__button,
+              number === currentPage ? s.currentPage : ''
+            )}
           >
             <a
               href="#"
               className={classNames(
+                s.pagination__link,
                 number === currentPage ? s.currentPage : ''
               )}
               onClick={() => paginate(number)}

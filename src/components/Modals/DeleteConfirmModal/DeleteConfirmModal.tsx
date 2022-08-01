@@ -36,14 +36,14 @@ const DeleteConfirmModal: FC<BuyCurrencyModalProps> = ({
   return ReactDOM.createPortal(
     <div>
       {open && (
-        <div className={s.modalContainer}>
-          <div className={s.modal}>
-            <h1 className={s.header}>
+        <div className={s.modal}>
+          <div className={s.modal__body}>
+            <h1 className={s.modal__header}>
               Delete {name.toUpperCase()} coin from your portfolio?
             </h1>
-            <div className={s.buttonContainer}>
+            <div className={s.modal__buttons}>
               <button
-                className={s.modalSubmit}
+                className={s.modal__buttons__submit}
                 type="button"
                 onClick={handleDeleteCoin}
               >
@@ -51,7 +51,7 @@ const DeleteConfirmModal: FC<BuyCurrencyModalProps> = ({
               </button>
               <button
                 type="button"
-                className={s.closeModalIcon}
+                className={s.modal__buttons__close}
                 onClick={() => close()}
               >
                 <CloseSvg />

@@ -81,37 +81,39 @@ const InfoModal: FC<InfoModalProps> = ({
   return ReactDOM.createPortal(
     <div>
       {open && (
-        <div className={s.modalContainer}>
-          <div className={s.modal}>
+        <div className={s.modal}>
+          <div className={s.modal__body}>
             <button
               type="button"
-              className={s.closeButton}
+              className={s.modal__closeButton}
               onClick={() => close()}
             >
               <CloseSvg />
             </button>
-            <h1>{name} Extra Info</h1>
-            <div className={s.cont}>
-              <div className={s.infoContainer}>
-                <div className={s.sidebarInfo}>
-                  <p>
+            <h1 className={s.modal__name}>{name} Extra Info</h1>
+            <div className={s.infoContainer}>
+              <div className={s.infoContainer__body}>
+                <div className={s.infoContainer__sidebar}>
+                  <p className={s.infoContainer__text}>
                     <b>Supply:</b> {Number(supply).toFixed(2)}
                   </p>
-                  <p>
+                  <p className={s.infoContainer__text}>
                     <b>Max Supply: </b>
                     {maxSupply === null ? 'N/A' : Number(maxSupply)?.toFixed(2)}
                   </p>
-                  <p>
+                  <p className={s.infoContainer__text}>
                     <b>Volume Usd 24hr:</b>{' '}
                     {toUSD.format(Number(volumeUsd24Hr))}
                   </p>
-                  <p>
+                  <p className={s.infoContainer__text}>
                     <b>Vol. Weighted Avg Price last 24hr:</b>{' '}
                     {Number(vwap24Hr).toFixed(2)}
                   </p>
-                  <h2>Add to portfolio</h2>
+                  <h2 className={s.infoContainer__subHeader}>
+                    Add to portfolio
+                  </h2>
                   <input
-                    className={s.inputAmount}
+                    className={s.infoContainer__inputAmount}
                     type="number"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       amount.onChange(e)
@@ -123,7 +125,7 @@ const InfoModal: FC<InfoModalProps> = ({
                   />
 
                   <button
-                    className={s.modalSubmit}
+                    className={s.infoContainer__modalSubmitBtn}
                     type="button"
                     onClick={handleAddToCart}
                     disabled={!amount.inputValid}
@@ -131,17 +133,22 @@ const InfoModal: FC<InfoModalProps> = ({
                     Add
                   </button>
                   {amount.isDirty && amount.isEmpty && (
-                    <div className={s.errMsg}>Field cannot be empty!</div>
+                    <div className={s.infoContainer__error}>
+                      Field cannot be empty!
+                    </div>
                   )}
                   {amount.maxLengthError && (
-                    <div className={s.errMsg}>Max amount is 9 digits!</div>
+                    <div className={s.infoContainer__error}>
+                      Max amount is 9 digits!
+                    </div>
                   )}
                   {amount.isDirty && amount.zeroError && (
-                    <div className={s.errMsg}>Amount must be above 0!</div>
+                    <div className={s.infoContainer__error}>
+                      Amount must be above 0!
+                    </div>
                   )}
                 </div>
               </div>
-
               <div className={s.trend}>
                 {loading ? <Preloader /> : <Trend trendData={data} />}
               </div>

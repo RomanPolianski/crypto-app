@@ -16,24 +16,24 @@ const CartIcon: FC<CartIconProps> = ({
   const navigate = useNavigate();
 
   return (
-    <span className={s.cartIconWrapper}>
+    <span className={s.cartIcon}>
       {!isCartPage ? (
         <>
           <button
             type="button"
-            className={s.cartButton}
+            className={s.cartIcon__button}
             disabled={isCartPage}
             onClick={() => navigate('/cart')}
           >
             <PortfolioSvg />
           </button>
-          <p className={s.coinNumberInCart}>{totalCartItemsAmount}</p>
+          <p className={s.cartIcon__amount}>{totalCartItemsAmount}</p>
         </>
       ) : (
         <button
           type="button"
           onClick={() => navigate('/crypto-app')}
-          className={s.backButton}
+          className={s.cartIcon__backButton}
         >
           <ButtonPrevSvg />
         </button>

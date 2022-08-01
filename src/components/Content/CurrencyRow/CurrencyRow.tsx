@@ -54,33 +54,40 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
 
   return (
     <>
-      <tr onClick={() => handleInfoModalClick()}>
-        <td data-label="Rank">{rank}</td>
-        <td data-label="Coin">
+      <tr onClick={() => handleInfoModalClick()} className={s.table__row}>
+        <td data-label="Rank" className={s.table__data}>
+          {rank}
+        </td>
+        <td data-label="Coin" className={s.table__data}>
           <b>{symbol}</b>
           <br />
           {name}
         </td>
-        <td data-label="Price USD">{toUSD.format(Number(priceUsd))}</td>
-        <td data-label="MarketCap USD">{toUSD.format(Number(marketCapUsd))}</td>
+        <td data-label="Price USD" className={s.table__data}>
+          {toUSD.format(Number(priceUsd))}
+        </td>
+        <td data-label="MarketCap USD" className={s.table__data}>
+          {toUSD.format(Number(marketCapUsd))}
+        </td>
         <td
           data-label="Change % 24hr"
           className={classNames(
-            Number(changePercent24Hr) > 0 ? s.green : s.red
+            s.table__data,
+            Number(changePercent24Hr) > 0 ? s.arrow_green : s.arrow_red
           )}
         >
           {Number(changePercent24Hr).toFixed(2)}
           <i
             className={classNames(
               s.arrow,
-              Number(changePercent24Hr) < 0 ? s.down : s.up
+              Number(changePercent24Hr) < 0 ? s.arrow_down : s.arrow_up
             )}
           />
         </td>
-        <td data-label="">
+        <td data-label="" className={s.table__data}>
           <button
             type="button"
-            className={s.addToCartButton}
+            className={s.table__addToCartButton}
             onClick={(e) => handleCartClick(e)}
           >
             <CartSvg />
