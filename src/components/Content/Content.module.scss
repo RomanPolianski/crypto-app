@@ -128,7 +128,7 @@ $green: rgb(3, 189, 74);
       font-weight: bold;
       text-align: left;
     }
-    svg {
+    .svg {
       width: 25px;
       height: 25px;
     }
@@ -142,7 +142,7 @@ $green: rgb(3, 189, 74);
 }
 
 @media (max-width: 350px) {
-  svg {
+  .svg {
     width: 35px;
     height: 35px;
     margin-left: 10px;

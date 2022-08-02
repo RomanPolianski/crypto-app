@@ -33,7 +33,9 @@ const Pagination: FC<PaginationPropsTypes> = ({
         onClick={prevPage}
         disabled={currentPage === pageNumbers[0]}
       >
-        <ButtonPrevSvg />
+        <span className={s.svg}>
+          <ButtonPrevSvg />
+        </span>
       </button>
 
       <button
@@ -42,7 +44,9 @@ const Pagination: FC<PaginationPropsTypes> = ({
         onClick={nextPage}
         disabled={currentPage === pageNumbers[pageNumbers.length - 1]}
       >
-        <ButtonNextSvg />
+        <span className={s.svg}>
+          <ButtonNextSvg />
+        </span>
       </button>
       <div className={s.pagination}>
         {pageNumbers.map((number) => (

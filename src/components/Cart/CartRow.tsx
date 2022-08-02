@@ -69,7 +69,9 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
             onClick={handleDeleteCoin}
             className={s.table__deleteButton}
           >
-            <CloseSvg />
+            <span className={s.svg}>
+              <CloseSvg />
+            </span>
           </button>
         </td>
       </tr>

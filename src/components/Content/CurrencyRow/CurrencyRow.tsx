@@ -90,7 +90,9 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
             className={s.table__addToCartButton}
             onClick={(e) => handleCartClick(e)}
           >
-            <CartSvg />
+            <span className={s.svg}>
+              <CartSvg />
+            </span>
           </button>
         </td>
       </tr>

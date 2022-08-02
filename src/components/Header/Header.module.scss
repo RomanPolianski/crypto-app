@@ -1,96 +1,106 @@
-.header__body {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  border-bottom: 1px solid purple;
-  background-color: black;
-  margin: 0px auto;
-}
-.header__logo {
-  display: block;
-  height: 30px;
-  max-width: 30px;
-  padding-right: 5px;
+.header {
+  &__body {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid purple;
+    background-color: black;
+    margin: 0px auto;
+  }
+
+  &__cart {
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin-right: 30px;
+  }
+  &__cartStatus {
+    margin: 10px 0px 0px 10px;
+  }
+  &__logo {
+    display: block;
+    height: 30px;
+    max-width: 30px;
+    padding-right: 5px;
+  }
+
+  &__title {
+    padding-top: 10px;
+    margin: 0;
+    color: rgb(155, 81, 204);
+    font-size: medium;
+  }
+  &__left {
+    display: flex;
+    flex-grow: 1;
+    margin-left: 30px;
+  }
+  &__topCoins {
+    display: inline-flex;
+    margin-left: 2%;
+  }
 }
 
-.header__title {
-  padding-top: 10px;
-  margin: 0;
-  color: rgb(155, 81, 204);
-  font-size: medium;
-}
-.header__left {
-  display: flex;
-  flex-grow: 1;
-  margin-left: 30px;
-}
-.topCoins__text {
-  color: azure;
-  font-size: 12px;
-  margin: 0%;
-}
-.header__topCoins {
-  display: inline-flex;
-  margin-left: 2%;
+.topCoins {
+  &__body {
+    margin-left: 3%;
+    margin-top: 5px;
+  }
+  &__text {
+    color: azure;
+    font-size: 12px;
+    margin: 0%;
+  }
+
+  &__arrow {
+    border: solid rgb(255, 255, 255);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 5px;
+    padding: 2px;
+    width: 3px;
+    height: 1px;
+  }
+  &__arrow_down {
+    transform: rotate(45deg);
+    border-color: red;
+    -webkit-transform: rotate(45deg);
+  }
+  &__arrow_up {
+    transform: rotate(-135deg);
+    margin-top: 23px;
+    border-color: rgb(0, 226, 0);
+    -webkit-transform: rotate(-135deg);
+  }
 }
 
-.topCoins__body {
-  margin-left: 3%;
-  margin-top: 5px;
-}
-.header__cart {
-  flex-shrink: 0;
-  flex-grow: 0;
-  margin-right: 30px;
-}
-.cartIcon__button {
-  background: transparent;
-  border: none;
-}
-.cartIcon__backButton {
-  color: white;
-  border: 1px solid transparent;
-  background: none;
+.cartIcon {
+  &__button {
+    background: transparent;
+    border: none;
+  }
+  &__backButton {
+    color: white;
+    border: 1px solid transparent;
+    background: none;
+  }
+
+  &__amount {
+    margin-top: -25px;
+    margin-left: 162px;
+    color: white;
+    font-size: small;
+  }
 }
 
-.cartIcon__amount {
-  margin-top: -25px;
-  margin-left: 162px;
-  color: white;
-  font-size: small;
-}
-.topCoins__arrow {
-  border: solid rgb(255, 255, 255);
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  margin-top: 20px;
-  margin-left: 5px;
-  padding: 2px;
-  width: 3px;
-  height: 1px;
-}
-.topCoins__arrow_down {
-  transform: rotate(45deg);
-  border-color: red;
-  -webkit-transform: rotate(45deg);
-}
-.topCoins__arrow_up {
-  transform: rotate(-135deg);
-  margin-top: 23px;
-  border-color: rgb(0, 226, 0);
-  -webkit-transform: rotate(-135deg);
-}
-.header__cartStatus {
-  margin: 10px 0px 0px 10px;
-}
 .cartStatus {
   font-size: 11px;
   color: white;
   display: inline-block;
-}
-.cartStatus__text {
-  display: block;
-  width: 120px;
+  &__text {
+    display: block;
+    width: 120px;
+  }
 }
 
 @media (min-width: 1370px) {
