@@ -12,7 +12,7 @@ const CartStatusInfo: FC = (): JSX.Element => {
   const totalCartDifferencePercent = useSelector(
     (state: RootState) => state.cart.prevDifferenceCartTotalPercent
   );
-  const cartTotalNow = useSelector(
+  const histCartTotal = useSelector(
     (state: RootState) => state.cart.histCartTotal
   );
   const cartTotal = useSelector((state: RootState) => state.cart.cartTotal);
@@ -20,15 +20,16 @@ const CartStatusInfo: FC = (): JSX.Element => {
   return (
     <span className={classNames(s.header__cartStatus, s.cartStatus)}>
       <span>
-        {cartTotal === cartTotalNow[0]
+        {cartTotal === histCartTotal[0] || !histCartTotal[0]
           ? toUSD.format(cartTotal)
-          : toUSD.format(cartTotalNow[0])}
+          : toUSD.format(histCartTotal[0])}
       </span>
       <span className={s.cartStatus__text}>
         USD {totalCartDifference.toFixed(2)}{' '}
         <span>
           {!Number.isNaN(totalCartDifferencePercent) &&
-          totalCartDifferencePercent
+          totalCartDifferencePercent &&
+          Number.isFinite(totalCartDifferencePercent)
             ? `(${totalCartDifferencePercent.toFixed(2)}%)`
             : ''}
         </span>
