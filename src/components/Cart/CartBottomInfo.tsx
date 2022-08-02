@@ -28,19 +28,19 @@ const CartBottomInfo: FC<CartBottomInfoProps> = ({
         Difference:{' '}
         <span
           className={classNames(
-            differenceCartTotalPercent > 0 ? s.green : s.red,
-            differenceCartTotalPercent === 0 ? s.black : ''
+            differenceCartTotalPercent > 0 ? s.arrow__green : s.arrow__red,
+            differenceCartTotalPercent === 0 ? s.arrow__black : ''
           )}
         >
           <b>{toUSD.format(differenceCartTotal)}</b>
         </span>
       </p>
       <p className={s.lastInfoItem}>
-        Difference in %:{' '}
+        Difference %:{' '}
         <span
           className={classNames(
-            differenceCartTotalPercent > 0 ? s.green : s.red,
-            differenceCartTotalPercent === 0 ? s.black : ''
+            differenceCartTotalPercent > 0 ? s.arrow__green : s.arrow__red,
+            differenceCartTotalPercent === 0 ? s.arrow__black : ''
           )}
         >
           <b>{differenceCartTotalPercent.toFixed(2)} %</b>

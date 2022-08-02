@@ -107,8 +107,13 @@ const cartSlice = createSlice({
       state.histCartTotal.unshift(state.cartTotalNow + payload);
       state.cartTotalNow += payload;
     },
-    deleteCartTotalNow(state) {
-      state.cartTotalNow = 0;
+    deleteCartTotalNow(state, { payload }: PayloadAction<number>) {
+      state.cartTotalNow -= payload;
+      if (state.cartTotalQuantity === 0) {
+        state.cartTotal = 0;
+        state.differenceCartTotal = 0;
+        state.differenceCartTotalPercent = 0;
+      }
     },
     setCartDifferenceInfo(
       state,
