@@ -78,6 +78,7 @@ const cartSlice = createSlice({
         state.cartTotalQuantity++;
       }
       state.cartTotal += Number(payload.priceUsd) * payload.numberAmount;
+      state.histCartTotal.push(state.cartTotal + Number(payload.priceUsd));
       toast.success(
         `${payload.name} in amount of ${payload.numberAmount} was added to portfolio`,
         {
