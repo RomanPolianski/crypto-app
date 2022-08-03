@@ -1,11 +1,5 @@
-// export const toUSD = new Intl.NumberFormat('us', {
-//   style: 'currency',
-//   currency: 'USD',
-//   maximumFractionDigits: 2,
-// });
-
 export function toUSD(value: number) {
-  const min = Number(value) < 0.01 && Number(value) !== 0;
+  const min = Number(value) < 0.01 && Number(value) !== 0 && Number(value) > 0;
   const val = min ? 6 : 2;
   return new Intl.NumberFormat('us', {
     style: 'currency',
