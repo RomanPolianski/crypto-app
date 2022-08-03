@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store';
-import s from './Header.module.scss';
+import styles from './Header.module.scss';
 import { fetchTop3Currencies } from '../../store/currencySlice';
 import Logo from './Logo';
 import TopCoins from './TopCoins';
@@ -23,13 +23,13 @@ const Header: FC = (): JSX.Element => {
   }, [totalCartItemsAmount, isCartPage]);
 
   return (
-    <header className={s.header}>
-      <div className={s.header__body}>
-        <div className={s.header__left}>
+    <header className={styles.header}>
+      <div className={styles.header__body}>
+        <div className={styles.header__left}>
           <Logo />
           <TopCoins />
         </div>
-        <div className={s.header__cart}>
+        <div className={styles.header__cart}>
           <CartStatusInfo />
           <CartIcon
             totalCartItemsAmount={totalCartItemsAmount}

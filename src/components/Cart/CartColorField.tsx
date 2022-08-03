@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
-import s from './Cart.module.scss';
+import styles from './Cart.module.scss';
 
 interface CartColorFieldProps {
   data: string | number;
@@ -17,11 +17,11 @@ const CartColorField: FC<CartColorFieldProps> = ({
   label,
 }): JSX.Element => {
   return (
-    <td data-label={label} className={s.table__data}>
+    <td data-label={label} className={styles.table__data}>
       <span
         className={classNames(
-          isRising ? s.arrow__green : s.arrow__red,
-          difference === 0 ? s.black : ''
+          isRising ? styles.arrow__green : styles.arrow__red,
+          difference === 0 ? styles.black : ''
         )}
       >
         {toUSD.format(Number(data))}
@@ -30,10 +30,10 @@ const CartColorField: FC<CartColorFieldProps> = ({
         <span>
           <i
             className={classNames(
-              s.arrow,
-              isRising ? s.arrow__green : s.arrow__red,
-              difference === 0 ? s.arrow__black : '',
-              isRising ? s.arrow__up : s.arrow__down
+              styles.arrow,
+              isRising ? styles.arrow__green : styles.arrow__red,
+              difference === 0 ? styles.arrow__black : '',
+              isRising ? styles.arrow__up : styles.arrow__down
             )}
           />
         </span>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { CurType, fetchCurrencies } from '../../store/currencySlice';
 import Preloader from '../common/Preloader';
-import s from './Content.module.scss';
+import styles from './Content.module.scss';
 import CurrencyRow from './CurrencyRow/CurrencyRow';
 import Pagination from './Pagination/Pagination';
 
@@ -61,25 +61,25 @@ const Content: FC = (): JSX.Element => {
   ));
 
   return (
-    <div className={s.table__wrapper}>
+    <div className={styles.table__wrapper}>
       {isLoading ? (
         <Preloader />
       ) : (
         <>
-          <table className={s.table}>
-            <thead className={s.table__header}>
-              <tr className={s.table__row}>
-                <th className={s.table__header__item}>Rank</th>
-                <th className={s.table__header__item}>Coin</th>
-                <th className={s.table__header__item}>Price USD</th>
-                <th className={s.table__header__item}>MarketCap USD</th>
-                <th className={s.table__header__item}>Change 24Hr</th>
-                <th className={s.table__header__item}> </th>
+          <table className={styles.table}>
+            <thead className={styles.table__header}>
+              <tr className={styles.table__row}>
+                <th className={styles.table__header__item}>Rank</th>
+                <th className={styles.table__header__item}>Coin</th>
+                <th className={styles.table__header__item}>Price USD</th>
+                <th className={styles.table__header__item}>MarketCap USD</th>
+                <th className={styles.table__header__item}>Change 24Hr</th>
+                <th className={styles.table__header__item}> </th>
               </tr>
             </thead>
-            <tbody className={s.table__body}>{c}</tbody>
+            <tbody className={styles.table__body}>{c}</tbody>
           </table>
-          <div className={s.table__buttonContainer}>
+          <div className={styles.table__buttonContainer}>
             <Pagination
               paginate={paginate}
               pageNumbers={pageNumbers}

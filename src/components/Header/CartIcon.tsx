@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ButtonPrevSvg from '../common/svg/ButtonPrevSvg';
 import PortfolioSvg from '../common/svg/PortfolioSvg';
-import s from './Header.module.scss';
+import styles from './Header.module.scss';
 
 interface CartIconProps {
   totalCartItemsAmount: number;
@@ -16,24 +16,24 @@ const CartIcon: FC<CartIconProps> = ({
   const navigate = useNavigate();
 
   return (
-    <span className={s.cartIcon}>
+    <span className={styles.cartIcon}>
       {!isCartPage ? (
         <>
           <button
             type="button"
-            className={s.cartIcon__button}
+            className={styles.cartIcon__button}
             disabled={isCartPage}
             onClick={() => navigate('/cart')}
           >
             <PortfolioSvg />
           </button>
-          <p className={s.cartIcon__amount}>{totalCartItemsAmount}</p>
+          <p className={styles.cartIcon__amount}>{totalCartItemsAmount}</p>
         </>
       ) : (
         <button
           type="button"
           onClick={() => navigate('/crypto-app')}
-          className={s.cartIcon__backButton}
+          className={styles.cartIcon__backButton}
         >
           <ButtonPrevSvg />
         </button>

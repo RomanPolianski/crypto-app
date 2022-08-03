@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
-import s from './Cart.module.scss';
+import styles from './Cart.module.scss';
 
 interface CartBottomInfoProps {
   cartTotal: number;
@@ -17,7 +17,7 @@ const CartBottomInfo: FC<CartBottomInfoProps> = ({
   differenceCartTotal,
 }): JSX.Element => {
   return (
-    <div className={s.table__infoContainer}>
+    <div className={styles.table__infoContainer}>
       <p>
         Initial Total:<b> {toUSD.format(cartTotal)}</b>
       </p>
@@ -28,19 +28,23 @@ const CartBottomInfo: FC<CartBottomInfoProps> = ({
         Difference:{' '}
         <span
           className={classNames(
-            differenceCartTotalPercent > 0 ? s.arrow__green : s.arrow__red,
-            differenceCartTotalPercent === 0 ? s.arrow__black : ''
+            differenceCartTotalPercent > 0
+              ? styles.arrow__green
+              : styles.arrow__red,
+            differenceCartTotalPercent === 0 ? styles.arrow__black : ''
           )}
         >
           <b>{toUSD.format(differenceCartTotal)}</b>
         </span>
       </p>
-      <p className={s.lastInfoItem}>
+      <p className={styles.lastInfoItem}>
         Difference %:{' '}
         <span
           className={classNames(
-            differenceCartTotalPercent > 0 ? s.arrow__green : s.arrow__red,
-            differenceCartTotalPercent === 0 ? s.arrow__black : ''
+            differenceCartTotalPercent > 0
+              ? styles.arrow__green
+              : styles.arrow__red,
+            differenceCartTotalPercent === 0 ? styles.arrow__black : ''
           )}
         >
           <b>{differenceCartTotalPercent.toFixed(2)} %</b>

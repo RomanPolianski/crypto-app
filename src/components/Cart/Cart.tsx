@@ -7,7 +7,7 @@ import {
   setCartDifferenceInfo,
 } from '../../store/cartSlice';
 import Preloader from '../common/Preloader';
-import s from './Cart.module.scss';
+import styles from './Cart.module.scss';
 import CartBottomInfo from './CartBottomInfo';
 import CartRow from './CartRow';
 
@@ -63,23 +63,23 @@ const Cart: FC = (): JSX.Element => {
     <div>
       {cartItems.length !== 0 ? (
         <>
-          <h1 className={s.header}>Portfolio.</h1>
-          <table className={s.table}>
-            <thead className={s.table__header}>
-              <tr className={s.table__row}>
-                <th className={s.table__header__item}>Coin</th>
-                <th className={s.table__header__item}>Amount</th>
-                <th className={s.table__header__item}>Price when added</th>
-                <th className={s.table__header__item}>Price Now</th>
-                <th className={s.table__header__item}>Total when added</th>
-                <th className={s.table__header__item}>Total Now</th>
-                <th className={s.table__header__item}>Difference</th>
-                <th className={s.table__header__item}> </th>
+          <h1 className={styles.header}>Portfolio.</h1>
+          <table className={styles.table}>
+            <thead className={styles.table__header}>
+              <tr className={styles.table__row}>
+                <th className={styles.table__header__item}>Coin</th>
+                <th className={styles.table__header__item}>Amount</th>
+                <th className={styles.table__header__item}>Price when added</th>
+                <th className={styles.table__header__item}>Price Now</th>
+                <th className={styles.table__header__item}>Total when added</th>
+                <th className={styles.table__header__item}>Total Now</th>
+                <th className={styles.table__header__item}>Difference</th>
+                <th className={styles.table__header__item}> </th>
               </tr>
             </thead>
             {cartDataNow.length === cartTotalQuantity ? (
               <>
-                <tbody className={s.table__body}>{c}</tbody>
+                <tbody className={styles.table__body}>{c}</tbody>
                 <CartBottomInfo
                   cartTotal={cartTotal}
                   cartTotalNow={cartTotalNow}
@@ -93,7 +93,7 @@ const Cart: FC = (): JSX.Element => {
           </table>
         </>
       ) : (
-        <h1 className={s.emptyText}>Your Portfolio is Empty!</h1>
+        <h1 className={styles.emptyText}>Your Portfolio is Empty!</h1>
       )}
     </div>
   );

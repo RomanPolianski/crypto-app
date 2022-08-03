@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { FC } from 'react';
 import ButtonNextSvg from '../../common/svg/ButtonNextSvg';
 import ButtonPrevSvg from '../../common/svg/ButtonPrevSvg';
-import s from './Pagination.module.scss';
+import styles from './Pagination.module.scss';
 
 interface PaginationPropsTypes {
   paginate: Function;
@@ -29,39 +29,39 @@ const Pagination: FC<PaginationPropsTypes> = ({
     <>
       <button
         type="button"
-        className={s.nextprevButton}
+        className={styles.nextprevButton}
         onClick={prevPage}
         disabled={currentPage === pageNumbers[0]}
       >
-        <span className={s.svg}>
+        <span className={styles.svg}>
           <ButtonPrevSvg />
         </span>
       </button>
 
       <button
         type="button"
-        className={s.nextprevButton}
+        className={styles.nextprevButton}
         onClick={nextPage}
         disabled={currentPage === pageNumbers[pageNumbers.length - 1]}
       >
-        <span className={s.svg}>
+        <span className={styles.svg}>
           <ButtonNextSvg />
         </span>
       </button>
-      <div className={s.pagination}>
+      <div className={styles.pagination}>
         {pageNumbers.map((number) => (
           <li
             key={number}
             className={classNames(
-              s.pagination__button,
-              number === currentPage ? s.currentPage : ''
+              styles.pagination__button,
+              number === currentPage ? styles.currentPage : ''
             )}
           >
             <a
               href="#"
               className={classNames(
-                s.pagination__link,
-                number === currentPage ? s.currentPage : ''
+                styles.pagination__link,
+                number === currentPage ? styles.currentPage : ''
               )}
               onClick={() => paginate(number)}
             >

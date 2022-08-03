@@ -5,7 +5,7 @@ import { addToCart } from '../../../../store/cartSlice';
 import { toUSD } from '../../../../utils/formatters/toUSDformatter';
 import { useInput } from '../../../../utils/validators/useInputHook';
 import CloseSvg from '../../../common/svg/CloseSvg';
-import s from './BuyCurrencyModal.module.scss';
+import styles from './BuyCurrencyModal.module.scss';
 
 interface BuyCurrencyModalProps {
   id: string;
@@ -51,9 +51,9 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
   return ReactDOM.createPortal(
     <div>
       {open && (
-        <div className={s.modal}>
-          <div className={s.modal__body}>
-            <h1 className={s.modal__header}>
+        <div className={styles.modal}>
+          <div className={styles.modal__body}>
+            <h1 className={styles.modal__header}>
               Add {name.toUpperCase()} coin to your portfolio
             </h1>
             <p>
@@ -61,7 +61,7 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
             </p>
             <p>Enter the amount</p>
             <input
-              className={s.modal__input}
+              className={styles.modal__input}
               type="number"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 amount.onChange(e)
@@ -72,21 +72,23 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
               min={0}
             />
             {amount.isDirty && amount.isEmpty && (
-              <div className={s.modal__input_error}>Field cannot be empty!</div>
+              <div className={styles.modal__input_error}>
+                Field cannot be empty!
+              </div>
             )}
             {amount.maxLengthError && (
-              <div className={s.modal__input_error}>
+              <div className={styles.modal__input_error}>
                 Max amount is 9 digits!
               </div>
             )}
             {amount.isDirty && amount.zeroError && (
-              <div className={s.modal__input_error}>
+              <div className={styles.modal__input_error}>
                 Amount must be above 0!
               </div>
             )}
-            <div className={s.modal__buttons}>
+            <div className={styles.modal__buttons}>
               <button
-                className={s.modal__buttons__submit}
+                className={styles.modal__buttons__submit}
                 type="button"
                 onClick={handleAddToCart}
                 disabled={!amount.inputValid}
@@ -95,7 +97,7 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
               </button>
               <button
                 type="button"
-                className={s.modal__buttons__close}
+                className={styles.modal__buttons__close}
                 onClick={() => close()}
               >
                 <CloseSvg />

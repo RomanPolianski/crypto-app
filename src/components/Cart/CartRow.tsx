@@ -5,7 +5,7 @@ import useCalcPriceNow from '../../utils/calculation/useCalcPriceNow';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import CloseSvg from '../common/svg/CloseSvg';
 import DeleteConfirmModal from '../Modals/DeleteConfirmModal/DeleteConfirmModal';
-import s from './Cart.module.scss';
+import styles from './Cart.module.scss';
 import CartColorField from './CartColorField';
 
 interface CartRowProps {
@@ -33,14 +33,14 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
 
   return (
     <>
-      <tr className={s.table__row}>
-        <td data-label="Coin" className={s.table__data}>
+      <tr className={styles.table__row}>
+        <td data-label="Coin" className={styles.table__data}>
           <b>{name}</b>
         </td>
-        <td data-label="Amount" className={s.table__data}>
+        <td data-label="Amount" className={styles.table__data}>
           {amount}
         </td>
-        <td data-label="Price when added" className={s.table__data}>
+        <td data-label="Price when added" className={styles.table__data}>
           {toUSD.format(Number(priceUsd))}
         </td>
         <CartColorField
@@ -49,7 +49,7 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
           difference={diffInfo.difference}
           label="Price Now"
         />
-        <td data-label="Total when added" className={s.table__data}>
+        <td data-label="Total when added" className={styles.table__data}>
           {toUSD.format(amount * Number(priceUsd))}
         </td>
         <CartColorField
@@ -59,17 +59,17 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
           label="Total now"
         />
 
-        <td data-label="Difference" className={s.table__data}>
+        <td data-label="Difference" className={styles.table__data}>
           {diffInfo.difference.toFixed(2)} %
         </td>
 
-        <td data-label="" className={s.table__data}>
+        <td data-label="" className={styles.table__data}>
           <button
             type="button"
             onClick={handleDeleteCoin}
-            className={s.table__deleteButton}
+            className={styles.table__deleteButton}
           >
-            <span className={s.svg}>
+            <span className={styles.svg}>
               <CloseSvg />
             </span>
           </button>

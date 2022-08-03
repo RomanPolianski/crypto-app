@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import classNames from 'classnames';
-import s from './Header.module.scss';
+import styles from './Header.module.scss';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import { RootState } from '../../store';
 
@@ -18,13 +18,13 @@ const CartStatusInfo: FC = (): JSX.Element => {
   const cartTotal = useSelector((state: RootState) => state.cart.cartTotal);
 
   return (
-    <span className={classNames(s.header__cartStatus, s.cartStatus)}>
+    <span className={classNames(styles.header__cartStatus, styles.cartStatus)}>
       <span>
         {cartTotal === histCartTotal[0] || !histCartTotal[0]
           ? toUSD.format(cartTotal)
           : toUSD.format(histCartTotal[0])}
       </span>
-      <span className={s.cartStatus__text}>
+      <span className={styles.cartStatus__text}>
         USD {totalCartDifference.toFixed(2)}{' '}
         <span>
           {!Number.isNaN(totalCartDifferencePercent) &&

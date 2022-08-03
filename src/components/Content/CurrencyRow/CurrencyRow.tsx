@@ -4,7 +4,7 @@ import { toUSD } from '../../../utils/formatters/toUSDformatter';
 import CartSvg from '../../common/svg/CartSvg';
 import BuyCurrencyModal from '../../Modals/BuyCurrencyModal/DeleteConfirmatio/BuyCurrencyModal';
 import InfoModal from '../../Modals/InfoModal/InfoModal';
-import s from '../Content.module.scss';
+import styles from '../Content.module.scss';
 
 interface ICurrencyRowProps {
   id: string;
@@ -54,43 +54,47 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
 
   return (
     <>
-      <tr onClick={() => handleInfoModalClick()} className={s.table__row}>
-        <td data-label="Rank" className={s.table__data}>
+      <tr onClick={() => handleInfoModalClick()} className={styles.table__row}>
+        <td data-label="Rank" className={styles.table__data}>
           {rank}
         </td>
-        <td data-label="Coin" className={s.table__data}>
+        <td data-label="Coin" className={styles.table__data}>
           <b>{symbol}</b>
           <br />
           {name}
         </td>
-        <td data-label="Price USD" className={s.table__data}>
+        <td data-label="Price USD" className={styles.table__data}>
           {toUSD.format(Number(priceUsd))}
         </td>
-        <td data-label="MarketCap USD" className={s.table__data}>
+        <td data-label="MarketCap USD" className={styles.table__data}>
           {toUSD.format(Number(marketCapUsd))}
         </td>
         <td
           data-label="Change % 24hr"
           className={classNames(
-            s.table__data,
-            Number(changePercent24Hr) > 0 ? s.arrow_green : s.arrow_red
+            styles.table__data,
+            Number(changePercent24Hr) > 0
+              ? styles.arrow_green
+              : styles.arrow_red
           )}
         >
           {Number(changePercent24Hr).toFixed(2)}
           <i
             className={classNames(
-              s.arrow,
-              Number(changePercent24Hr) < 0 ? s.arrow_down : s.arrow_up
+              styles.arrow,
+              Number(changePercent24Hr) < 0
+                ? styles.arrow_down
+                : styles.arrow_up
             )}
           />
         </td>
-        <td data-label="" className={s.table__data}>
+        <td data-label="" className={styles.table__data}>
           <button
             type="button"
-            className={s.table__addToCartButton}
+            className={styles.table__addToCartButton}
             onClick={(e) => handleCartClick(e)}
           >
-            <span className={s.svg}>
+            <span className={styles.svg}>
               <CartSvg />
             </span>
           </button>

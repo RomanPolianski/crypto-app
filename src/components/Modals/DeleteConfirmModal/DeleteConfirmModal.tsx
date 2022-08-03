@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { deleteFromCart } from '../../../store/cartSlice';
 import CloseSvg from '../../common/svg/CloseSvg';
-import s from './DeleteConfirmModal.module.scss';
+import styles from './DeleteConfirmModal.module.scss';
 
 interface BuyCurrencyModalProps {
   open: boolean;
@@ -36,14 +36,14 @@ const DeleteConfirmModal: FC<BuyCurrencyModalProps> = ({
   return ReactDOM.createPortal(
     <div>
       {open && (
-        <div className={s.modal}>
-          <div className={s.modal__body}>
-            <h1 className={s.modal__header}>
+        <div className={styles.modal}>
+          <div className={styles.modal__body}>
+            <h1 className={styles.modal__header}>
               Delete {name.toUpperCase()} coin from your portfolio?
             </h1>
-            <div className={s.modal__buttons}>
+            <div className={styles.modal__buttons}>
               <button
-                className={s.modal__buttons__submit}
+                className={styles.modal__buttons__submit}
                 type="button"
                 onClick={handleDeleteCoin}
               >
@@ -51,7 +51,7 @@ const DeleteConfirmModal: FC<BuyCurrencyModalProps> = ({
               </button>
               <button
                 type="button"
-                className={s.modal__buttons__close}
+                className={styles.modal__buttons__close}
                 onClick={() => close()}
               >
                 <CloseSvg />

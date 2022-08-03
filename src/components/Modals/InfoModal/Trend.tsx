@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
-import s from './InfoModal.module.scss';
+import styles from './InfoModal.module.scss';
 
 Chart.register(...registerables);
 
@@ -19,7 +19,7 @@ const Trend: FC<TrendPropsTypes> = ({ trendData }): JSX.Element => {
   const days = 365;
 
   return (
-    <div className={s.trend__canvas}>
+    <div className={styles.trend__canvas}>
       <Line
         data={{
           labels: trendData.map((c) => {

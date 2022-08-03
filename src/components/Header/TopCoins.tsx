@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import { FC } from 'react';
-import s from './Header.module.scss';
+import styles from './Header.module.scss';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import { RootState } from '../../store';
 import Preloader from '../common/Preloader';
@@ -17,19 +17,19 @@ const TopCoins: FC = (): JSX.Element => {
         <>
           {topCoins.map((c) => {
             return (
-              <div key={c.name} className={s.header__topCoins}>
-                <div className={s.topCoins__body}>
-                  <p className={s.topCoins__text}>{c.name}</p>
-                  <p className={s.topCoins__text}>
+              <div key={c.name} className={styles.header__topCoins}>
+                <div className={styles.topCoins__body}>
+                  <p className={styles.topCoins__text}>{c.name}</p>
+                  <p className={styles.topCoins__text}>
                     {toUSD.format(Number(c.priceUsd))}
                   </p>
                 </div>
                 <i
                   className={classNames(
-                    s.topCoins__arrow,
+                    styles.topCoins__arrow,
                     Number(c.changePercent24Hr) < 0
-                      ? s.topCoins__arrow_down
-                      : s.topCoins__arrow_up
+                      ? styles.topCoins__arrow_down
+                      : styles.topCoins__arrow_up
                   )}
                 />
               </div>
