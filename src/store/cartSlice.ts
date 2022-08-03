@@ -83,7 +83,7 @@ const cartSlice = createSlice({
         state.cartTotalQuantity++;
       }
       state.cartTotal += Number(payload.priceUsd) * payload.numberAmount;
-      state.histCartTotal.unshift(state.cartTotal + Number(payload.priceUsd));
+      state.histCartTotal.unshift(state.cartTotal);
       toast.success(
         `${payload.name} in amount of ${payload.numberAmount} was added to portfolio`,
         {
@@ -106,8 +106,6 @@ const cartSlice = createSlice({
         (i) => i.name !== payload.name
       );
       state.histCartTotal.unshift(state.cartTotal - payload.priceNowUsd);
-      // eslint-disable-next-line no-debugger
-      debugger;
       state.cartTotalQuantity--;
       if (state.cartTotalQuantity === 0) {
         state.cartTotal = 0;

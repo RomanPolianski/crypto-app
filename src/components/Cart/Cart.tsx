@@ -41,7 +41,7 @@ const Cart: FC = (): JSX.Element => {
   const differenceCartTotalPercent = (cartTotalNow * 100) / cartTotal - 100;
   const differenceCartTotal = cartTotalNow - cartTotal;
 
-  const c = cartItems.map((p) => (
+  const cartRow = cartItems.map((p) => (
     <CartRow
       name={p.name}
       amount={p.numberAmount}
@@ -79,7 +79,7 @@ const Cart: FC = (): JSX.Element => {
             </thead>
             {cartDataNow.length === cartTotalQuantity ? (
               <>
-                <tbody className={styles.table__body}>{c}</tbody>
+                <tbody className={styles.table__body}>{cartRow}</tbody>
                 <CartBottomInfo
                   cartTotal={cartTotal}
                   cartTotalNow={cartTotalNow}

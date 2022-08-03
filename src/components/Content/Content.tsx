@@ -43,7 +43,7 @@ const Content: FC = (): JSX.Element => {
     setCurrentPage(pageNumber);
   };
 
-  const c = currenciesData.map((p) => (
+  const currencyRow = currenciesData.map((p) => (
     <CurrencyRow
       id={p.id}
       key={p.id}
@@ -77,7 +77,7 @@ const Content: FC = (): JSX.Element => {
                 <th className={styles.table__header__item}> </th>
               </tr>
             </thead>
-            <tbody className={styles.table__body}>{c}</tbody>
+            <tbody className={styles.table__body}>{currencyRow}</tbody>
           </table>
           <div className={styles.table__buttonContainer}>
             <Pagination

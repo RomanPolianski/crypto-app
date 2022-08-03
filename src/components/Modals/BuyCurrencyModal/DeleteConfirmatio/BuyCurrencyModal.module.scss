@@ -105,6 +105,9 @@ $purple: rgb(117, 0, 92);
     width: 100%;
     height: 80%;
   }
+  .modal__header {
+    font-size: medium;
+  }
 }
 @media (max-width: 800px) and (orientation: portrait) {
   .modal__body {
