@@ -58,7 +58,7 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
               Add {name.toUpperCase()} coin to your portfolio
             </h1>
             <p>
-              <b>Price of 1 coin is {toUSD.format(Number(priceUsd))}</b>
+              <b>Price of 1 coin is {toUSD(Number(priceUsd))}</b>
             </p>
             <p>Enter the amount</p>
             <input

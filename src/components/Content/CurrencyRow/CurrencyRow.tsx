@@ -64,10 +64,10 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
           {name}
         </td>
         <td data-label="Price USD" className={styles.table__data}>
-          {toUSD.format(Number(priceUsd))}
+          {toUSD(Number(priceUsd))}
         </td>
         <td data-label="MarketCap USD" className={styles.table__data}>
-          {toUSD.format(Number(marketCapUsd))}
+          {toUSD(Number(marketCapUsd))}
         </td>
         <td
           data-label="Change % 24hr"

@@ -21,7 +21,7 @@ const TopCoins: FC = (): JSX.Element => {
                 <div className={styles.topCoins__body}>
                   <p className={styles.topCoins__text}>{c.name}</p>
                   <p className={styles.topCoins__text}>
-                    {toUSD.format(Number(c.priceUsd))}
+                    {toUSD(Number(c.priceUsd))}
                   </p>
                 </div>
                 <i

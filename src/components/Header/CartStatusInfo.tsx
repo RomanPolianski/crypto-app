@@ -21,8 +21,8 @@ const CartStatusInfo: FC = (): JSX.Element => {
     <span className={classNames(styles.header__cartStatus, styles.cartStatus)}>
       <span>
         {cartTotal === histCartTotal[0] || !histCartTotal[0]
-          ? toUSD.format(cartTotal)
-          : toUSD.format(histCartTotal[0])}
+          ? toUSD(cartTotal)
+          : toUSD(histCartTotal[0])}
       </span>
       <span className={styles.cartStatus__text}>
         USD {totalCartDifference.toFixed(2)}{' '}

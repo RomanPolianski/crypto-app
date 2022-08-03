@@ -21,10 +21,10 @@ const CartColorField: FC<CartColorFieldProps> = ({
       <span
         className={classNames(
           isRising ? styles.arrow__green : styles.arrow__red,
-          difference === 0 ? styles.black : ''
+          difference === 0 ? styles.arrow__black : ''
         )}
       >
-        {toUSD.format(Number(data))}
+        {toUSD(Number(data))}
       </span>
       {difference !== 0 ? (
         <span>

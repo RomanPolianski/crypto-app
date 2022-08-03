@@ -19,10 +19,10 @@ const CartBottomInfo: FC<CartBottomInfoProps> = ({
   return (
     <div className={styles.table__infoContainer}>
       <p>
-        Initial Total:<b> {toUSD.format(cartTotal)}</b>
+        Initial Total:<b> {toUSD(cartTotal)}</b>
       </p>
       <p>
-        Total now:<b> {toUSD.format(cartTotalNow)}</b>
+        Total now:<b> {toUSD(cartTotalNow)}</b>
       </p>
       <p>
         Difference:{' '}
@@ -34,7 +34,7 @@ const CartBottomInfo: FC<CartBottomInfoProps> = ({
             differenceCartTotalPercent === 0 ? styles.arrow__black : ''
           )}
         >
-          <b>{toUSD.format(differenceCartTotal)}</b>
+          <b>{toUSD(differenceCartTotal)}</b>
         </span>
       </p>
       <p className={styles.lastInfoItem}>
@@ -47,7 +47,7 @@ const CartBottomInfo: FC<CartBottomInfoProps> = ({
             differenceCartTotalPercent === 0 ? styles.arrow__black : ''
           )}
         >
-          <b>{differenceCartTotalPercent.toFixed(2)} %</b>
+          <b>{differenceCartTotalPercent.toFixed(3)} %</b>
         </span>
       </p>
     </div>

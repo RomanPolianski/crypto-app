@@ -103,8 +103,7 @@ const InfoModal: FC<InfoModalProps> = ({
                     {maxSupply === null ? 'N/A' : Number(maxSupply)?.toFixed(2)}
                   </p>
                   <p className={styles.infoContainer__text}>
-                    <b>Volume Usd 24hr:</b>{' '}
-                    {toUSD.format(Number(volumeUsd24Hr))}
+                    <b>Volume Usd 24hr:</b> {toUSD(Number(volumeUsd24Hr))}
                   </p>
                   <p className={styles.infoContainer__text}>
                     <b>Vol. Weighted Avg Price last 24hr:</b>{' '}

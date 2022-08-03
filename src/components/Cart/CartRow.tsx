@@ -41,7 +41,7 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
           {amount}
         </td>
         <td data-label="Price when added" className={styles.table__data}>
-          {toUSD.format(Number(priceUsd))}
+          {toUSD(Number(priceUsd))}
         </td>
         <CartColorField
           data={diffInfo.priceNow}
@@ -50,7 +50,7 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
           label="Price Now"
         />
         <td data-label="Total when added" className={styles.table__data}>
-          {toUSD.format(amount * Number(priceUsd))}
+          {toUSD(amount * Number(priceUsd))}
         </td>
         <CartColorField
           data={diffInfo.totalCoinPriceNow}
