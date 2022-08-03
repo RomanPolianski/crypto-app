@@ -45,6 +45,7 @@ const InfoModal: FC<InfoModalProps> = ({
     maxLength: 9,
     isEmpty: true,
     isAbove0: true,
+    isAfterDot: true,
   });
   const numberAmount = Number(amount.value);
   const dispatch = useDispatch();
@@ -142,9 +143,16 @@ const InfoModal: FC<InfoModalProps> = ({
                       Max amount is 9 digits!
                     </div>
                   )}
-                  {amount.isDirty && amount.zeroError && (
+                  {!amount.isEmpty &&
+                    !amount.afterDotError &&
+                    amount.zeroError && (
+                      <div className={styles.infoContainer__error}>
+                        Amount must be above 0!
+                      </div>
+                    )}
+                  {!amount.isEmpty && amount.afterDotError && (
                     <div className={styles.infoContainer__error}>
-                      Amount must be above 0!
+                      Max 2 digits after comma
                     </div>
                   )}
                 </div>

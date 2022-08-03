@@ -29,6 +29,7 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
     maxLength: 9,
     isEmpty: true,
     isAbove0: true,
+    isAfterDot: true,
   });
   const dispatch = useDispatch();
   const numberAmount = Number(amount.value);
@@ -81,11 +82,17 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
                 Max amount is 9 digits!
               </div>
             )}
-            {amount.isDirty && amount.zeroError && (
+            {!amount.isEmpty && !amount.afterDotError && amount.zeroError && (
               <div className={styles.modal__input_error}>
                 Amount must be above 0!
               </div>
             )}
+            {!amount.isEmpty && amount.afterDotError && (
+              <div className={styles.modal__input_error}>
+                Max 2 digits after comma
+              </div>
+            )}
+
             <div className={styles.modal__buttons}>
               <button
                 className={styles.modal__buttons__submit}
