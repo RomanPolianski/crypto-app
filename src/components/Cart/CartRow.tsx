@@ -75,7 +75,12 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
           </button>
         </td>
       </tr>
-      <DeleteConfirmModal open={open} close={toggle} name={name} />
+      <DeleteConfirmModal
+        open={open}
+        close={toggle}
+        name={name}
+        priceNowUsd={Number(diffInfo.priceNow)}
+      />
     </>
   );
 };

@@ -11,7 +11,6 @@ export const useValidation = (value: string, validations: []) => {
   const regExNoZeros = /^(?!0\d*$)\d+(?:\.\d{1,2})?$/;
 
   const [inputValid, setInputValid] = useState<boolean>(false);
-  console.log(value);
   useEffect(() => {
     for (const validation in validations) {
       switch (validation) {

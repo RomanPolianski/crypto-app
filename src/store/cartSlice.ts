@@ -36,6 +36,11 @@ interface setCartDifferenceInfoType {
   differenceCartTotalPercent: number;
 }
 
+interface DeleteFromCartActionType {
+  name: string;
+  priceNowUsd: number;
+}
+
 export const fetchCurrencyPriceNow = createAsyncThunk(
   'cart/fetchCurrencyPriceNow',
   async (coinsToFetch: string, { dispatch }) => {
@@ -78,7 +83,7 @@ const cartSlice = createSlice({
         state.cartTotalQuantity++;
       }
       state.cartTotal += Number(payload.priceUsd) * payload.numberAmount;
-      state.histCartTotal.push(state.cartTotal + Number(payload.priceUsd));
+      state.histCartTotal.unshift(state.cartTotal + Number(payload.priceUsd));
       toast.success(
         `${payload.name} in amount of ${payload.numberAmount} was added to portfolio`,
         {
@@ -86,17 +91,21 @@ const cartSlice = createSlice({
         }
       );
     },
-    deleteFromCart(state, { payload }: PayloadAction<string>) {
+    deleteFromCart(
+      state,
+      { payload }: PayloadAction<DeleteFromCartActionType>
+    ) {
       const itemIndex = state.cartItems.findIndex(
-        (item) => item.name === payload
+        (item) => item.name === payload.name
       );
       state.cartTotal -=
         state.cartItems[itemIndex].numberAmount *
         Number(state.cartItems[itemIndex].priceUsd);
-      state.cartItems = state.cartItems.filter((i) => i.name !== payload);
+      state.cartItems = state.cartItems.filter((i) => i.name !== payload.name);
       state.currentCartCoinsData = state.currentCartCoinsData.filter(
-        (i) => i.name !== payload
+        (i) => i.name !== payload.name
       );
+      state.histCartTotal.unshift(state.cartTotal - payload.priceNowUsd);
 
       state.cartTotalQuantity--;
       if (state.cartTotalQuantity === 0) {

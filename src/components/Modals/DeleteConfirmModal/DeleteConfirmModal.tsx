@@ -5,23 +5,25 @@ import { deleteFromCart } from '../../../store/cartSlice';
 import CloseSvg from '../../common/svg/CloseSvg';
 import styles from './DeleteConfirmModal.module.scss';
 
-interface BuyCurrencyModalProps {
+interface DeleteConfirmModalProps {
   open: boolean;
   close: Function;
   name: string;
+  priceNowUsd: number;
 }
 
 const modalRootElement = document.querySelector('#modal') as HTMLDivElement;
 
-const DeleteConfirmModal: FC<BuyCurrencyModalProps> = ({
+const DeleteConfirmModal: FC<DeleteConfirmModalProps> = ({
   open,
   close,
   name,
+  priceNowUsd,
 }): JSX.Element => {
   const dispatch = useDispatch();
   const handleDeleteCoin = () => {
     close();
-    dispatch(deleteFromCart(name));
+    dispatch(deleteFromCart({ name, priceNowUsd }));
   };
 
   useEffect(() => {
