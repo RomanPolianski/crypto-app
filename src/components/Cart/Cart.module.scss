@@ -22,7 +22,7 @@ $purple: rgb(117, 0, 92);
   }
   &__infoContainer {
     padding-left: 1%;
-    width: fit-content;
+    width: 105%;
   }
 }
 
@@ -31,9 +31,17 @@ $purple: rgb(117, 0, 92);
   border: none;
   color: white;
   border-radius: 100px;
+  transition: all ease 0.5s;
   &:active {
     background-color: rgb(197, 0, 0);
     border-radius: 100px;
+  }
+  &:focus {
+    background-color: rgb(197, 0, 0);
+  }
+  &:hover {
+    background-color: rgb(197, 0, 0);
+    transform: translateY(-2px);
   }
 }
 

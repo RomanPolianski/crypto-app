@@ -106,7 +106,8 @@ const cartSlice = createSlice({
         (i) => i.name !== payload.name
       );
       state.histCartTotal.unshift(state.cartTotal - payload.priceNowUsd);
-
+      // eslint-disable-next-line no-debugger
+      debugger;
       state.cartTotalQuantity--;
       if (state.cartTotalQuantity === 0) {
         state.cartTotal = 0;
