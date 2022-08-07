@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../../store/cartSlice';
 import { toUSD } from '../../../../utils/formatters/toUSDformatter';
 import { useInput } from '../../../../utils/validators/useInputHook';
-import CloseSvg from '../../../common/svg/CloseSvg';
+import CloseButton from '../../../common/buttons/close/CloseButton';
+import { InputField } from '../../../common/input/InputField';
 import styles from './BuyCurrencyModal.module.scss';
 
 interface BuyCurrencyModalProps {
@@ -33,6 +34,9 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
   });
   const dispatch = useDispatch();
   const numberAmount = Number(amount.value);
+  const handleCloseModal = () => {
+    close();
+  };
   const handleAddToCart = () => {
     if (amount.inputValid) {
       dispatch(addToCart({ id, name, numberAmount, priceUsd }));
@@ -61,37 +65,7 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
               <b>Price of 1 coin is {toUSD(Number(priceUsd))}</b>
             </p>
             <p>Enter the amount</p>
-            <input
-              className={styles.modal__input}
-              type="number"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                amount.onChange(e)
-              }
-              onBlur={(e) => amount.onBlur(e)}
-              value={amount.value}
-              step={0.01}
-              min={0}
-            />
-            {amount.isDirty && amount.isEmpty && (
-              <div className={styles.modal__input_error}>
-                Field cannot be empty!
-              </div>
-            )}
-            {amount.maxLengthError && (
-              <div className={styles.modal__input_error}>
-                Max amount is 9 digits!
-              </div>
-            )}
-            {!amount.isEmpty && !amount.afterDotError && amount.zeroError && (
-              <div className={styles.modal__input_error}>
-                Amount must be above 0!
-              </div>
-            )}
-            {!amount.isEmpty && amount.afterDotError && (
-              <div className={styles.modal__input_error}>
-                Max 2 digits after comma
-              </div>
-            )}
+            <InputField data={amount} />
 
             <div className={styles.modal__buttons}>
               <button
@@ -102,13 +76,13 @@ const BuyCurrencyModal: FC<BuyCurrencyModalProps> = ({
               >
                 Add
               </button>
-              <button
-                type="button"
-                className={styles.modal__buttons__close}
-                onClick={() => close()}
-              >
-                <CloseSvg />
-              </button>
+              <span className={styles.modal__buttons__close}>
+                <CloseButton
+                  onclick={handleCloseModal}
+                  form="square"
+                  variant="close"
+                />
+              </span>
             </div>
           </div>
         </div>

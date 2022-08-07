@@ -26,25 +26,6 @@ $purple: rgb(117, 0, 92);
   }
 }
 
-.table__deleteButton {
-  background-color: red;
-  border: none;
-  color: white;
-  border-radius: 100px;
-  transition: all ease 0.5s;
-  &:active {
-    background-color: rgb(197, 0, 0);
-    border-radius: 100px;
-  }
-  &:focus {
-    background-color: rgb(197, 0, 0);
-  }
-  &:hover {
-    background-color: rgb(197, 0, 0);
-    transform: translateY(-2px);
-  }
-}
-
 .arrow {
   border: solid rgb(255, 255, 255);
   border-width: 0 2px 2px 0;

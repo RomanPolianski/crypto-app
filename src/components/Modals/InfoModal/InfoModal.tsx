@@ -6,8 +6,9 @@ import instance from '../../../axios/api';
 import { addToCart } from '../../../store/cartSlice';
 import { toUSD } from '../../../utils/formatters/toUSDformatter';
 import { useInput } from '../../../utils/validators/useInputHook';
+import CloseButton from '../../common/buttons/close/CloseButton';
+import { InputField } from '../../common/input/InputField';
 import Preloader from '../../common/Preloader';
-import CloseSvg from '../../common/svg/CloseSvg';
 import styles from './InfoModal.module.scss';
 import Trend from './Trend';
 
@@ -50,6 +51,9 @@ const InfoModal: FC<InfoModalProps> = ({
   const numberAmount = Number(amount.value);
   const dispatch = useDispatch();
 
+  const handleCloseModal = () => {
+    close();
+  };
   const handleAddToCart = () => {
     if (amount.inputValid) {
       dispatch(addToCart({ id, name, numberAmount, priceUsd }));
@@ -84,13 +88,14 @@ const InfoModal: FC<InfoModalProps> = ({
       {open && (
         <div className={styles.modal}>
           <div className={styles.modal__body}>
-            <button
-              type="button"
-              className={styles.modal__closeButton}
-              onClick={() => close()}
-            >
-              <CloseSvg />
-            </button>
+            <span className={styles.modal__closeButton}>
+              <CloseButton
+                onclick={handleCloseModal}
+                form="round"
+                variant="close"
+              />
+            </span>
+
             <h1 className={styles.modal__name}>{name} Extra Info</h1>
             <div className={styles.infoContainer}>
               <div className={styles.infoContainer__body}>
@@ -112,17 +117,7 @@ const InfoModal: FC<InfoModalProps> = ({
                   <h2 className={styles.infoContainer__subHeader}>
                     Add to portfolio
                   </h2>
-                  <input
-                    className={styles.infoContainer__inputAmount}
-                    type="number"
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      amount.onChange(e)
-                    }
-                    onBlur={(e) => amount.onBlur(e)}
-                    value={amount.value}
-                    step={0.01}
-                    min={0}
-                  />
+                  <InputField data={amount} />
 
                   <button
                     className={styles.infoContainer__modalSubmitBtn}
@@ -132,28 +127,6 @@ const InfoModal: FC<InfoModalProps> = ({
                   >
                     Add
                   </button>
-                  {amount.isDirty && amount.isEmpty && (
-                    <div className={styles.infoContainer__error}>
-                      Field cannot be empty!
-                    </div>
-                  )}
-                  {amount.maxLengthError && (
-                    <div className={styles.infoContainer__error}>
-                      Max amount is 9 digits!
-                    </div>
-                  )}
-                  {!amount.isEmpty &&
-                    !amount.afterDotError &&
-                    amount.zeroError && (
-                      <div className={styles.infoContainer__error}>
-                        Amount must be above 0!
-                      </div>
-                    )}
-                  {!amount.isEmpty && amount.afterDotError && (
-                    <div className={styles.infoContainer__error}>
-                      Max 2 digits after comma
-                    </div>
-                  )}
                 </div>
               </div>
               <div className={styles.trend}>

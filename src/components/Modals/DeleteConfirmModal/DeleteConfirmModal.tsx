@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { deleteFromCart } from '../../../store/cartSlice';
+import CloseButton from '../../common/buttons/close/CloseButton';
 import CloseSvg from '../../common/svg/CloseSvg';
 import styles from './DeleteConfirmModal.module.scss';
 
@@ -24,6 +25,9 @@ const DeleteConfirmModal: FC<DeleteConfirmModalProps> = ({
   const handleDeleteCoin = () => {
     close();
     dispatch(deleteFromCart({ name, priceNowUsd }));
+  };
+  const handleCloseModal = () => {
+    close();
   };
 
   useEffect(() => {
@@ -51,13 +55,13 @@ const DeleteConfirmModal: FC<DeleteConfirmModalProps> = ({
               >
                 Delete
               </button>
-              <button
-                type="button"
-                className={styles.modal__buttons__close}
-                onClick={() => close()}
-              >
-                <CloseSvg />
-              </button>
+              <span className={styles.modal__buttons__close}>
+                <CloseButton
+                  onclick={handleCloseModal}
+                  form="square"
+                  variant="close"
+                />
+              </span>
             </div>
           </div>
         </div>

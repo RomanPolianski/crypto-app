@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { deleteCartTotalNow, setCartTotalNow } from '../../store/cartSlice';
 import useCalcPriceNow from '../../utils/calculation/useCalcPriceNow';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
-import CloseSvg from '../common/svg/CloseSvg';
+import CloseButton from '../common/buttons/close/CloseButton';
 import DeleteConfirmModal from '../Modals/DeleteConfirmModal/DeleteConfirmModal';
 import styles from './Cart.module.scss';
 import CartColorField from './CartColorField';
@@ -64,15 +64,11 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
         </td>
 
         <td data-label="" className={styles.table__data}>
-          <button
-            type="button"
-            onClick={handleDeleteCoin}
-            className={styles.table__deleteButton}
-          >
-            <span className={styles.svg}>
-              <CloseSvg />
-            </span>
-          </button>
+          <CloseButton
+            onclick={handleDeleteCoin}
+            form="round"
+            variant="delete"
+          />
         </td>
       </tr>
       <DeleteConfirmModal
