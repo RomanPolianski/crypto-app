@@ -4,7 +4,7 @@ import { FC } from 'react';
 import styles from './Header.module.scss';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import { RootState } from '../../store';
-import Preloader from '../common/Preloader';
+import Preloader from '../common/preloader/Preloader';
 
 const TopCoins: FC = (): JSX.Element => {
   const topCoins = useSelector(

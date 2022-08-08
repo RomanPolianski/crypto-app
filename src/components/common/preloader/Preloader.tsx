@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import PreloaderIcon from '../../assets/preloader.svg';
+import PreloaderIcon from '../../../assets/preloader.svg';
 
 const Preloader: FC = (): JSX.Element => {
   return (

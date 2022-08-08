@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { CurType, fetchCurrencies } from '../../store/currencySlice';
-import Preloader from '../common/Preloader';
+import Preloader from '../common/preloader/Preloader';
 import { Table } from '../common/table/Table';
 import styles from './Content.module.scss';
 import CurrencyRow from './CurrencyRow/CurrencyRow';

@@ -22,3 +22,22 @@
     color: white;
   }
 }
+
+@media (max-width: 800px) {
+  .nextprevButton {
+    position: relative;
+    padding-left: 10px;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 350px) {
+  .nextprevButton {
+    position: relative;
+    cursor: pointer;
+    padding-left: 1px;
+    width: 35px;
+    height: 35px;
+  }
+}

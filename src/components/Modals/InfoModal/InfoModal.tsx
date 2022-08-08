@@ -8,7 +8,7 @@ import { toUSD } from '../../../utils/formatters/toUSDformatter';
 import { useInput } from '../../../utils/validators/useInputHook';
 import CloseButton from '../../common/buttons/close/CloseButton';
 import { InputField } from '../../common/input/InputField';
-import Preloader from '../../common/Preloader';
+import Preloader from '../../common/preloader/Preloader';
 import styles from './InfoModal.module.scss';
 import Trend from './Trend';
 

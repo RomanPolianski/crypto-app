@@ -6,7 +6,7 @@ import {
   fetchCurrencyPriceNow,
   setCartDifferenceInfo,
 } from '../../store/cartSlice';
-import Preloader from '../common/Preloader';
+import Preloader from '../common/preloader/Preloader';
 import { Table } from '../common/table/Table';
 import styles from './Cart.module.scss';
 import CartBottomInfo from './CartBottomInfo';

@@ -5,9 +5,9 @@ import ButtonNextSvg from '../../svg/ButtonNextSvg';
 import ButtonPrevSvg from '../../svg/ButtonPrevSvg';
 import styles from './NextPrevButton.module.scss';
 
-interface NextPrevButtonProps {
+export interface NextPrevButtonProps {
   type: string;
-  onclick: MouseEventHandler<HTMLButtonElement>;
+  onclick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   color: string;
 }

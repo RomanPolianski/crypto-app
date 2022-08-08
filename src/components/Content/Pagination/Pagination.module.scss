@@ -30,28 +30,6 @@ $grey: rgb(126, 125, 125);
   color: $white;
 }
 
-.nextprevButton {
-  position: relative;
-  cursor: pointer;
-  padding-left: 5px;
-  border: 2px solid transparent;
-  font-size: 1rem;
-  transform: translateY(0);
-  transition: all 0.2s;
-  background: none;
-  &:active {
-    outline: none;
-    box-shadow: none;
-    transition: all 0.5s ease 0;
-    color: white;
-  }
-  &:disabled {
-    outline: none;
-    box-shadow: none;
-    color: rgb(92, 92, 92);
-  }
-}
-
 @media (max-width: 800px) {
   .pagination {
     margin-left: 4%;
@@ -63,22 +41,9 @@ $grey: rgb(126, 125, 125);
       margin-left: 1px;
     }
   }
-  .nextprevButton {
-    position: relative;
-    padding-left: 10px;
-    width: 35px;
-    height: 35px;
-  }
 }
 
 @media (max-width: 350px) {
-  .nextprevButton {
-    position: relative;
-    cursor: pointer;
-    padding-left: 1px;
-    width: 35px;
-    height: 35px;
-  }
   .pagination__button {
     margin-top: 1%;
     margin-left: 1%;
