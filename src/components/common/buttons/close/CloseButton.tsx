@@ -1,12 +1,13 @@
+/* eslint-disable react/require-default-props */
 import classNames from 'classnames';
 import { FC, MouseEventHandler } from 'react';
 import CloseSvg from '../../svg/CloseSvg';
 import styles from './CloseButton.module.scss';
 
-interface CloseButtonProps {
+export interface CloseButtonProps {
   variant: string;
   form: string;
-  onclick: MouseEventHandler<HTMLButtonElement>;
+  onclick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const CloseButton: FC<CloseButtonProps> = ({
