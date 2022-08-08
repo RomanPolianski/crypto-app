@@ -50,27 +50,8 @@
     font-size: 12px;
     margin: 0%;
   }
-
   &__arrow {
-    border: solid rgb(255, 255, 255);
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    margin-top: 20px;
-    margin-left: 5px;
-    padding: 2px;
-    width: 3px;
-    height: 1px;
-  }
-  &__arrow_down {
-    transform: rotate(45deg);
-    border-color: red;
-    -webkit-transform: rotate(45deg);
-  }
-  &__arrow_up {
-    transform: rotate(-135deg);
-    margin-top: 23px;
-    border-color: rgb(0, 226, 0);
-    -webkit-transform: rotate(-135deg);
+    margin-top: 15px;
   }
 }
 

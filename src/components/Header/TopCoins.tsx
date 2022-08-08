@@ -5,6 +5,7 @@ import styles from './Header.module.scss';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import { RootState } from '../../store';
 import Preloader from '../common/preloader/Preloader';
+import { TrendArrow } from '../common/arrows/TrendArrow';
 
 const TopCoins: FC = (): JSX.Element => {
   const topCoins = useSelector(
@@ -24,14 +25,9 @@ const TopCoins: FC = (): JSX.Element => {
                     {toUSD(Number(c.priceUsd))}
                   </p>
                 </div>
-                <i
-                  className={classNames(
-                    styles.topCoins__arrow,
-                    Number(c.changePercent24Hr) < 0
-                      ? styles.topCoins__arrow_down
-                      : styles.topCoins__arrow_up
-                  )}
-                />
+                <span className={styles.topCoins__arrow}>
+                  <TrendArrow isRising={Number(c.changePercent24Hr) > 0} />
+                </span>
               </div>
             );
           })}

@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
+import { TrendArrow } from '../common/arrows/TrendArrow';
 import styles from '../common/table/Table.module.scss';
 
 interface CartColorFieldProps {
@@ -28,14 +29,7 @@ const CartColorField: FC<CartColorFieldProps> = ({
       </span>
       {difference !== 0 ? (
         <span>
-          <i
-            className={classNames(
-              styles.arrow,
-              isRising ? styles.arrow__green : styles.arrow__red,
-              difference === 0 ? styles.arrow__black : '',
-              isRising ? styles.arrow__up : styles.arrow__down
-            )}
-          />
+          <TrendArrow difference={difference} isRising={isRising} />
         </span>
       ) : (
         ''

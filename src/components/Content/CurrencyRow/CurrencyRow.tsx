@@ -5,6 +5,7 @@ import CartSvg from '../../common/svg/CartSvg';
 import BuyCurrencyModal from '../../Modals/BuyCurrencyModal/DeleteConfirmatio/BuyCurrencyModal';
 import InfoModal from '../../Modals/InfoModal/InfoModal';
 import styles from '../../common/table/Table.module.scss';
+import { TrendArrow } from '../../common/arrows/TrendArrow';
 
 interface ICurrencyRowProps {
   id: string;
@@ -79,14 +80,7 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
           )}
         >
           {Number(changePercent24Hr).toFixed(2)}
-          <i
-            className={classNames(
-              styles.arrow,
-              Number(changePercent24Hr) < 0
-                ? styles.arrow__down
-                : styles.arrow__up
-            )}
-          />
+          <TrendArrow isRising={Number(changePercent24Hr) > 0} />
         </td>
         <td data-label="" className={styles.table__data}>
           <button
