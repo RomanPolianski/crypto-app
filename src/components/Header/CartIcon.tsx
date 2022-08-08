@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NextPrevButton } from '../common/buttons/nextPrevButton/NextPrevButton';
-import ButtonPrevSvg from '../common/svg/ButtonPrevSvg';
 import PortfolioSvg from '../common/svg/PortfolioSvg';
 import styles from './Header.module.scss';
 
