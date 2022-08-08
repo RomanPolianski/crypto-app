@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { FC } from 'react';
-import ButtonNextSvg from '../../common/svg/ButtonNextSvg';
-import ButtonPrevSvg from '../../common/svg/ButtonPrevSvg';
+import { NextPrevButton } from '../../common/buttons/nextPrevButton/NextPrevButton';
 import styles from './Pagination.module.scss';
 
 interface PaginationPropsTypes {
@@ -27,27 +26,18 @@ const Pagination: FC<PaginationPropsTypes> = ({
 
   return (
     <>
-      <button
-        type="button"
-        className={styles.nextprevButton}
-        onClick={prevPage}
+      <NextPrevButton
+        type="prev"
         disabled={currentPage === pageNumbers[0]}
-      >
-        <span className={styles.svg}>
-          <ButtonPrevSvg />
-        </span>
-      </button>
-
-      <button
-        type="button"
-        className={styles.nextprevButton}
-        onClick={nextPage}
+        onclick={prevPage}
+        color="black"
+      />
+      <NextPrevButton
+        type="next"
         disabled={currentPage === pageNumbers[pageNumbers.length - 1]}
-      >
-        <span className={styles.svg}>
-          <ButtonNextSvg />
-        </span>
-      </button>
+        onclick={nextPage}
+        color="black"
+      />
       <div className={styles.pagination}>
         {pageNumbers.map((number) => (
           <li
