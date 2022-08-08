@@ -1,9 +1,10 @@
+/* eslint-disable react/require-default-props */
 import { FC } from 'react';
 import styles from './Table.module.scss';
 
 interface TableProps {
   headers: Array<string>;
-  data: JSX.Element[];
+  data?: JSX.Element[];
   showBody: boolean;
 }
 

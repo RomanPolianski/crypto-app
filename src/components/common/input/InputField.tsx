@@ -15,7 +15,7 @@ interface DataType {
   isDirty: boolean;
 }
 
-interface InputFieldProps {
+export interface InputFieldProps {
   data: DataType;
 }
 
