@@ -7,6 +7,7 @@ import {
   setCartDifferenceInfo,
 } from '../../store/cartSlice';
 import Preloader from '../common/Preloader';
+import { Table } from '../common/table/Table';
 import styles from './Cart.module.scss';
 import CartBottomInfo from './CartBottomInfo';
 import CartRow from './CartRow';
@@ -41,15 +42,6 @@ const Cart: FC = (): JSX.Element => {
   const differenceCartTotalPercent = (cartTotalNow * 100) / cartTotal - 100;
   const differenceCartTotal = cartTotalNow - cartTotal;
 
-  const cartRow = cartItems.map((p) => (
-    <CartRow
-      name={p.name}
-      amount={p.numberAmount}
-      priceUsd={p.priceUsd}
-      key={p.name}
-    />
-  ));
-
   useEffect(() => {
     dispatch(
       setCartDifferenceInfo({ differenceCartTotal, differenceCartTotalPercent })
@@ -59,38 +51,46 @@ const Cart: FC = (): JSX.Element => {
     };
   });
 
+  const cartRow = cartItems.map((p) => (
+    <CartRow
+      name={p.name}
+      amount={p.numberAmount}
+      priceUsd={p.priceUsd}
+      key={p.name}
+    />
+  ));
+
   return (
     <div>
       {cartItems.length !== 0 ? (
         <>
           <h1 className={styles.header}>Portfolio.</h1>
-          <table className={styles.table}>
-            <thead className={styles.table__header}>
-              <tr className={styles.table__row}>
-                <th className={styles.table__header__item}>Coin</th>
-                <th className={styles.table__header__item}>Amount</th>
-                <th className={styles.table__header__item}>Price when added</th>
-                <th className={styles.table__header__item}>Price Now</th>
-                <th className={styles.table__header__item}>Total when added</th>
-                <th className={styles.table__header__item}>Total Now</th>
-                <th className={styles.table__header__item}>Difference</th>
-                <th className={styles.table__header__item}> </th>
-              </tr>
-            </thead>
+          <div className={styles.wrapper}>
+            <Table
+              headers={[
+                'Coin',
+                'Amount',
+                'Price when added',
+                'Price Now',
+                'Total when added',
+                'Total Now',
+                'Difference',
+                '',
+              ]}
+              data={cartRow}
+              showBody={cartDataNow.length === cartTotalQuantity}
+            />
             {cartDataNow.length === cartTotalQuantity ? (
-              <>
-                <tbody className={styles.table__body}>{cartRow}</tbody>
-                <CartBottomInfo
-                  cartTotal={cartTotal}
-                  cartTotalNow={cartTotalNow}
-                  differenceCartTotalPercent={differenceCartTotalPercent}
-                  differenceCartTotal={differenceCartTotal}
-                />
-              </>
+              <CartBottomInfo
+                cartTotal={cartTotal}
+                cartTotalNow={cartTotalNow}
+                differenceCartTotalPercent={differenceCartTotalPercent}
+                differenceCartTotal={differenceCartTotal}
+              />
             ) : (
               <Preloader />
             )}
-          </table>
+          </div>
         </>
       ) : (
         <h1 className={styles.emptyText}>Your Portfolio is Empty!</h1>

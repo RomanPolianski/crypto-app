@@ -1,0 +1,130 @@
+$purple: rgba(117, 0, 92, 0.1);
+
+.table {
+  margin: 1% auto;
+  border-collapse: collapse;
+  &__data,
+  &__header__item {
+    padding: 12px 15px;
+    border: 1px solid rgb(192, 192, 192);
+    text-align: center;
+    font-size: 12px;
+    min-width: 120px;
+  }
+  &__header .table__row .table__header__item:first-child,
+  &__body .table__row .table__data:first-child {
+    width: 3em;
+    min-width: 3em;
+  }
+  &__body > .table__row:nth-last-of-type(even) {
+    background-color: rgba($color: #181818, $alpha: 0.1);
+  }
+  &__addToCartButton {
+    background-color: $purple;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: all ease 0.5s;
+    &:active {
+      background-color: rgba(117, 0, 92, 0.7);
+    }
+    &:focus {
+      background-color: rgba(117, 0, 92, 0.7);
+    }
+    &:hover {
+      background-color: rgba(117, 0, 92, 0.3);
+      transform: translateY(-3px);
+      padding: 0% 7%;
+    }
+  }
+}
+
+.arrow {
+  border: solid rgb(255, 255, 255);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  margin-left: 5px;
+  padding: 2px;
+  width: 1px;
+  height: 1px;
+  &__down {
+    transform: rotate(45deg);
+    border-color: red;
+    -webkit-transform: rotate(45deg);
+    margin-bottom: 2px;
+  }
+  &__up {
+    transform: rotate(-135deg);
+    border-color: rgb(0, 226, 0);
+    -webkit-transform: rotate(-135deg);
+  }
+
+  &__green {
+    color: green;
+  }
+
+  &__red {
+    color: red;
+  }
+
+  &__black {
+    color: black !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .table {
+    min-width: 80%;
+    max-width: 81%;
+    margin: 1% auto;
+    &__data,
+    &__header__item {
+      min-width: 150px;
+    }
+  }
+}
+
+@media (max-width: 1150px) {
+  .table__data,
+  .table__header__item {
+    min-width: 50px;
+  }
+}
+
+@media (max-width: 800px) {
+  .table {
+    &__header {
+      display: none;
+    }
+    &,
+    &__body,
+    &__row,
+    &__data {
+      display: block;
+      width: auto;
+    }
+    &__row {
+      margin-bottom: 15px;
+    }
+    &__data {
+      text-align: right;
+      padding-left: 0%;
+      position: relative;
+    }
+    &__data::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      width: 50%;
+      padding-left: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      text-align: left;
+    }
+    &__header .table__row .table__header__item:first-child,
+    &__body .table__row .table__data:first-child {
+      width: auto;
+      min-width: none;
+      max-width: none;
+    }
+  }
+}

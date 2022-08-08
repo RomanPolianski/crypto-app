@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
-import styles from './Cart.module.scss';
+import styles from '../common/table/Table.module.scss';
 
 interface CartColorFieldProps {
   data: string | number;

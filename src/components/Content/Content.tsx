@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { CurType, fetchCurrencies } from '../../store/currencySlice';
 import Preloader from '../common/Preloader';
+import { Table } from '../common/table/Table';
 import styles from './Content.module.scss';
 import CurrencyRow from './CurrencyRow/CurrencyRow';
 import Pagination from './Pagination/Pagination';
@@ -66,19 +67,18 @@ const Content: FC = (): JSX.Element => {
         <Preloader />
       ) : (
         <>
-          <table className={styles.table}>
-            <thead className={styles.table__header}>
-              <tr className={styles.table__row}>
-                <th className={styles.table__header__item}>Rank</th>
-                <th className={styles.table__header__item}>Coin</th>
-                <th className={styles.table__header__item}>Price USD</th>
-                <th className={styles.table__header__item}>MarketCap USD</th>
-                <th className={styles.table__header__item}>Change 24Hr</th>
-                <th className={styles.table__header__item}> </th>
-              </tr>
-            </thead>
-            <tbody className={styles.table__body}>{currencyRow}</tbody>
-          </table>
+          <Table
+            headers={[
+              'Rank',
+              'Coin',
+              'Price USD',
+              'Martket Cap USD',
+              'Change 24hr',
+              '',
+            ]}
+            data={currencyRow}
+            showBody
+          />
           <div className={styles.table__buttonContainer}>
             <Pagination
               paginate={paginate}

@@ -4,7 +4,7 @@ import { toUSD } from '../../../utils/formatters/toUSDformatter';
 import CartSvg from '../../common/svg/CartSvg';
 import BuyCurrencyModal from '../../Modals/BuyCurrencyModal/DeleteConfirmatio/BuyCurrencyModal';
 import InfoModal from '../../Modals/InfoModal/InfoModal';
-import styles from '../Content.module.scss';
+import styles from '../../common/table/Table.module.scss';
 
 interface ICurrencyRowProps {
   id: string;
@@ -74,8 +74,8 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
           className={classNames(
             styles.table__data,
             Number(changePercent24Hr) > 0
-              ? styles.arrow_green
-              : styles.arrow_red
+              ? styles.arrow__green
+              : styles.arrow__red
           )}
         >
           {Number(changePercent24Hr).toFixed(2)}
@@ -83,8 +83,8 @@ const CurrencyRow: FC<ICurrencyRowProps> = ({
             className={classNames(
               styles.arrow,
               Number(changePercent24Hr) < 0
-                ? styles.arrow_down
-                : styles.arrow_up
+                ? styles.arrow__down
+                : styles.arrow__up
             )}
           />
         </td>

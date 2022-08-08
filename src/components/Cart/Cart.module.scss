@@ -1,29 +1,14 @@
 $purple: rgb(117, 0, 92);
 
+.wrapper {
+  width: fit-content;
+  margin: 0% auto;
+}
+
 .header {
   font-size: xx-large;
   text-align: center;
   margin: 1% auto;
-}
-
-.table {
-  margin: 1% auto;
-  border-collapse: collapse;
-  &__data,
-  &__header__item {
-    padding: 12px 15px;
-    border: 1px solid rgb(192, 192, 192);
-    text-align: center;
-    font-size: 12px;
-  }
-
-  &__body > .table__row:nth-last-of-type(even) {
-    background-color: rgba($color: #181818, $alpha: 0.1);
-  }
-  &__infoContainer {
-    padding-left: 1%;
-    width: 105%;
-  }
 }
 
 .arrow {
@@ -65,49 +50,11 @@ $purple: rgb(117, 0, 92);
   text-align: center;
 }
 
-@media (min-width: 1400px) {
-  .table {
-    min-width: 80%;
-    margin: 1% auto;
-    &__data,
-    &__header__item {
-      font-size: larger;
-    }
-  }
-}
-
 @media (max-width: 800px) {
-  .table {
-    &__header {
-      display: none;
-    }
-    &,
-    &__body,
-    &__row,
-    &__data {
-      display: block;
-      width: auto;
-    }
-    &__row {
-      margin-bottom: 15px;
-    }
-    &__data {
-      text-align: right;
-      padding-left: 0%;
-      position: relative;
-    }
-    &__data::before {
-      content: attr(data-label);
-      position: absolute;
-      left: 0;
-      width: 50%;
-      padding-left: 10px;
-      font-size: 15px;
-      font-weight: bold;
-      text-align: left;
-    }
+  .wrapper {
+    width: auto;
+    margin: 0% auto;
   }
-
   .svg {
     width: 25px;
     height: 25px;

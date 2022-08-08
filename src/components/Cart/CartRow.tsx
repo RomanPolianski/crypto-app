@@ -5,7 +5,7 @@ import useCalcPriceNow from '../../utils/calculation/useCalcPriceNow';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
 import CloseButton from '../common/buttons/close/CloseButton';
 import DeleteConfirmModal from '../Modals/DeleteConfirmModal/DeleteConfirmModal';
-import styles from './Cart.module.scss';
+import styles from '../common/table/Table.module.scss';
 import CartColorField from './CartColorField';
 
 interface CartRowProps {
