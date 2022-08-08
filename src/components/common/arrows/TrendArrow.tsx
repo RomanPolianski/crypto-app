@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { FC } from 'react';
 import styles from './TrendArrow.module.scss';
 
-interface TrendArrowProps {
+export interface TrendArrowProps {
   isRising: boolean;
   difference?: number;
 }
