@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Table test > Table snapshot 1`] = `
 {
@@ -241,6 +241,155 @@ exports[`Table test > Take Table snapshot 1`] = `
       </thead>
       <tbody
         class="_table__body_wv4a5_12"
+      />
+    </table>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Table test Table snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <table
+        class="table"
+      >
+        <thead
+          class="table__header"
+        >
+          <tr
+            class="table__row"
+          >
+            <th
+              class="table__header__item"
+            >
+              Rank
+            </th>
+            <th
+              class="table__header__item"
+            >
+              Coin
+            </th>
+            <th
+              class="table__header__item"
+            >
+              Price USD
+            </th>
+            <th
+              class="table__header__item"
+            >
+              Martket Cap USD
+            </th>
+            <th
+              class="table__header__item"
+            >
+              Change 24hr
+            </th>
+            <th
+              class="table__header__item"
+            />
+          </tr>
+        </thead>
+        <tbody
+          class="table__body"
+        />
+      </table>
+    </div>
+  </body>,
+  "container": <div>
+    <table
+      class="table"
+    >
+      <thead
+        class="table__header"
+      >
+        <tr
+          class="table__row"
+        >
+          <th
+            class="table__header__item"
+          >
+            Rank
+          </th>
+          <th
+            class="table__header__item"
+          >
+            Coin
+          </th>
+          <th
+            class="table__header__item"
+          >
+            Price USD
+          </th>
+          <th
+            class="table__header__item"
+          >
+            Martket Cap USD
+          </th>
+          <th
+            class="table__header__item"
+          >
+            Change 24hr
+          </th>
+          <th
+            class="table__header__item"
+          />
+        </tr>
+      </thead>
+      <tbody
+        class="table__body"
       />
     </table>
   </div>,

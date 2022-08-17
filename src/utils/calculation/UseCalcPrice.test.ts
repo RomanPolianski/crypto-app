@@ -1,8 +1,13 @@
-import { jest } from '@jest/globals';
 import useCalcPriceNow from './useCalcPriceNow';
-import * as reduxHooks from 'react-redux';
+import * as reactRedux from 'react-redux';
+const mockSelector = jest.fn();
 
-const data = [
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useSelector: () => mockSelector,
+}));
+
+const currencies = [
   {
     id: 'bitcoin',
     rank: '1',
@@ -18,9 +23,8 @@ const data = [
   },
 ];
 
-describe('clacaa sprice test', () => {
+describe('claca sprice test', () => {
   it('returns correct val', () => {
-    jest.spyOn(reduxHooks, 'useSelector').mockReturnValue([data]);
-    expect(useCalcPriceNow(12, '12', 'hi')).toEqual('US$12.00');
+    mockSelector.mockReturnValue(currencies);
   });
 });

@@ -1,4 +1,3 @@
-import { describe, expect, it } from 'vitest';
 import { fireEvent, render, screen } from '../../../../../test-utils';
 import { NextPrevButton } from './NextPrevButton';
 

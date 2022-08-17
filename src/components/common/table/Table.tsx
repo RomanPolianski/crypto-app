@@ -18,7 +18,11 @@ export const Table: FC<TableProps> = ({
       <thead className={styles.table__header}>
         <tr className={styles.table__row}>
           {headers.map((i) => {
-            return <th className={styles.table__header__item}>{i}</th>;
+            return (
+              <th className={styles.table__header__item} key={i}>
+                {i}
+              </th>
+            );
           })}
         </tr>
       </thead>

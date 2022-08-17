@@ -2,9 +2,6 @@
   "name": "crypto-app",
   "private": true,
   "version": "0.0.0",
-  "jest": {
-    "verbose": true
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -16,8 +13,7 @@
     "test:cypress": "start-server-and-test dev http://localhost:3000 cypress",
     "cy:snapshot": "cypress open --config-file ./visualSnapShotConfig.config.ts",
     "cypress": "cypress open",
-    "test:jest": "vitest",
-    "coverage:jest": "vitest run --coverage",
+    "test": "jest",
     "lint-staged": {
       "src/**/*.{ts,css,html}": [
         "npm run prettier:check"
@@ -43,6 +39,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
     "@jest/globals": "^28.1.3",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
@@ -79,15 +78,27 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.3",
     "husky": "^8.0.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-environment-jsdom": "^28.1.3",
     "jsdom": "^20.0.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "sass": "^1.53.0",
     "start-server-and-test": "^1.14.0",
+    "ts-jest": "^28.0.8",
     "ts-node": "^10.9.1",
     "typescript": "^4.6.4",
     "vite": "^3.0.0",
     "vitest": "^0.21.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.ts"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
   },
   "husky": {
     "hooks": {
