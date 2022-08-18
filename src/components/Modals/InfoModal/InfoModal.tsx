@@ -1,8 +1,8 @@
+import { useQuery } from '@apollo/client';
 import { Chart, registerables } from 'chart.js';
 import { FC, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
-import instance from '../../../axios/api';
 import { addToCart } from '../../../store/cartSlice';
 import { toUSD } from '../../../utils/formatters/toUSDformatter';
 import { useInput } from '../../../utils/validators/useInputHook';
@@ -11,6 +11,7 @@ import { InputField } from '../../common/input/InputField';
 import Preloader from '../../common/preloader/Preloader';
 import styles from './InfoModal.module.scss';
 import Trend from './Trend';
+import { COIN_HISTORY } from '../../../apollo/queries';
 
 interface InfoModalProps {
   id: string;
@@ -39,8 +40,8 @@ const InfoModal: FC<InfoModalProps> = ({
   vwap24Hr,
   priceUsd,
 }): JSX.Element => {
-  const [loading, setIsLoading] = useState<boolean>(true);
-  const [data, setData] = useState([]);
+  const [loadingPage, setIsLoading] = useState<boolean>(true);
+  const [dataCoin, setData] = useState([]);
   const amount = useInput('', {
     minLength: 1,
     maxLength: 9,
@@ -61,20 +62,15 @@ const InfoModal: FC<InfoModalProps> = ({
     }
   };
 
-  const fetchData = async () => {
-    try {
-      const response = await instance.get(`/assets/${id}/history?interval=d1`);
-      if (response.status === 200) {
-        setData(response.data.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    setIsLoading(false);
-  };
+  const { loading, error, data } = useQuery(COIN_HISTORY, {
+    variables: { id: id },
+  });
+
+  if (error) {
+    return <h2>Error</h2>;
+  }
 
   useEffect(() => {
-    fetchData();
     if (open) {
       document.body.style.overflow = 'hidden';
     }
@@ -82,6 +78,16 @@ const InfoModal: FC<InfoModalProps> = ({
       document.body.style.overflow = 'unset';
     };
   }, [open]);
+
+  useEffect(() => {
+    if (loading) {
+      setIsLoading(true);
+    }
+    if (!loading) {
+      setData(data.getCoinHistory);
+      setIsLoading(false);
+    }
+  }, [data]);
 
   return ReactDOM.createPortal(
     <div>
@@ -130,7 +136,7 @@ const InfoModal: FC<InfoModalProps> = ({
                 </div>
               </div>
               <div className={styles.trend}>
-                {loading ? <Preloader /> : <Trend trendData={data} />}
+                {loadingPage ? <Preloader /> : <Trend trendData={dataCoin} />}
               </div>
             </div>
           </div>

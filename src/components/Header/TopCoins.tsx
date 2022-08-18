@@ -1,16 +1,37 @@
-import classNames from 'classnames';
-import { useSelector } from 'react-redux';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import { toUSD } from '../../utils/formatters/toUSDformatter';
-import { RootState } from '../../store';
 import Preloader from '../common/preloader/Preloader';
 import { TrendArrow } from '../common/arrows/TrendArrow';
+import { useQuery } from '@apollo/client';
+import { TOP3_COINS } from '../../apollo/queries';
+import { CurType } from '../../store/cartSlice';
 
 const TopCoins: FC = (): JSX.Element => {
-  const topCoins = useSelector(
-    (state: RootState) => state.currency.top3Currencies
-  );
+  const [loadingPage, setIsLoading] = useState<boolean>(true);
+  const [topCoins, setTopCoins] = useState<CurType[]>([]);
+  const { loading, error, data, startPolling, stopPolling } =
+    useQuery(TOP3_COINS);
+  useEffect(() => {
+    if (loading) {
+      setIsLoading(true);
+    }
+    if (!loading) {
+      setTopCoins(data.getTop3Coins);
+      setIsLoading(false);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    startPolling(10000);
+    return () => {
+      stopPolling();
+    };
+  }, [startPolling, stopPolling]);
+
+  if (error) {
+    return <h2>Error</h2>;
+  }
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>

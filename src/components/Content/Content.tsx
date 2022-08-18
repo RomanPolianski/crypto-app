@@ -1,7 +1,7 @@
+import { useQuery } from '@apollo/client';
 import { FC, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
-import { CurType, fetchCurrencies } from '../../store/currencySlice';
+import { ALL_COINS } from '../../apollo/queries';
+import { CurType } from '../../store/cartSlice';
 import Preloader from '../common/preloader/Preloader';
 import { Table } from '../common/table/Table';
 import styles from './Content.module.scss';
@@ -9,17 +9,35 @@ import CurrencyRow from './CurrencyRow/CurrencyRow';
 import Pagination from './Pagination/Pagination';
 
 const Content: FC = (): JSX.Element => {
-  const dispatch = useDispatch<AppDispatch>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [currencyPerPage] = useState<number>(10);
   const offset = currentPage * 10 - 10;
 
+  const [coins, setCoins] = useState<CurType[]>([]);
+  const { loading, error, data, startPolling, stopPolling } = useQuery(
+    ALL_COINS,
+    {
+      variables: { offset: offset },
+    }
+  );
+
   useEffect(() => {
-    setIsLoading(true);
-    dispatch(fetchCurrencies(offset));
-    setIsLoading(false);
-  }, [currentPage]);
+    if (loading) {
+      setIsLoading(true);
+    }
+    if (!loading) {
+      setCoins(data.getAllCoins);
+      setIsLoading(false);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    startPolling(10000);
+    return () => {
+      stopPolling();
+    };
+  }, [startPolling, stopPolling]);
 
   useEffect(() => {
     window.scrollTo({
@@ -28,10 +46,6 @@ const Content: FC = (): JSX.Element => {
       behavior: 'smooth',
     });
   }, [currentPage]);
-
-  const currenciesData: CurType[] = useSelector(
-    (state: RootState) => state.currency.currencies
-  );
 
   const totalCurrencies = 100;
 
@@ -44,7 +58,7 @@ const Content: FC = (): JSX.Element => {
     setCurrentPage(pageNumber);
   };
 
-  const currencyRow = currenciesData.map((p) => (
+  const currencyRow = coins.map((p) => (
     <CurrencyRow
       id={p.id}
       key={p.id}
@@ -63,7 +77,7 @@ const Content: FC = (): JSX.Element => {
 
   return (
     <div className={styles.table__wrapper}>
-      {isLoading ? (
+      {!coins.length ? (
         <Preloader />
       ) : (
         <>

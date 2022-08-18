@@ -2,7 +2,24 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import instance from '../axios/api';
-import { CurType } from './currencySlice';
+
+export interface CurrencyStateType {
+  currencies: Array<CurType>;
+}
+
+export interface CurType {
+  id: string;
+  rank: string;
+  symbol: string;
+  name: string;
+  supply: string;
+  maxSupply: string | null;
+  marketCapUsd: string;
+  volumeUsd24Hr: string;
+  priceUsd: string;
+  changePercent24Hr: string;
+  vwap24Hr: string;
+}
 
 interface CartStateType {
   cartItems: Array<CartItemsType>;

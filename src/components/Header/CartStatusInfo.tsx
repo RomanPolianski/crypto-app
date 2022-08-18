@@ -20,7 +20,7 @@ const CartStatusInfo: FC = (): JSX.Element => {
   return (
     <span className={classNames(styles.header__cartStatus, styles.cartStatus)}>
       <span>
-        {cartTotal === histCartTotal[0] || !histCartTotal[0]
+        {cartTotal === histCartTotal[0]
           ? toUSD(cartTotal)
           : toUSD(histCartTotal[0])}
       </span>

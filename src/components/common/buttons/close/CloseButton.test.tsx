@@ -1,7 +1,7 @@
 import { render, screen, userEvent } from '../../../../../test-utils';
 import CloseButton from './CloseButton';
 
-const onclick = () => {};
+const onclick = jest.fn();
 
 describe('Close btn test', () => {
   it('is button round delete visible', () => {
