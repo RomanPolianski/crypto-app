@@ -2,61 +2,12 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import instance from '../axios/api';
-
-export interface CurrencyStateType {
-  currencies: Array<CurType>;
-}
-
-export interface CurType {
-  id: string;
-  rank: string;
-  symbol: string;
-  name: string;
-  supply: string;
-  maxSupply: string | null;
-  marketCapUsd: string;
-  volumeUsd24Hr: string;
-  priceUsd: string;
-  changePercent24Hr: string;
-  vwap24Hr: string;
-}
-
-interface CartStateType {
-  cartItems: Array<CartItemsType>;
-  cartTotalQuantity: number;
-  cartTotal: number;
-  histCartTotal: Array<number>;
-  cartTotalNow: number;
-  differenceCartTotal: number;
-  differenceCartTotalPercent: number;
-  prevDifferenceCartTotal: number;
-  prevDifferenceCartTotalPercent: number;
-  currentCartCoinsData: Array<CurType>;
-}
-
-interface CartItemsType {
-  id: string;
-  name: string;
-  numberAmount: number;
-  priceUsd: string;
-}
-
-interface AddToCartActionType {
-  id: string;
-  name: string;
-  numberAmount: number;
-  priceUsd: string;
-}
-
-interface setCartDifferenceInfoType {
-  differenceCartTotal: number;
-  differenceCartTotalPercent: number;
-}
-
-interface DeleteFromCartActionType {
-  name: string;
-  priceNowUsd: number;
-}
+import {
+  AddToCartActionType,
+  CartStateType,
+  DeleteFromCartActionType,
+  setCartDifferenceInfoType,
+} from './cartSliceTypes';
 
 export const fetchCurrencyPriceNow = createAsyncThunk(
   'cart/fetchCurrencyPriceNow',

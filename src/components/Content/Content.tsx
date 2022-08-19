@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { FC, useEffect, useState } from 'react';
 import { ALL_COINS } from '../../apollo/queries';
-import { CurType } from '../../store/cartSlice';
+import { CurType } from '../../store/cartSliceTypes';
 import Preloader from '../common/preloader/Preloader';
 import { Table } from '../common/table/Table';
 import styles from './Content.module.scss';

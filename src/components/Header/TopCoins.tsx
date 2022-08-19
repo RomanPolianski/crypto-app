@@ -5,13 +5,14 @@ import Preloader from '../common/preloader/Preloader';
 import { TrendArrow } from '../common/arrows/TrendArrow';
 import { useQuery } from '@apollo/client';
 import { TOP3_COINS } from '../../apollo/queries';
-import { CurType } from '../../store/cartSlice';
+import { CurType } from '../../store/cartSliceTypes';
 
 const TopCoins: FC = (): JSX.Element => {
   const [loadingPage, setIsLoading] = useState<boolean>(true);
   const [topCoins, setTopCoins] = useState<CurType[]>([]);
   const { loading, error, data, startPolling, stopPolling } =
     useQuery(TOP3_COINS);
+
   useEffect(() => {
     if (loading) {
       setIsLoading(true);
