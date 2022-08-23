@@ -13,10 +13,4 @@ describe('toUSD test', () => {
   it('returns val', () => {
     expect(toUSD(0.000011)).toEqual('US$0.000011');
   });
-  it('returns val', () => {
-    expect(toUSD(-0.000011)).toEqual('error');
-  });
-  it('returns val', () => {
-    expect(toUSD(-0.1)).toEqual('error');
-  });
 });
