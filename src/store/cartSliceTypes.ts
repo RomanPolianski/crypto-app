@@ -27,8 +27,11 @@ export interface CartStateType {
   prevDifferenceCartTotal: number;
   prevDifferenceCartTotalPercent: number;
   currentCartCoinsData: Array<CurType>;
+  diagramData: Array<{
+    name: string;
+    value: number;
+  }>;
 }
-
 export interface CartItemsType {
   id: string;
   name: string;

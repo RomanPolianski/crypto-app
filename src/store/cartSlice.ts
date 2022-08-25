@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { NumberValue } from 'd3';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import instance from '../axios/api';
@@ -8,6 +9,11 @@ import {
   DeleteFromCartActionType,
   setCartDifferenceInfoType,
 } from './cartSliceTypes';
+
+interface setCurrentCartTypeAction {
+  name: string;
+  totalCoinPriceNow: number;
+}
 
 export const fetchCurrencyPriceNow = createAsyncThunk(
   'cart/fetchCurrencyPriceNow',
@@ -34,6 +40,7 @@ const initialState: CartStateType = {
   prevDifferenceCartTotal: 0,
   prevDifferenceCartTotalPercent: 0,
   currentCartCoinsData: [],
+  diagramData: [],
 };
 
 const cartSlice = createSlice({
@@ -80,12 +87,27 @@ const cartSlice = createSlice({
         state.histCartTotal = [0];
       }
     },
-    setCartTotalNow(state, { payload }: PayloadAction<number>) {
-      state.histCartTotal.unshift(state.cartTotalNow + payload);
-      state.cartTotalNow += payload;
+    setCartTotalNow(
+      state,
+      { payload }: PayloadAction<setCurrentCartTypeAction>
+    ) {
+      state.histCartTotal.unshift(
+        state.cartTotalNow + payload.totalCoinPriceNow
+      );
+      state.cartTotalNow += payload.totalCoinPriceNow;
+      state.diagramData.push({
+        name: payload.name,
+        value: payload.totalCoinPriceNow,
+      });
     },
-    deleteCartTotalNow(state, { payload }: PayloadAction<number>) {
-      state.cartTotalNow -= payload;
+    deleteCartTotalNow(
+      state,
+      { payload }: PayloadAction<setCurrentCartTypeAction>
+    ) {
+      state.cartTotalNow -= payload.totalCoinPriceNow;
+      state.diagramData = state.diagramData.filter(
+        (obj) => obj.name !== payload.name
+      );
       if (state.cartTotalQuantity === 0) {
         state.cartTotal = 0;
         state.differenceCartTotal = 0;

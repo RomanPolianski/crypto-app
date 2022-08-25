@@ -24,10 +24,12 @@ const CartRow: FC<CartRowProps> = ({ name, amount, priceUsd }): JSX.Element => {
     toggle();
   };
 
+  const totalCoinPriceNow = diffInfo.totalCoinPriceNow;
+
   useEffect(() => {
-    dispatch(setCartTotalNow(diffInfo.totalCoinPriceNow));
+    dispatch(setCartTotalNow({ name, totalCoinPriceNow }));
     return () => {
-      dispatch(deleteCartTotalNow(diffInfo.totalCoinPriceNow));
+      dispatch(deleteCartTotalNow({ name, totalCoinPriceNow }));
     };
   }, [name]);
 

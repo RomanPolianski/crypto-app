@@ -10,6 +10,7 @@ import Preloader from '../common/preloader/Preloader';
 import { Table } from '../common/table/Table';
 import styles from './Cart.module.scss';
 import CartBottomInfo from './CartBottomInfo';
+import CartDiagram from './CartDiagram';
 import CartRow from './CartRow';
 
 const Cart: FC = (): JSX.Element => {
@@ -90,6 +91,7 @@ const Cart: FC = (): JSX.Element => {
             ) : (
               <Preloader />
             )}
+            <CartDiagram />
           </div>
         </>
       ) : (
