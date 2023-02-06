@@ -12,7 +12,7 @@ const defaultOptions: DefaultOptions = {
 };
 
 const client = new ApolloClient({
-  uri: 'https://crypto-app-graphql.herokuapp.com/graphql',
+  uri: 'https://graphql-crypto-app.onrender.com/graphql',
   cache: new InMemoryCache(),
   defaultOptions: defaultOptions,
 });
