@@ -1,5 +1,6 @@
 import { ApolloClient, DefaultOptions, InMemoryCache } from '@apollo/client';
 
+const API_URL_GQ = import.meta.env.VITE_GRAPH_QL_API_URL;
 const defaultOptions: DefaultOptions = {
   watchQuery: {
     fetchPolicy: 'no-cache',
@@ -12,7 +13,7 @@ const defaultOptions: DefaultOptions = {
 };
 
 const client = new ApolloClient({
-  uri: 'https://graphql-crypto-app.onrender.com/graphql',
+  uri: API_URL_GQ,
   cache: new InMemoryCache(),
   defaultOptions: defaultOptions,
 });

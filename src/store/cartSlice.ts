@@ -3,6 +3,7 @@ import { NumberValue } from 'd3';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import instance from '../axios/api';
+
 import {
   AddToCartActionType,
   CartStateType,
