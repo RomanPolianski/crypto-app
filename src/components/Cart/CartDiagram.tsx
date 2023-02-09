@@ -11,6 +11,7 @@ const CartDiagram = () => {
   const pieChart = useRef();
 
   useEffect(() => {
+    //@ts-ignore
     const piedata = d3.pie().value((d) => d.value)(diagramData);
     const width = 450,
       height = 450,
@@ -44,6 +45,7 @@ const CartDiagram = () => {
       .range(d3.schemePaired);
 
     const svg = d3
+      //@ts-ignore
       .select(pieChart.current)
       .attr('width', width)
       .attr('height', height)
@@ -67,7 +69,9 @@ const CartDiagram = () => {
       .selectAll('allSlices')
       .data(piedata)
       .join('path')
+      //@ts-ignore
       .attr('d', arc)
+      //@ts-ignore
       .attr('fill', (d) => colors(d.data.value))
       .attr('stroke', 'white')
       .style('stroke-width', '2px')
@@ -76,6 +80,7 @@ const CartDiagram = () => {
       .on('mouseover', (e, d) => {
         tooldiv
           .style('visibility', 'visible')
+          //@ts-ignore
           .text(`${d.data.name}:` + ` ${toUSD(d.data.value)}`);
       })
       .on('mousemove', (e, d) => {
@@ -94,9 +99,13 @@ const CartDiagram = () => {
       .attr('stroke', 'black')
       .style('fill', 'none')
       .attr('stroke-width', 1)
+      //@ts-ignore
       .attr('points', function (d) {
+        //@ts-ignore
         const posA = arc.centroid(d);
+        //@ts-ignore
         const posB = outerArc.centroid(d);
+        //@ts-ignore
         const posC = outerArc.centroid(d);
         const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
         posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1);
@@ -107,8 +116,10 @@ const CartDiagram = () => {
       .selectAll('allLabels')
       .data(piedata)
       .join('text')
+      //@ts-ignore
       .text((d) => d.data.name)
       .attr('transform', function (d) {
+        //@ts-ignore
         const pos = outerArc.centroid(d);
         const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
         pos[0] = radius * 0.99 * (midangle < Math.PI ? 1 : -1);
@@ -122,7 +133,10 @@ const CartDiagram = () => {
 
   return (
     <div id="chartArea">
-      <svg ref={pieChart}></svg>
+      {
+        // @ts-ignore */
+        <svg ref={pieChart}></svg>
+      }
     </div>
   );
 };
