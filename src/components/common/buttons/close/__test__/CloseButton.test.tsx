@@ -1,5 +1,5 @@
-import { render, screen, userEvent } from '../../../../../test-utils';
-import CloseButton from './CloseButton';
+import { render, screen, userEvent } from '../../../../../../test-utils';
+import CloseButton from '../CloseButton';
 
 const onclick = jest.fn();
 

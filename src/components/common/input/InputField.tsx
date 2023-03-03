@@ -26,6 +26,8 @@ export const InputField: FC<InputFieldProps> = ({ data }): JSX.Element => {
       <input
         className={styles.modal__input}
         type="number"
+        role='textbox'
+        data-testid="custom-input"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => data.onChange(e)}
         onBlur={(e) => data.onBlur(e)}
         value={data.value}

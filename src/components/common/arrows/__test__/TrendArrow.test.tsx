@@ -1,5 +1,5 @@
-import { render } from '../../../../test-utils';
-import { TrendArrow } from './TrendArrow';
+import { render } from '../../../../../test-utils';
+import { TrendArrow } from '../TrendArrow';
 
 describe('TrendArrow test', () => {
   it('TrendArrow snapshot down red', () => {

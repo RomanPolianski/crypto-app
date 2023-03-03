@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from '../../../../../test-utils';
-import { NextPrevButton } from './NextPrevButton';
+import { fireEvent, render, screen } from '../../../../../../test-utils';
+import { NextPrevButton } from '../NextPrevButton';
 
 const onclick = () => {};
 

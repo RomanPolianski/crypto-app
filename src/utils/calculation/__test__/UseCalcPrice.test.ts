@@ -1,4 +1,4 @@
-import useCalcPriceNow from './useCalcPriceNow';
+import useCalcPriceNow from '../useCalcPriceNow';
 import * as reactRedux from 'react-redux';
 const mockSelector = jest.fn();
 
